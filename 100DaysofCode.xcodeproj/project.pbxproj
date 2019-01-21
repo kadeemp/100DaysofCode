@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5439572C9AEFA48A2AA9129F /* Pods_100DaysofCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3015E71C234B04FCBD824797 /* Pods_100DaysofCode.framework */; };
 		F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0A21F65153007A1E95 /* AppDelegate.swift */; };
 		F479FE0D21F65153007A1E95 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0C21F65153007A1E95 /* ViewController.swift */; };
 		F479FE1021F65153007A1E95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F479FE0E21F65153007A1E95 /* Main.storyboard */; };
@@ -15,6 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3015E71C234B04FCBD824797 /* Pods_100DaysofCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_100DaysofCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		895474FB6517F2F080E726AC /* Pods-100DaysofCode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-100DaysofCode.release.xcconfig"; path = "Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode.release.xcconfig"; sourceTree = "<group>"; };
+		BA2624BCBE7F5007D9A88663 /* Pods-100DaysofCode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-100DaysofCode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode.debug.xcconfig"; sourceTree = "<group>"; };
 		F479FE0721F65153007A1E95 /* 100DaysofCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 100DaysofCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F479FE0A21F65153007A1E95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F479FE0C21F65153007A1E95 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5439572C9AEFA48A2AA9129F /* Pods_100DaysofCode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04653AE7E3095D525C1C746F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BA2624BCBE7F5007D9A88663 /* Pods-100DaysofCode.debug.xcconfig */,
+				895474FB6517F2F080E726AC /* Pods-100DaysofCode.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F1008120893B556D9A055587 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3015E71C234B04FCBD824797 /* Pods_100DaysofCode.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F479FDFE21F65152007A1E95 = {
 			isa = PBXGroup;
 			children = (
 				F479FE0921F65153007A1E95 /* 100DaysofCode */,
 				F479FE0821F65153007A1E95 /* Products */,
+				04653AE7E3095D525C1C746F /* Pods */,
+				F1008120893B556D9A055587 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F479FE1921F65155007A1E95 /* Build configuration list for PBXNativeTarget "100DaysofCode" */;
 			buildPhases = (
+				FC1CC804E8C5FF7B3B3462A5 /* [CP] Check Pods Manifest.lock */,
 				F479FE0321F65153007A1E95 /* Sources */,
 				F479FE0421F65153007A1E95 /* Frameworks */,
 				F479FE0521F65153007A1E95 /* Resources */,
+				CDB0FE0ABCF6DA9A3821F311 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +155,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CDB0FE0ABCF6DA9A3821F311 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC1CC804E8C5FF7B3B3462A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-100DaysofCode-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F479FE0321F65153007A1E95 /* Sources */ = {
@@ -280,6 +345,7 @@
 		};
 		F479FE1A21F65155007A1E95 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA2624BCBE7F5007D9A88663 /* Pods-100DaysofCode.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +364,7 @@
 		};
 		F479FE1B21F65155007A1E95 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 895474FB6517F2F080E726AC /* Pods-100DaysofCode.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
