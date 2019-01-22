@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA1609E470D3B0CEED0AB3A18350954A"
-               BuildableName = "Pods_100DaysofCode.framework"
-               BlueprintName = "Pods-100DaysofCode"
+               BlueprintIdentifier = "25622BDCA24151D7C101C916DCD4C64D"
+               BuildableName = "Kanna.framework"
+               BlueprintName = "Kanna"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FA1609E470D3B0CEED0AB3A18350954A"
-            BuildableName = "Pods_100DaysofCode.framework"
-            BlueprintName = "Pods-100DaysofCode"
+            BlueprintIdentifier = "25622BDCA24151D7C101C916DCD4C64D"
+            BuildableName = "Kanna.framework"
+            BlueprintName = "Kanna"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

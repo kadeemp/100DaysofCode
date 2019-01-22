@@ -13,9 +13,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let userDefaults = UserDefaults.standard
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+        var mainTabBarController: UITabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
+        let LoginViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "Login")
+        let homeViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "Home")
+        let settingsViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "Settings")
+
+        mainTabBarController.viewControllers = [homeViewController,settingsViewController]
+
+        navigationController.viewControllers = [LoginViewController]
+        if let name = userDefaults.string(forKey: "username") {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = mainTabBarController
+            self.window?.makeKeyAndVisible()
+        } else {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = navigationController
+            self.window?.makeKeyAndVisible()
+        }
         return true
     }
 

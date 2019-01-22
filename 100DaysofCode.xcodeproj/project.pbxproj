@@ -9,10 +9,15 @@
 /* Begin PBXBuildFile section */
 		5439572C9AEFA48A2AA9129F /* Pods_100DaysofCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3015E71C234B04FCBD824797 /* Pods_100DaysofCode.framework */; };
 		F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0A21F65153007A1E95 /* AppDelegate.swift */; };
-		F479FE0D21F65153007A1E95 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0C21F65153007A1E95 /* ViewController.swift */; };
+		F479FE0D21F65153007A1E95 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0C21F65153007A1E95 /* LoginViewController.swift */; };
 		F479FE1021F65153007A1E95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F479FE0E21F65153007A1E95 /* Main.storyboard */; };
 		F479FE1221F65155007A1E95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F479FE1121F65155007A1E95 /* Assets.xcassets */; };
 		F479FE1521F65155007A1E95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F479FE1321F65155007A1E95 /* LaunchScreen.storyboard */; };
+		F479FE2021F6D275007A1E95 /* NetworkingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE1F21F6D275007A1E95 /* NetworkingProvider.swift */; };
+		F479FE2221F6D47B007A1E95 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2121F6D47B007A1E95 /* HomeViewController.swift */; };
+		F479FE2421F6D48C007A1E95 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */; };
+		F479FE2621F6DD09007A1E95 /* StoryboardReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2521F6DD09007A1E95 /* StoryboardReferences.swift */; };
+		F479FE2821F6E83F007A1E95 /* LoginConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +26,16 @@
 		BA2624BCBE7F5007D9A88663 /* Pods-100DaysofCode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-100DaysofCode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode.debug.xcconfig"; sourceTree = "<group>"; };
 		F479FE0721F65153007A1E95 /* 100DaysofCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 100DaysofCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F479FE0A21F65153007A1E95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F479FE0C21F65153007A1E95 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F479FE0C21F65153007A1E95 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F479FE0F21F65153007A1E95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F479FE1121F65155007A1E95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F479FE1421F65155007A1E95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F479FE1621F65155007A1E95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F479FE1F21F6D275007A1E95 /* NetworkingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProvider.swift; sourceTree = "<group>"; };
+		F479FE2121F6D47B007A1E95 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F479FE2521F6DD09007A1E95 /* StoryboardReferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardReferences.swift; sourceTree = "<group>"; };
+		F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfirmationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,14 +88,43 @@
 		F479FE0921F65153007A1E95 /* 100DaysofCode */ = {
 			isa = PBXGroup;
 			children = (
-				F479FE0A21F65153007A1E95 /* AppDelegate.swift */,
-				F479FE0C21F65153007A1E95 /* ViewController.swift */,
-				F479FE0E21F65153007A1E95 /* Main.storyboard */,
-				F479FE1121F65155007A1E95 /* Assets.xcassets */,
-				F479FE1321F65155007A1E95 /* LaunchScreen.storyboard */,
 				F479FE1621F65155007A1E95 /* Info.plist */,
+				F479FE1121F65155007A1E95 /* Assets.xcassets */,
+				F479FE1E21F6D1AE007A1E95 /* Storyboards */,
+				F479FE1D21F6D192007A1E95 /* Helpers */,
+				F479FE1C21F6D179007A1E95 /* View Controllers */,
 			);
 			path = 100DaysofCode;
+			sourceTree = "<group>";
+		};
+		F479FE1C21F6D179007A1E95 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F479FE0C21F65153007A1E95 /* LoginViewController.swift */,
+				F479FE2121F6D47B007A1E95 /* HomeViewController.swift */,
+				F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */,
+				F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F479FE1D21F6D192007A1E95 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F479FE0A21F65153007A1E95 /* AppDelegate.swift */,
+				F479FE1F21F6D275007A1E95 /* NetworkingProvider.swift */,
+				F479FE2521F6DD09007A1E95 /* StoryboardReferences.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F479FE1E21F6D1AE007A1E95 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F479FE0E21F65153007A1E95 /* Main.storyboard */,
+				F479FE1321F65155007A1E95 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,10 +204,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -200,8 +241,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F479FE0D21F65153007A1E95 /* ViewController.swift in Sources */,
+				F479FE0D21F65153007A1E95 /* LoginViewController.swift in Sources */,
 				F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */,
+				F479FE2021F6D275007A1E95 /* NetworkingProvider.swift in Sources */,
+				F479FE2421F6D48C007A1E95 /* SettingsViewController.swift in Sources */,
+				F479FE2621F6DD09007A1E95 /* StoryboardReferences.swift in Sources */,
+				F479FE2221F6D47B007A1E95 /* HomeViewController.swift in Sources */,
+				F479FE2821F6E83F007A1E95 /* LoginConfirmationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
