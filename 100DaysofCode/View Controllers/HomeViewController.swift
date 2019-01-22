@@ -7,11 +7,41 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet var usernameLabel: UILabel!
+    @IBOutlet var counterLabel: UILabel!
+    @IBOutlet var profilePictureImageView: UIImageView!
+    var profilePictureURL:URLRequest!
+    var userDefaults = UserDefaults.standard
+    var username:String!
+    var downloader = ImageDownloader()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        username = userDefaults.string(forKey: "username")
+        print(username)
+        usernameLabel.text = username!
+        if username != nil {
+        NetworkingProvider.getProfilePictureFor(username: username, completion: { url in
+            if url != "" {
+                let urlRequest = URLRequest(url: URL(string: url)!)
+
+
+                self.downloader.download(urlRequest) { response in
+                    if let image = response.result.value {
+                        print(image)
+                        self.profilePictureImageView.image = image
+                    }
+                }
+            }
+        })
+            NetworkingProvider.getCurrentStreakFor(username: username) { (streakCount) in
+                self.counterLabel.text = String(streakCount)
+            }
+        }
 
         // Do any additional setup after loading the view.
     }

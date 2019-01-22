@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainTabBarController.viewControllers = [homeViewController,settingsViewController]
 
         navigationController.viewControllers = [LoginViewController]
-        if let name = userDefaults.string(forKey: "username") {
+        if  userDefaults.string(forKey: "username") != nil {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             self.window?.rootViewController = mainTabBarController
             self.window?.makeKeyAndVisible()

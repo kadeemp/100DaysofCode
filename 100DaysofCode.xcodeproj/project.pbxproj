@@ -18,6 +18,7 @@
 		F479FE2421F6D48C007A1E95 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */; };
 		F479FE2621F6DD09007A1E95 /* StoryboardReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2521F6DD09007A1E95 /* StoryboardReferences.swift */; };
 		F479FE2821F6E83F007A1E95 /* LoginConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */; };
+		F499A54D21F79F100020F53D /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F499A54C21F79F100020F53D /* Podfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F479FE2521F6DD09007A1E95 /* StoryboardReferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardReferences.swift; sourceTree = "<group>"; };
 		F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfirmationViewController.swift; sourceTree = "<group>"; };
+		F499A54C21F79F100020F53D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		04653AE7E3095D525C1C746F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				F499A54C21F79F100020F53D /* Podfile */,
 				BA2624BCBE7F5007D9A88663 /* Pods-100DaysofCode.debug.xcconfig */,
 				895474FB6517F2F080E726AC /* Pods-100DaysofCode.release.xcconfig */,
 			);
@@ -189,6 +192,7 @@
 			files = (
 				F479FE1521F65155007A1E95 /* LaunchScreen.storyboard in Resources */,
 				F479FE1221F65155007A1E95 /* Assets.xcassets in Resources */,
+				F499A54D21F79F100020F53D /* Podfile in Resources */,
 				F479FE1021F65153007A1E95 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,11 +208,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
