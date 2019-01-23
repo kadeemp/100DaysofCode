@@ -11,6 +11,8 @@ import AlamofireImage
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet var counterActivtyIndicator: UIActivityIndicatorView!
+    @IBOutlet var imageViewActivityIndicator: UIActivityIndicatorView!
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var counterLabel: UILabel!
     @IBOutlet var profilePictureImageView: UIImageView!
@@ -18,13 +20,21 @@ class HomeViewController: UIViewController {
     var userDefaults = UserDefaults.standard
     var username:String!
     var downloader = ImageDownloader()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        username = userDefaults.string(forKey: "username")
-        print(username)
-        usernameLabel.text = username!
-        if username != nil {
+        counterActivtyIndicator.startAnimating()
+        imageViewActivityIndicator.startAnimating()
+
+        profilePictureImageView.layer.cornerRadius = 50
+        profilePictureImageView.clipsToBounds = true
+        profilePictureImageView.layer.borderWidth = 3
+        profilePictureImageView.layer.borderColor = UIColor(red: 31/255, green: 67/255, blue: 140/255, alpha: 1).cgColor
+
+
+        
+        if let username = userDefaults.string(forKey: "username") {
         NetworkingProvider.getProfilePictureFor(username: username, completion: { url in
             if url != "" {
                 let urlRequest = URLRequest(url: URL(string: url)!)
@@ -34,27 +44,24 @@ class HomeViewController: UIViewController {
                     if let image = response.result.value {
                         print(image)
                         self.profilePictureImageView.image = image
+                        self.imageViewActivityIndicator.stopAnimating()
+                        self.imageViewActivityIndicator.isHidden = true
                     }
                 }
             }
         })
             NetworkingProvider.getCurrentStreakFor(username: username) { (streakCount) in
+
                 self.counterLabel.text = String(streakCount)
+                self.counterActivtyIndicator.stopAnimating()
+                self.counterActivtyIndicator.isHidden = true
             }
+
+            usernameLabel.text = username
         }
+
 
         // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

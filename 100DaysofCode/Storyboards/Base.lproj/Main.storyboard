@@ -88,7 +88,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBd-BP-PBG">
-                                <rect key="frame" x="113.66666666666669" y="527" width="187" height="30"/>
+                                <rect key="frame" x="113.66666666666669" y="527.33333333333337" width="187" height="30"/>
                                 <color key="backgroundColor" red="0.075305410122390726" green="0.16516041625488781" blue="0.55776094543147203" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Confirm">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -172,7 +172,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVY-eq-zzr">
-                                <rect key="frame" x="183" y="238" width="48" height="94"/>
+                                <rect key="frame" x="183" y="238.66666666666666" width="47.333333333333343" height="93.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="78"/>
                                 <color key="textColor" red="0.55708211660385132" green="0.55653619766235352" blue="0.57647091150283813" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -195,15 +195,25 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="iwP-0h-h2M">
+                                <rect key="frame" x="196.66666666666666" y="275.33333333333331" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Cau-mG-1MW">
+                                <rect key="frame" x="60" y="104" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="iwP-0h-h2M" firstAttribute="centerY" secondItem="ZVY-eq-zzr" secondAttribute="centerY" id="CNp-tv-FWR"/>
+                            <constraint firstItem="Cau-mG-1MW" firstAttribute="centerY" secondItem="3aO-el-gep" secondAttribute="centerY" id="GsL-mG-7eY"/>
+                            <constraint firstItem="iwP-0h-h2M" firstAttribute="centerX" secondItem="ZVY-eq-zzr" secondAttribute="centerX" id="INS-8l-H9z"/>
                             <constraint firstItem="0wa-yI-01W" firstAttribute="top" secondItem="lua-Rz-1YU" secondAttribute="top" constant="150" id="btW-8p-0Yn"/>
                             <constraint firstItem="0wa-yI-01W" firstAttribute="centerX" secondItem="Hxf-FH-lkq" secondAttribute="centerX" id="dDc-Z8-1aj"/>
                             <constraint firstItem="3aO-el-gep" firstAttribute="leading" secondItem="lua-Rz-1YU" secondAttribute="leading" constant="20" id="ljA-ic-1uK"/>
                             <constraint firstItem="ZVY-eq-zzr" firstAttribute="leading" secondItem="0wa-yI-01W" secondAttribute="trailing" constant="-164" id="mUH-jc-ogl"/>
                             <constraint firstItem="3aO-el-gep" firstAttribute="top" secondItem="lua-Rz-1YU" secondAttribute="top" constant="20" id="okj-uQ-s92"/>
                             <constraint firstItem="YUE-r1-tR4" firstAttribute="top" secondItem="0wa-yI-01W" secondAttribute="bottom" constant="98" id="pyE-57-KKC"/>
+                            <constraint firstItem="Cau-mG-1MW" firstAttribute="centerX" secondItem="3aO-el-gep" secondAttribute="centerX" id="qC7-XD-to4"/>
                             <constraint firstItem="YUE-r1-tR4" firstAttribute="centerX" secondItem="Hxf-FH-lkq" secondAttribute="centerX" id="sAl-bx-HhD"/>
                             <constraint firstItem="0wa-yI-01W" firstAttribute="top" secondItem="ZVY-eq-zzr" secondAttribute="bottom" constant="-138" id="vof-t5-TfX"/>
                         </constraints>
@@ -211,7 +221,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="Mor-KZ-TND"/>
                     <connections>
+                        <outlet property="counterActivtyIndicator" destination="iwP-0h-h2M" id="IDK-DM-jlg"/>
                         <outlet property="counterLabel" destination="ZVY-eq-zzr" id="raI-1H-hDf"/>
+                        <outlet property="imageViewActivityIndicator" destination="Cau-mG-1MW" id="xHR-8E-gnv"/>
                         <outlet property="profilePictureImageView" destination="3aO-el-gep" id="zo2-IY-b22"/>
                         <outlet property="usernameLabel" destination="YUE-r1-tR4" id="Sse-iN-Gkp"/>
                     </connections>

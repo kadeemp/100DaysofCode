@@ -47,9 +47,14 @@ class NetworkingProvider {
             for day in doc.css("rect[class^='day']") {
                 commitList += [Int(day["data-count"]!)!]
             }
+            //TODO:-  if your last day is not 0, then dont pop off the last commit
+
+
 
             commitList.removeLast()
             commitList = commitList.reversed()
+            print("--------")
+            print(commitList)
 
             for day in commitList {
                 if day != 0 {
