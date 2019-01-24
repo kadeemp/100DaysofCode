@@ -16,7 +16,6 @@
 		F479FE2021F6D275007A1E95 /* NetworkingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE1F21F6D275007A1E95 /* NetworkingProvider.swift */; };
 		F479FE2221F6D47B007A1E95 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2121F6D47B007A1E95 /* HomeViewController.swift */; };
 		F479FE2421F6D48C007A1E95 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */; };
-		F479FE2621F6DD09007A1E95 /* StoryboardReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2521F6DD09007A1E95 /* StoryboardReferences.swift */; };
 		F479FE2821F6E83F007A1E95 /* LoginConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */; };
 		F499A54D21F79F100020F53D /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F499A54C21F79F100020F53D /* Podfile */; };
 /* End PBXBuildFile section */
@@ -35,7 +34,6 @@
 		F479FE1F21F6D275007A1E95 /* NetworkingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProvider.swift; sourceTree = "<group>"; };
 		F479FE2121F6D47B007A1E95 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		F479FE2521F6DD09007A1E95 /* StoryboardReferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardReferences.swift; sourceTree = "<group>"; };
 		F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfirmationViewController.swift; sourceTree = "<group>"; };
 		F499A54C21F79F100020F53D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -116,7 +114,6 @@
 			children = (
 				F479FE0A21F65153007A1E95 /* AppDelegate.swift */,
 				F479FE1F21F6D275007A1E95 /* NetworkingProvider.swift */,
-				F479FE2521F6DD09007A1E95 /* StoryboardReferences.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -251,7 +248,6 @@
 				F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */,
 				F479FE2021F6D275007A1E95 /* NetworkingProvider.swift in Sources */,
 				F479FE2421F6D48C007A1E95 /* SettingsViewController.swift in Sources */,
-				F479FE2621F6DD09007A1E95 /* StoryboardReferences.swift in Sources */,
 				F479FE2221F6D47B007A1E95 /* HomeViewController.swift in Sources */,
 				F479FE2821F6E83F007A1E95 /* LoginConfirmationViewController.swift in Sources */,
 			);

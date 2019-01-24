@@ -37,6 +37,7 @@ class NetworkingProvider {
         return profilePictureURL
     }
 
+
     static func parseStreakFromHTML(html: String) -> Int {
         var streak = 0
 
@@ -47,14 +48,20 @@ class NetworkingProvider {
             for day in doc.css("rect[class^='day']") {
                 commitList += [Int(day["data-count"]!)!]
             }
-            //TODO:-  if your last day is not 0, then dont pop off the last commit
+
 
 
 
             commitList.removeLast()
+
             commitList = commitList.reversed()
-            print("--------")
-            print(commitList)
+            if ((commitList[0] == 0) && (commitList[1] != 0)) {
+                commitList.remove(at: 0)
+                UserDefaults.standard.set(false, forKey: "hasCommited")
+            } else if commitList[0] != 0 {
+                UserDefaults.standard.set(true, forKey: "hasCommited")
+            }
+
 
             for day in commitList {
                 if day != 0 {
