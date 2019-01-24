@@ -18,6 +18,7 @@
 		F479FE2421F6D48C007A1E95 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */; };
 		F479FE2821F6E83F007A1E95 /* LoginConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */; };
 		F499A54D21F79F100020F53D /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F499A54C21F79F100020F53D /* Podfile */; };
+		F4A70BE621F9957500AC3865 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70BE521F9957500AC3865 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfirmationViewController.swift; sourceTree = "<group>"; };
 		F499A54C21F79F100020F53D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		F4A70BE521F9957500AC3865 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		F479FE0921F65153007A1E95 /* 100DaysofCode */ = {
 			isa = PBXGroup;
 			children = (
+				F4A70BE421F9956400AC3865 /* Extensions */,
 				F479FE1621F65155007A1E95 /* Info.plist */,
 				F479FE1121F65155007A1E95 /* Assets.xcassets */,
 				F479FE1E21F6D1AE007A1E95 /* Storyboards */,
@@ -125,6 +128,14 @@
 				F479FE1321F65155007A1E95 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F4A70BE421F9956400AC3865 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F4A70BE521F9957500AC3865 /* Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +261,7 @@
 				F479FE2421F6D48C007A1E95 /* SettingsViewController.swift in Sources */,
 				F479FE2221F6D47B007A1E95 /* HomeViewController.swift in Sources */,
 				F479FE2821F6E83F007A1E95 /* LoginConfirmationViewController.swift in Sources */,
+				F4A70BE621F9957500AC3865 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

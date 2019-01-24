@@ -172,8 +172,8 @@
                                     <constraint firstAttribute="height" constant="280" id="ZPx-5g-fiX"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVY-eq-zzr">
-                                <rect key="frame" x="183.33333333333334" y="401.33333333333331" width="47.333333333333343" height="93.333333333333314"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVY-eq-zzr">
+                                <rect key="frame" x="207" y="448" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="78"/>
                                 <color key="textColor" red="0.55708211660385132" green="0.55653619766235352" blue="0.57647091150283813" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -191,7 +191,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUE-r1-tR4">
-                                <rect key="frame" x="164.66666666666666" y="572" width="85" height="43"/>
+                                <rect key="frame" x="164.66666666666666" y="548" width="85" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -210,7 +210,7 @@
                             <constraint firstItem="iwP-0h-h2M" firstAttribute="centerX" secondItem="ZVY-eq-zzr" secondAttribute="centerX" id="INS-8l-H9z"/>
                             <constraint firstItem="0wa-yI-01W" firstAttribute="top" secondItem="lua-Rz-1YU" secondAttribute="top" constant="150" id="btW-8p-0Yn"/>
                             <constraint firstItem="0wa-yI-01W" firstAttribute="centerX" secondItem="Hxf-FH-lkq" secondAttribute="centerX" id="dDc-Z8-1aj"/>
-                            <constraint firstItem="YUE-r1-tR4" firstAttribute="top" secondItem="ZVY-eq-zzr" secondAttribute="bottom" constant="77.333333333333371" id="lhC-46-b6t"/>
+                            <constraint firstItem="YUE-r1-tR4" firstAttribute="top" secondItem="ZVY-eq-zzr" secondAttribute="bottom" constant="100" id="lhC-46-b6t"/>
                             <constraint firstItem="3aO-el-gep" firstAttribute="leading" secondItem="lua-Rz-1YU" secondAttribute="leading" constant="20" id="ljA-ic-1uK"/>
                             <constraint firstItem="3aO-el-gep" firstAttribute="top" secondItem="lua-Rz-1YU" secondAttribute="top" constant="20" id="okj-uQ-s92"/>
                             <constraint firstItem="ZVY-eq-zzr" firstAttribute="centerY" secondItem="Hxf-FH-lkq" secondAttribute="centerY" id="qAu-XU-sJF"/>

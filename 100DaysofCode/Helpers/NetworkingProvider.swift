@@ -50,17 +50,19 @@ class NetworkingProvider {
             }
 
 
-
-
-            commitList.removeLast()
-
-            commitList = commitList.reversed()
-            if ((commitList[0] == 0) && (commitList[1] != 0)) {
-                commitList.remove(at: 0)
+            if commitList[commitList.count - 1] == 0 {
                 UserDefaults.standard.set(false, forKey: "hasCommited")
-            } else if commitList[0] != 0 {
+            } else  {
                 UserDefaults.standard.set(true, forKey: "hasCommited")
             }
+            commitList.removeLast()
+            commitList = commitList.reversed()
+
+            if ((commitList[0] == 0) && (commitList[1] != 0)) {
+                commitList.remove(at: 0)
+
+            }
+
 
 
             for day in commitList {
