@@ -54,7 +54,7 @@ class NetworkingProvider {
             } else  {
                 UserDefaults.standard.set(true, forKey: "hasCommited")
             }
-            commitList.remove(at: commitList.count - 1)
+         //   commitList.remove(at: commitList.count - 1)
             commitList = commitList.reversed()
 
 

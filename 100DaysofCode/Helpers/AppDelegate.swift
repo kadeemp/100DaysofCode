@@ -23,8 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let LoginViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "Login")
         let homeViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "Home")
         let settingsViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "Settings")
+        let postVC :UIViewController = storyboard.instantiateViewController(withIdentifier: "PostVC")
 
-        mainTabBarController.viewControllers = [homeViewController,settingsViewController]
+        mainTabBarController.viewControllers = [homeViewController, postVC, settingsViewController]
 
         navigationController.viewControllers = [LoginViewController]
         if  userDefaults.string(forKey: "username") != nil {

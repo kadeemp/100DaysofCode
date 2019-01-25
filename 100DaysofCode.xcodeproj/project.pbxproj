@@ -19,6 +19,7 @@
 		F479FE2821F6E83F007A1E95 /* LoginConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */; };
 		F499A54D21F79F100020F53D /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F499A54C21F79F100020F53D /* Podfile */; };
 		F4A70BE621F9957500AC3865 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70BE521F9957500AC3865 /* Extensions.swift */; };
+		F4A70BF421FB217B00AC3865 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70BF321FB217B00AC3865 /* PostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfirmationViewController.swift; sourceTree = "<group>"; };
 		F499A54C21F79F100020F53D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		F4A70BE521F9957500AC3865 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F4A70BF321FB217B00AC3865 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		F479FE0921F65153007A1E95 /* 100DaysofCode */ = {
 			isa = PBXGroup;
 			children = (
+				F4A70BF521FB2EEC00AC3865 /* Models */,
 				F4A70BE421F9956400AC3865 /* Extensions */,
 				F479FE1621F65155007A1E95 /* Info.plist */,
 				F479FE1121F65155007A1E95 /* Assets.xcassets */,
@@ -108,6 +111,7 @@
 				F479FE2121F6D47B007A1E95 /* HomeViewController.swift */,
 				F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */,
 				F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */,
+				F4A70BF321FB217B00AC3865 /* PostViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -136,6 +140,13 @@
 				F4A70BE521F9957500AC3865 /* Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F4A70BF521FB2EEC00AC3865 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4A70BF421FB217B00AC3865 /* PostViewController.swift in Sources */,
 				F479FE0D21F65153007A1E95 /* LoginViewController.swift in Sources */,
 				F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */,
 				F479FE2021F6D275007A1E95 /* NetworkingProvider.swift in Sources */,
