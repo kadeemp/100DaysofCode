@@ -48,22 +48,22 @@ class NetworkingProvider {
             for day in doc.css("rect[class^='day']") {
                 commitList += [Int(day["data-count"]!)!]
             }
-
-
-            if commitList[commitList.count - 1] == 0 {
+            print(commitList)
+            if commitList[ commitList.count - 1] == 0 {
                 UserDefaults.standard.set(false, forKey: "hasCommited")
             } else  {
                 UserDefaults.standard.set(true, forKey: "hasCommited")
             }
-            commitList.removeLast()
+            commitList.remove(at: commitList.count - 1)
             commitList = commitList.reversed()
+
+
+
 
             if ((commitList[0] == 0) && (commitList[1] != 0)) {
                 commitList.remove(at: 0)
 
             }
-
-
 
             for day in commitList {
                 if day != 0 {

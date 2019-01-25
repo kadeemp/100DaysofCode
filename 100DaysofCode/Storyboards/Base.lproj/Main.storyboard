@@ -191,7 +191,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUE-r1-tR4">
-                                <rect key="frame" x="164.66666666666666" y="548" width="85" height="43"/>
+                                <rect key="frame" x="164.66666666666666" y="690" width="85" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -202,15 +202,52 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Cau-mG-1MW">
                                 <rect key="frame" x="60" y="104" width="20" height="20"/>
                             </activityIndicatorView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMY-Fz-1C5">
+                                <rect key="frame" x="197" y="702" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="US:" destination="byY-Z3-rFu" eventType="touchUpInside" id="x3W-CG-xGg"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vf4-U0-1KR">
+                                <rect key="frame" x="87" y="287" width="240" height="240"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="Gup-mQ-AZU"/>
+                                    <constraint firstAttribute="width" constant="240" id="hi5-cN-5hs"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's Commit Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N11-PV-SZG">
+                                <rect key="frame" x="20" y="758" width="181" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Circled Red X" translatesAutoresizingMaskIntoConstraints="NO" id="lRI-hU-AHP">
+                                <rect key="frame" x="211" y="758.66666666666663" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="663-gA-pAs"/>
+                                    <constraint firstAttribute="width" constant="20" id="bkh-Ck-qjN"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="iwP-0h-h2M" firstAttribute="centerY" secondItem="ZVY-eq-zzr" secondAttribute="centerY" id="CNp-tv-FWR"/>
+                            <constraint firstItem="lRI-hU-AHP" firstAttribute="centerY" secondItem="N11-PV-SZG" secondAttribute="centerY" id="GQz-pg-QVZ"/>
                             <constraint firstItem="Cau-mG-1MW" firstAttribute="centerY" secondItem="3aO-el-gep" secondAttribute="centerY" id="GsL-mG-7eY"/>
                             <constraint firstItem="iwP-0h-h2M" firstAttribute="centerX" secondItem="ZVY-eq-zzr" secondAttribute="centerX" id="INS-8l-H9z"/>
+                            <constraint firstItem="GMY-Fz-1C5" firstAttribute="leading" secondItem="iwP-0h-h2M" secondAttribute="leading" id="ImN-VP-jn1"/>
+                            <constraint firstItem="vf4-U0-1KR" firstAttribute="centerX" secondItem="Hxf-FH-lkq" secondAttribute="centerX" id="J0q-UL-INp"/>
+                            <constraint firstItem="vf4-U0-1KR" firstAttribute="top" secondItem="Hxf-FH-lkq" secondAttribute="top" constant="287" id="OAg-ds-0IM"/>
+                            <constraint firstItem="N11-PV-SZG" firstAttribute="top" secondItem="YUE-r1-tR4" secondAttribute="bottom" constant="25" id="WlN-0F-ZIK"/>
+                            <constraint firstItem="N11-PV-SZG" firstAttribute="leading" secondItem="lua-Rz-1YU" secondAttribute="leading" constant="20" id="YEg-4h-uOR"/>
+                            <constraint firstItem="lua-Rz-1YU" firstAttribute="bottom" secondItem="GMY-Fz-1C5" secondAttribute="bottom" constant="81" id="YIE-Zk-ypJ"/>
+                            <constraint firstItem="lua-Rz-1YU" firstAttribute="bottom" secondItem="YUE-r1-tR4" secondAttribute="bottom" constant="80" id="ZYD-SE-zbF"/>
+                            <constraint firstItem="lRI-hU-AHP" firstAttribute="leading" secondItem="N11-PV-SZG" secondAttribute="trailing" constant="10" id="bfr-JM-CZU"/>
                             <constraint firstItem="0wa-yI-01W" firstAttribute="top" secondItem="lua-Rz-1YU" secondAttribute="top" constant="150" id="btW-8p-0Yn"/>
                             <constraint firstItem="0wa-yI-01W" firstAttribute="centerX" secondItem="Hxf-FH-lkq" secondAttribute="centerX" id="dDc-Z8-1aj"/>
-                            <constraint firstItem="YUE-r1-tR4" firstAttribute="top" secondItem="ZVY-eq-zzr" secondAttribute="bottom" constant="100" id="lhC-46-b6t"/>
                             <constraint firstItem="3aO-el-gep" firstAttribute="leading" secondItem="lua-Rz-1YU" secondAttribute="leading" constant="20" id="ljA-ic-1uK"/>
                             <constraint firstItem="3aO-el-gep" firstAttribute="top" secondItem="lua-Rz-1YU" secondAttribute="top" constant="20" id="okj-uQ-s92"/>
                             <constraint firstItem="ZVY-eq-zzr" firstAttribute="centerY" secondItem="Hxf-FH-lkq" secondAttribute="centerY" id="qAu-XU-sJF"/>
@@ -227,6 +264,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="Mor-KZ-TND"/>
                     <connections>
+                        <outlet property="centerView" destination="vf4-U0-1KR" id="D1L-gk-EnG"/>
+                        <outlet property="commitStatusImage" destination="lRI-hU-AHP" id="aya-9m-ko9"/>
                         <outlet property="counterActivtyIndicator" destination="iwP-0h-h2M" id="IDK-DM-jlg"/>
                         <outlet property="counterLabel" destination="ZVY-eq-zzr" id="raI-1H-hDf"/>
                         <outlet property="imageViewActivityIndicator" destination="Cau-mG-1MW" id="xHR-8E-gnv"/>
@@ -237,7 +276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dyi-LR-Ypz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1037" y="571"/>
+            <point key="canvasLocation" x="1034.7826086956522" y="569.86607142857144"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5Mt-Zg-OBc">
@@ -276,4 +315,7 @@
             <point key="canvasLocation" x="18" y="-98"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Circled Red X" width="18" height="18"/>
+    </resources>
 </document>

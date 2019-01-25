@@ -12,21 +12,27 @@ import AlamofireImage
 class HomeViewController: UIViewController {
 
 
+
     @IBOutlet var counterActivtyIndicator: UIActivityIndicatorView!
     @IBOutlet var imageViewActivityIndicator: UIActivityIndicatorView!
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var counterLabel: UILabel!
     @IBOutlet var profilePictureImageView: UIImageView!
     @IBOutlet var streakCounterImageView: UIImageView!
+    @IBOutlet var commitStatusImage: UIImageView!
 
+    @IBOutlet var centerView: UIView!
     var profilePictureURL:URLRequest!
     var userDefaults = UserDefaults.standard
     var username:String!
     var downloader = ImageDownloader()
-    let shapeLayer = CAShapeLayer()
+    let circleLayer = CAShapeLayer()
+    var trackLayer = CAShapeLayer()
     var pulsatingLayer : CAShapeLayer!
     var streak = 0
     var hasCommited = false
+    var timer :Timer!
+    var counter = 0
 
     override func viewWillAppear(_ animated: Bool) {
         counterActivtyIndicator.startAnimating()
@@ -35,31 +41,138 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
         imageViewSetup()
         dataRequest()
+        pulsatingLayer = CAShapeLayer()
+
     }
+
     func commitSetup() {
         hasCommited = userDefaults.bool(forKey:"hasCommited")
+  if pulsatingLayer != nil {
         if hasCommited == true {
 
-            pulsatingLayer.strokeColor = UIColor.green.cgColor
+
+            UIView.animate(withDuration: 5, animations: {
+                self.pulsatingLayer.strokeColor = UIColor(red: 102/255, green: 255/255, blue: 100/255, alpha: 0.3).cgColor
+                self.commitStatusImage.image = UIImage(named: "Circled Green Check")
+                })
+
         } else {
-            pulsatingLayer.strokeColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 0.7).cgColor
+            UIView.animate(withDuration: 5, animations: {
+                self.pulsatingLayer.strokeColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 0.7).cgColor
+            })
+            self.commitStatusImage.image = UIImage(named: "Circled Red X")
+
+    }
+
+
         }
     }
+
+
+
 
     func imageViewSetup() {
     profilePictureImageView.layer.cornerRadius = 50
     profilePictureImageView.clipsToBounds = true
-    profilePictureImageView.layer.borderWidth = 3
-    profilePictureImageView.layer.borderColor = UIColor(red: 31/255, green: 67/255, blue: 140/255, alpha: 1).cgColor
+  //  profilePictureImageView.layer.borderWidth = 3
+  //  profilePictureImageView.layer.borderColor = UIColor(red: 31/255, green: 105/255, blue: 240/255, alpha: 1).cgColor
 
-    streakCounterImageView.layer.cornerRadius = streakCounterImageView.frame.width/2
-    streakCounterImageView.layer.borderWidth = 3
-    streakCounterImageView.layer.borderColor = UIColor(red: 31/255, green: 67/255, blue: 140/255, alpha: 1).cgColor
+        trackLayer.shadowOffset = CGSize(width: 10, height: 20)
+        trackLayer.shadowColor = UIColor.black.cgColor
+        trackLayer.shadowRadius = 6
+        trackLayer.shadowOpacity = 1
+//        counterLabel.shadowColor = UIColor.gray
+//        counterLabel.shadowOffset = CGSize(width: 10, height: 15)
+
+
+
+
     }
-    func dataRequest(){
+      var animator = UIViewPropertyAnimator(duration: 5, curve: .easeInOut)
+    @IBAction func US(_ sender: Any) {
+//        updateStatus()
+         // var animator = UIViewPropertyAnimator(duration: 5, curve: .easeInOut)
+        //animatePulsatingLayer(nil)
+
+//        if let context  = UIGraphicsGetCurrentContext() {
+//            context.beginPath()
+//            context.addEllipse(in: .init(origin: view.center, size: CGSize(width: 120, height: 120)))
+//            context.addRect(CGRect(x: 100, y: 100, width: 100, height: 100))
+//            context.clip()
+//            let space = CGColorSpaceCreateDeviceRGB()
+//            let color1 = UIColor.black
+//            let color2 = UIColor.lightGray
+//            let color3 = UIColor.gray
+//            let colors = [color1.cgColor,color2.cgColor,color3.cgColor] as CFArray
+//            let locations :[CGFloat] = [0.0,0.5,0.9]
+//            let gradient = CGGradient(colorsSpace: space, colors: colors, locations: locations)
+//            let start = CGPoint(x: 10, y: 10)
+//            let end = CGPoint(x: 110, y: 110)
+//
+//            context.drawLinearGradient(gradient!, start:start , end: end, options: .drawsBeforeStartLocation)
+//        }
+
+    }
+
+    func stopPulsing(){
+        animator.addAnimations {
+            //self.trackLayer.frame.origin.x = self.trackLayer.frame.midX + 40
+            self.pulsatingLayer.transform = CATransform3DMakeScale(CGFloat(3), CGFloat(3), CGFloat(3))
+
+        }
+        animator.addAnimations {
+            self.pulsatingLayer.transform = CATransform3DMakeScale(CGFloat(1), CGFloat(1), CGFloat(1))
+        }
+        animator.addAnimations {
+            self.pulsatingLayer.strokeColor = UIColor.clear.cgColor
+        }
+
+        animator.startAnimation()
+    }
+    @objc func updateStatus() {
+        print("pressed")
+        if hasCommited == true {
+            hasCommited = false
+            userDefaults.set(false, forKey: "hasCommited")
+            commitSetup()
+        } else if hasCommited == false {
+            hasCommited = true
+            userDefaults.set(true, forKey: "hasCommited")
+            commitSetup()
+        }
+    }
+    @objc func updateData() {
+
+        if username != nil {
+            if counter < 5 {
+        NetworkingProvider.getCurrentStreakFor(username: username) { (streakCount) in
+            self.commitSetup()
+            self.counterLabel.text = String(streakCount)
+            self.streak = streakCount
+            self.counterActivtyIndicator.isHidden = true
+        }
+            } else if counter == 2 {
+                UIView.animate(withDuration: 5) {
+                    self.pulsatingLayer.strokeColor = UIColor.clear.cgColor
+                    self.pulsatingLayer.fillColor = UIColor.blue.cgColor
+                    self.drawCircles()
+                }
+
+            } else {
+                stopPulsing()
+                timer.invalidate()
+            }
+        }
+        print(counter)
+        counter += 1
+    }
+
+
+    @objc func dataRequest(){
+        print("request MAde")
         if let username = userDefaults.string(forKey: "username") {
             NetworkingProvider.getProfilePictureFor(username: username, completion: { url in
                 if url != "" {
@@ -68,7 +181,7 @@ class HomeViewController: UIViewController {
                     self.downloader.download(urlRequest) { response in
                         if let image = response.result.value {
                             self.profilePictureImageView.image = image
-
+                            self.animatePulsatingLayer(nil)
                             self.imageViewActivityIndicator.isHidden = true
                         }
                     }
@@ -80,8 +193,10 @@ class HomeViewController: UIViewController {
                 self.streak = streakCount
                 self.drawCircles()
                 self.animateCircleDrawing()
-                self.animatePulsatingLayer()
+                self.animatePulsatingLayer(nil)
+
                 self.counterActivtyIndicator.isHidden = true
+                self.username = username
             }
             usernameLabel.text = username
         }
@@ -93,16 +208,15 @@ class HomeViewController: UIViewController {
         basicAnimation.duration = 2
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
-        shapeLayer.add(basicAnimation, forKey: "StrokeEnd")
+        circleLayer.add(basicAnimation, forKey: "StrokeEnd")
     }
-    func degreesToRadians(degrees: CGFloat) -> CGFloat {
-        return degrees * CGFloat(CGFloat.pi / 180)
-    }
-    func animatePulsatingLayer() {
+
+    func animatePulsatingLayer(_ speed:Int?) {
+
         let animation = CABasicAnimation(keyPath: "transform.scale")
-        animation.toValue = 1.4
-        animation.fromValue = 1.3
-        animation.duration = 0.3
+        animation.toValue = 1.09
+        animation.fromValue = 1
+        animation.duration = 2
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         animation.autoreverses = true
         animation.repeatCount = Float.infinity
@@ -115,34 +229,39 @@ class HomeViewController: UIViewController {
         let center = view.center
 
         let trackPath = UIBezierPath(arcCenter: center, radius: 120, startAngle: -CGFloat.pi / 2, endAngle:(CGFloat.pi * 2), clockwise: true)
-        let percentageCirclePath = UIBezierPath(arcCenter: center, radius: 120, startAngle: -CGFloat.pi / 2, endAngle:degreesToRadians(degrees: degrees - 90), clockwise: true)
+        let percentageCirclePath = UIBezierPath(arcCenter: center, radius: 120, startAngle: -CGFloat.pi / 2, endAngle:CGPoint.degreesToRadians(degrees: degrees - 90), clockwise: true)
 
-        pulsatingLayer = CAShapeLayer()
+
         commitSetup()
+
     //    pulsatingLayer.strokeColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 0.7).cgColor
-        pulsatingLayer.lineWidth = 20
+        pulsatingLayer.lineWidth = 10
         pulsatingLayer.fillColor = UIColor.clear.cgColor
         pulsatingLayer.lineCap = CAShapeLayerLineCap.round
-        pulsatingLayer.path = UIBezierPath(arcCenter: .zero, radius: 100, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true).cgPath
+        pulsatingLayer.path = UIBezierPath(arcCenter: .zero, radius: 120, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true).cgPath
         pulsatingLayer.position = view.center
 
-        let trackLayer = CAShapeLayer()
+
 
         trackLayer.path = trackPath.cgPath
         trackLayer.fillColor = UIColor.clear.cgColor
         trackLayer.strokeColor = UIColor.lightGray.cgColor
         trackLayer.lineWidth = 10
+        //trackLayer.position = centerView.center
 
-        shapeLayer.path = percentageCirclePath.cgPath
-        shapeLayer.lineWidth = 10
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.strokeColor = UIColor.blue.cgColor
-        shapeLayer.strokeEnd = 0
-        shapeLayer.lineCap = CAShapeLayerLineCap.round
-            view.layer.addSublayer(pulsatingLayer)
+        circleLayer.path = percentageCirclePath.cgPath
+        circleLayer.lineWidth = 10
+        circleLayer.fillColor = UIColor.clear.cgColor
+        circleLayer.strokeColor = UIColor.blue.cgColor
+        circleLayer.strokeEnd = 0
+        circleLayer.lineCap = CAShapeLayerLineCap.round
+
+        view.layer.addSublayer(pulsatingLayer)
         view.layer.addSublayer(trackLayer)
-        view.layer.addSublayer(shapeLayer)
+
+        view.layer.addSublayer(circleLayer)
 
 
     }
+
 }
