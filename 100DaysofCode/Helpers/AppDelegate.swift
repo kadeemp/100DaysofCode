@@ -7,35 +7,54 @@
 //
 
 import UIKit
+import AVFoundation
+import UserNotifications
+import CoreData
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
     let userDefaults = UserDefaults.standard
+    let center = UNUserNotificationCenter.current()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+        let navigationController1:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+        let navigationController2:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+        let navigationController3:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
         var mainTabBarController: UITabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
         let LoginViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "Login")
         let homeViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "Home")
         let settingsViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "Settings")
         let postVC :UIViewController = storyboard.instantiateViewController(withIdentifier: "PostVC")
+        postVC.tabBarItem = UITabBarItem(title: "Write a post", image: UIImage(named: "WriteIcon"), selectedImage: UIImage(named: "WriteIcon"))
+        homeViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "HomeIcon"), selectedImage: UIImage(named: "HomeIcon"))
+        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "WhiteSettingsIcon"), selectedImage: UIImage(named: "WhiteSettingsIcon"))
+        navigationController1.viewControllers = [homeViewController]
+        navigationController3.viewControllers = [settingsViewController]
+        navigationController2.viewControllers = [postVC]
+        mainTabBarController.viewControllers = [navigationController1, navigationController2, navigationController3]
 
-        mainTabBarController.viewControllers = [homeViewController, postVC, settingsViewController]
-
-        navigationController.viewControllers = [LoginViewController]
         if  userDefaults.string(forKey: "username") != nil {
             self.window = UIWindow(frame: UIScreen.main.bounds)
+            center.delegate = self
             self.window?.rootViewController = mainTabBarController
             self.window?.makeKeyAndVisible()
         } else {
+             navigationController1.viewControllers = [LoginViewController]
             self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = navigationController
+            self.window?.rootViewController = LoginViewController
             self.window?.makeKeyAndVisible()
+        }
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            if granted {
+
+            } else {
+
+            }
         }
         return true
     }
@@ -56,10 +75,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+    // MARK: - Core Data stack
+
+    lazy var persistentContainer: NSPersistentContainer = {
+        /*
+         The persistent container for the application. This implementation
+         creates and returns a container, having loaded the store for the
+         application to it. This property is optional since there are legitimate
+         error conditions that could cause the creation of the store to fail.
+         */
+        let container = NSPersistentContainer(name: "Calendar")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+
+                /*
+                 Typical reasons for an error here include:
+                 * The parent directory does not exist, cannot be created, or disallows writing.
+                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
+                 * The device is out of space.
+                 * The store could not be migrated to the current model version.
+                 Check the error message to determine what the actual problem was.
+                 */
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+
+    // MARK: - Core Data Saving support
+
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
 
 

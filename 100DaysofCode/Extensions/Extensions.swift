@@ -94,4 +94,8 @@ extension UIView {
         view.addMotionEffect(group)
 
     }
+
+}
+extension NSNotification {
+    static let updateAlarmTable = NSNotification.Name.init("updateAlarmTable")
 }

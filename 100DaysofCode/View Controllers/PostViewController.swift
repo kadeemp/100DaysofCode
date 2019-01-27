@@ -10,9 +10,13 @@ import UIKit
 
 class PostViewController: UIViewController, UITextViewDelegate {
 
+    @IBOutlet var shareButton: UIButton!
     @IBOutlet var postTextView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
+            postTextView.layer.cornerRadius = postTextView.frame.height/8
+        shareButton.layer.cornerRadius = shareButton.frame.height/4
+
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         // Do any additional setup after loading the view.
     }

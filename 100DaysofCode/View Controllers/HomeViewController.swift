@@ -41,7 +41,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
+        //timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
         imageViewSetup()
         dataRequest()
         pulsatingLayer = CAShapeLayer()
@@ -54,13 +54,13 @@ class HomeViewController: UIViewController {
         if hasCommited == true {
 
 
-            UIView.animate(withDuration: 5, animations: {
+            UIView.animate(withDuration: 10, animations: {
                 self.pulsatingLayer.strokeColor = UIColor(red: 102/255, green: 255/255, blue: 100/255, alpha: 0.3).cgColor
                 self.commitStatusImage.image = UIImage(named: "Circled Green Check")
                 })
 
         } else {
-            UIView.animate(withDuration: 5, animations: {
+            UIView.animate(withDuration: 10, animations: {
                 self.pulsatingLayer.strokeColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 0.7).cgColor
             })
             self.commitStatusImage.image = UIImage(named: "Circled Red X")
@@ -77,6 +77,10 @@ class HomeViewController: UIViewController {
     func imageViewSetup() {
     profilePictureImageView.layer.cornerRadius = 50
     profilePictureImageView.clipsToBounds = true
+        view.applyMotion(toView: profilePictureImageView, magnitude: 10)
+        view.applyMotion(toView: usernameLabel, magnitude: 10)
+        view.applyMotion(toView: commitStatusImage, magnitude: 10)
+
   //  profilePictureImageView.layer.borderWidth = 3
   //  profilePictureImageView.layer.borderColor = UIColor(red: 31/255, green: 105/255, blue: 240/255, alpha: 1).cgColor
 
@@ -117,21 +121,7 @@ class HomeViewController: UIViewController {
 
     }
 
-    func stopPulsing(){
-        animator.addAnimations {
-            //self.trackLayer.frame.origin.x = self.trackLayer.frame.midX + 40
-            self.pulsatingLayer.transform = CATransform3DMakeScale(CGFloat(3), CGFloat(3), CGFloat(3))
 
-        }
-        animator.addAnimations {
-            self.pulsatingLayer.transform = CATransform3DMakeScale(CGFloat(1), CGFloat(1), CGFloat(1))
-        }
-        animator.addAnimations {
-            self.pulsatingLayer.strokeColor = UIColor.clear.cgColor
-        }
-
-        animator.startAnimation()
-    }
     @objc func updateStatus() {
         print("pressed")
         if hasCommited == true {
@@ -172,7 +162,6 @@ class HomeViewController: UIViewController {
 
 
     @objc func dataRequest(){
-        print("request MAde")
         if let username = userDefaults.string(forKey: "username") {
             NetworkingProvider.getProfilePictureFor(username: username, completion: { url in
                 if url != "" {
@@ -202,27 +191,7 @@ class HomeViewController: UIViewController {
         }
 
     }
-    @objc func animateCircleDrawing() {
-        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        basicAnimation.toValue = 1
-        basicAnimation.duration = 2
-        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
-        basicAnimation.isRemovedOnCompletion = false
-        circleLayer.add(basicAnimation, forKey: "StrokeEnd")
-    }
 
-    func animatePulsatingLayer(_ speed:Int?) {
-
-        let animation = CABasicAnimation(keyPath: "transform.scale")
-        animation.toValue = 1.09
-        animation.fromValue = 1
-        animation.duration = 2
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        animation.autoreverses = true
-        animation.repeatCount = Float.infinity
-
-        pulsatingLayer.add(animation, forKey: "pulsing")
-    }
     func drawCircles() {
         let angle:Double = ((Double(streak)/100)*360)
         let degrees = CGFloat(angle)
@@ -264,4 +233,43 @@ class HomeViewController: UIViewController {
 
     }
 
+}
+extension HomeViewController {
+
+    @objc func animateCircleDrawing() {
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimation.toValue = 1
+        basicAnimation.duration = 2
+        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
+        basicAnimation.isRemovedOnCompletion = false
+        circleLayer.add(basicAnimation, forKey: "StrokeEnd")
+    }
+
+    func animatePulsatingLayer(_ speed:Int?) {
+
+        let animation = CABasicAnimation(keyPath: "transform.scale")
+        animation.toValue = 1.09
+        animation.fromValue = 1
+        animation.duration = 2
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        animation.autoreverses = true
+        animation.repeatCount = Float.infinity
+
+        pulsatingLayer.add(animation, forKey: "pulsing")
+    }
+    func stopPulsing(){
+        animator.addAnimations {
+            //self.trackLayer.frame.origin.x = self.trackLayer.frame.midX + 40
+            self.pulsatingLayer.transform = CATransform3DMakeScale(CGFloat(3), CGFloat(3), CGFloat(3))
+
+        }
+        animator.addAnimations {
+            self.pulsatingLayer.transform = CATransform3DMakeScale(CGFloat(1), CGFloat(1), CGFloat(1))
+        }
+        animator.addAnimations {
+            self.pulsatingLayer.strokeColor = UIColor.clear.cgColor
+        }
+
+        animator.startAnimation()
+    }
 }

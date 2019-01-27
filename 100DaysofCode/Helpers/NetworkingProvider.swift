@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import Kanna
+//import Core Data
 
 class NetworkingProvider {
     static func validateUsername(_ username:String, completion: @escaping (Int) -> ()) {
@@ -41,9 +42,11 @@ class NetworkingProvider {
     static func parseStreakFromHTML(html: String) -> Int {
         var streak = 0
 
-        if let doc =  try? Kanna.HTML(html: html, encoding: String.Encoding.utf8) {
 
+        if let doc =  try? Kanna.HTML(html: html, encoding: String.Encoding.utf8) {
+            print(html)
             var commitList: [Int] = []
+
 
             for day in doc.css("rect[class^='day']") {
                 commitList += [Int(day["data-count"]!)!]

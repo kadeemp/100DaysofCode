@@ -6,6 +6,7 @@ target '100DaysofCode' do
  pod 'Alamofire', '~> 4.7'
 pod 'Kanna', '~> 4.0.0'
 pod 'AlamofireImage', '~> 3.1'
+
   use_frameworks!
 
   # Pods for 100DaysofCode
