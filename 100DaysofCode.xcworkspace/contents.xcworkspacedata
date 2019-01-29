@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:100DaysofCode/Extensions/CommitNode+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:100DaysofCode/Extensions/CommitNode+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:100DaysofCode.xcodeproj">
    </FileRef>
    <FileRef

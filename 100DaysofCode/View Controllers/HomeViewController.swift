@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import CoreData
 
 class HomeViewController: UIViewController {
 
@@ -33,6 +34,9 @@ class HomeViewController: UIViewController {
     var hasCommited = false
     var timer :Timer!
     var counter = 0
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var nodes:[CommitNode] = []
+
 
     override func viewWillAppear(_ animated: Bool) {
         counterActivtyIndicator.startAnimating()
@@ -42,16 +46,21 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
+       nodes = CoreDataStack.returnSavedNodes()
         imageViewSetup()
         dataRequest()
         pulsatingLayer = CAShapeLayer()
+       // print(CoreDataStack.returnSavedNodes())
+        CommitManager.checkCommitStatus()
+
 
     }
 
     func commitSetup() {
-        hasCommited = userDefaults.bool(forKey:"hasCommited")
-  if pulsatingLayer != nil {
-        if hasCommited == true {
+      //  hasCommited = userDefaults.bool(forKey:"hasCommited")
+        let node = nodes[nodes.count - 1]
+        if pulsatingLayer != nil {
+            if node.commitStatus {
 
 
             UIView.animate(withDuration: 10, animations: {

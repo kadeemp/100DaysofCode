@@ -9,9 +9,13 @@
 import Foundation
 import Alamofire
 import Kanna
-//import Core Data
+import CoreData
 
 class NetworkingProvider {
+
+
+
+
     static func validateUsername(_ username:String, completion: @escaping (Int) -> ()) {
         Alamofire.request("https://github.com/\(username)").responseString { (response) in
             completion((response.response?.statusCode)!)
@@ -37,31 +41,67 @@ class NetworkingProvider {
         }
         return profilePictureURL
     }
+    
 
 
-    static func parseStreakFromHTML(html: String) -> Int {
-        var streak = 0
+    static func returnNodesFromHTML(html: String) -> [CommitNode] {
+
+        var nodes :[CommitNode] = []
+        guard let username = UserDefaults.standard.string(forKey: "username") else {return nodes}
+        var entity = NSEntityDescription.entity(forEntityName: "CommitNode", in: CoreDataStack.persistentContainer.viewContext)
+
+         Alamofire.request("https://github.com/\(username)").responseString { response in
 
 
-        if let doc =  try? Kanna.HTML(html: html, encoding: String.Encoding.utf8) {
-            print(html)
+        if let doc =  try? Kanna.HTML(html: response.result.value! , encoding: String.Encoding.utf8) {
             var commitList: [Int] = []
+            var commitStatus = false
 
 
             for day in doc.css("rect[class^='day']") {
                 commitList += [Int(day["data-count"]!)!]
+                var commitCount = Int(day["data-count"]!)!
+                var date = day["data-date"]!
+
+                if commitCount == 0 {
+                    commitStatus = false
+                } else {
+                    commitStatus = true
+                }
+                let dateForatter = DateFormatter()
+                dateForatter.dateFormat = "yyyy-MM-dd"
+                var  date2 = dateForatter.date(from: date)
+                let node = CommitNode(context: CoreDataStack.persistentContainer.viewContext)
+                
+                node.setValue(date2!, forKey: "date")
+                node.setValue(commitCount, forKey: "commitCount")
+                node.setValue(commitStatus, forKey: "commitStatus")
+
+                nodes.append(node)
+
             }
-            print(commitList)
+            }
+
+    }
+        return nodes
+    }
+    static func parseStreakFromHTML(html: String) -> Int {
+        var streak = 0
+        if let doc =  try? Kanna.HTML(html: html, encoding: String.Encoding.utf8) {
+            var commitList: [Int] = []
+            var commitStatus = false
+
+            for day in doc.css("rect[class^='day']") {
+                commitList += [Int(day["data-count"]!)!]
+                  var date = day["data-date"]!
+                print(date)
+            }
             if commitList[ commitList.count - 1] == 0 {
                 UserDefaults.standard.set(false, forKey: "hasCommited")
             } else  {
                 UserDefaults.standard.set(true, forKey: "hasCommited")
             }
-         //   commitList.remove(at: commitList.count - 1)
             commitList = commitList.reversed()
-
-
-
 
             if ((commitList[0] == 0) && (commitList[1] != 0)) {
                 commitList.remove(at: 0)

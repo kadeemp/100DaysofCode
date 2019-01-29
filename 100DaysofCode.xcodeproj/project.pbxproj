@@ -26,6 +26,9 @@
 		F4A70C2D21FB9B3B00AC3865 /* NewAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70C2C21FB9B3B00AC3865 /* NewAlarmViewController.swift */; };
 		F4D1D43821FE648700BC1DE0 /* 100DaysofCode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D43621FE648700BC1DE0 /* 100DaysofCode.xcdatamodeld */; };
 		F4D1D43E21FE6E7300BC1DE0 /* CalendarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D43D21FE6E7300BC1DE0 /* CalendarNode.swift */; };
+		F4D1D44421FFA18300BC1DE0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44321FFA18300BC1DE0 /* Constants.swift */; };
+		F4D1D44621FFACEE00BC1DE0 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44521FFACEE00BC1DE0 /* CoreDataStack.swift */; };
+		F4D1D44821FFC5D800BC1DE0 /* CommitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44721FFC5D800BC1DE0 /* CommitManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		F4A70C2C21FB9B3B00AC3865 /* NewAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlarmViewController.swift; sourceTree = "<group>"; };
 		F4D1D43721FE648700BC1DE0 /* 100DaysofCode.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 100DaysofCode.xcdatamodel; sourceTree = "<group>"; };
 		F4D1D43D21FE6E7300BC1DE0 /* CalendarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNode.swift; sourceTree = "<group>"; };
+		F4D1D44321FFA18300BC1DE0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F4D1D44521FFACEE00BC1DE0 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		F4D1D44721FFC5D800BC1DE0 /* CommitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +142,9 @@
 			children = (
 				F479FE0A21F65153007A1E95 /* AppDelegate.swift */,
 				F479FE1F21F6D275007A1E95 /* NetworkingProvider.swift */,
+				F4D1D44321FFA18300BC1DE0 /* Constants.swift */,
+				F4D1D44521FFACEE00BC1DE0 /* CoreDataStack.swift */,
+				F4D1D44721FFC5D800BC1DE0 /* CommitManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -273,12 +282,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -297,7 +308,9 @@
 				F4D1D43E21FE6E7300BC1DE0 /* CalendarNode.swift in Sources */,
 				F479FE0D21F65153007A1E95 /* LoginViewController.swift in Sources */,
 				F4A70C2621FB919600AC3865 /* Alarm.swift in Sources */,
+				F4D1D44421FFA18300BC1DE0 /* Constants.swift in Sources */,
 				F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */,
+				F4D1D44621FFACEE00BC1DE0 /* CoreDataStack.swift in Sources */,
 				F479FE2021F6D275007A1E95 /* NetworkingProvider.swift in Sources */,
 				F4D1D43821FE648700BC1DE0 /* 100DaysofCode.xcdatamodeld in Sources */,
 				F479FE2421F6D48C007A1E95 /* SettingsViewController.swift in Sources */,
@@ -306,6 +319,7 @@
 				F4A70C2D21FB9B3B00AC3865 /* NewAlarmViewController.swift in Sources */,
 				F479FE2821F6E83F007A1E95 /* LoginConfirmationViewController.swift in Sources */,
 				F4A70BE621F9957500AC3865 /* Extensions.swift in Sources */,
+				F4D1D44821FFC5D800BC1DE0 /* CommitManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
