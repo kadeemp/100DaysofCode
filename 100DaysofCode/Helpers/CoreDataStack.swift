@@ -55,7 +55,17 @@ class CoreDataStack {
             }
         }
     }
+    static func saveNode(date:Date, commitCount:Int, commitStatus:Bool ) {
+        var entity = NSEntityDescription.entity(forEntityName: "CommitNode", in: CoreDataStack.persistentContainer.viewContext)
+        let nodeObject = NSManagedObject(entity: entity!, insertInto: CoreDataStack.persistentContainer.viewContext)
 
+
+        nodeObject.setValue(date, forKey: "date")
+        nodeObject.setValue(commitCount, forKey: "commitCount")
+        nodeObject.setValue(commitStatus, forKey: "commitStatus")
+
+        CoreDataStack.saveContext()
+    }
     static func returnSavedNodes() -> [CommitNode] {
         var nodes:[CommitNode] = []
         let context = self.persistentContainer.viewContext

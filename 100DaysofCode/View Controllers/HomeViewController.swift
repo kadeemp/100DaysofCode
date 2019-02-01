@@ -46,7 +46,16 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
+      NetworkingProvider.returnNodesFromHTML()
        nodes = CoreDataStack.returnSavedNodes()
+        print("-------")
+//        for node in nodes {
+//            print(node.date!)
+//        }
+        let node = nodes[nodes.count - 1]
+
+            print(node.date!)
+         print("-------")
         imageViewSetup()
         dataRequest()
         pulsatingLayer = CAShapeLayer()
@@ -60,6 +69,9 @@ class HomeViewController: UIViewController {
       //  hasCommited = userDefaults.bool(forKey:"hasCommited")
         let node = nodes[nodes.count - 1]
         if pulsatingLayer != nil {
+            print(node.date!)
+
+
             if node.commitStatus {
 
 

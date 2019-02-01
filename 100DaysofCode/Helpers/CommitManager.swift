@@ -24,9 +24,12 @@ class CommitManager {
         let todaysComponents = calendar.dateComponents([.year, .month, .day], from: currentDay)
         let lastCommitComponents = calendar.dateComponents([.year,.day,.month], from: lastNode.date!)
 
-        let lastCommitDate =  lastCommitComponents.day!
-        let month = todaysComponents.month
+
+        let year = todaysComponents.year!
+        let month = todaysComponents.month!
         let today = todaysComponents.day!
+
+        
 
 //        print(currentDay.compare(.isToday))
 //
@@ -35,12 +38,12 @@ class CommitManager {
 //        print(today)
       //  NetworkingProvider.updateMissingNodes(dateOffset: 2)
 
-        if today == lastCommitDate {
-
-        } else {
-            let dateOffset = lastCommitDate - today
-         //   NetworkingProvider.updateMissingNodes(dateOffset: 2)
-        }
+//        if today == lastCommitDate {
+//
+//        } else {
+//            let dateOffset = lastCommitDate - today
+//         //   NetworkingProvider.updateMissingNodes(dateOffset: 2)
+//        }
 
     }
     
