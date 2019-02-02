@@ -25,8 +25,8 @@ class CommitManager {
         let lastCommitComponents = calendar.dateComponents([.year,.day,.month], from: lastNode.date!)
 
 
-        let year = todaysComponents.year!
-        let month = todaysComponents.month!
+        let thisYear = todaysComponents.year!
+        let thisMonth = todaysComponents.month!
         let today = todaysComponents.day!
 
         

@@ -13,7 +13,7 @@ class AlarmTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var alarmSwitch: UISwitch!
 
-    weak var delegate: SwitchTableViewCellDelegate?
+    weak var delegate: AlarmTableViewCellDelegate?
 
     var alarm: Alarm? {
         didSet {
@@ -43,15 +43,10 @@ class AlarmTableViewCell: UITableViewCell {
 
     }
 }
-protocol SwitchTableViewCellDelegate: class {
+protocol AlarmTableViewCellDelegate: class {
 
     func switchCellSwitchValueChanged(cell: AlarmTableViewCell)
 }
 
-class SwitchTableViewCell: UITableViewCell {
 
-
-
-
-}
 

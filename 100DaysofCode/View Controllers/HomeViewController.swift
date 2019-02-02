@@ -36,6 +36,7 @@ class HomeViewController: UIViewController {
     var counter = 0
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var nodes:[CommitNode] = []
+    var currentDay:Date!
 
 
     override func viewWillAppear(_ animated: Bool) {
@@ -46,21 +47,15 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
-      NetworkingProvider.returnNodesFromHTML()
-       nodes = CoreDataStack.returnSavedNodes()
-        print("-------")
-//        for node in nodes {
-//            print(node.date!)
-//        }
-        let node = nodes[nodes.count - 1]
+        print("Nodes are \n \(nodes)")
+        let calendar = Calendar.current
+        currentDay = Date()
+//        let todaysComponents = calendar.dateComponents([.year, .month, .day], from: currentDay)
 
-            print(node.date!)
-         print("-------")
         imageViewSetup()
-        dataRequest()
+
         pulsatingLayer = CAShapeLayer()
-       // print(CoreDataStack.returnSavedNodes())
-        CommitManager.checkCommitStatus()
+
 
 
     }

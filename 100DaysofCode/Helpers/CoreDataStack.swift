@@ -59,11 +59,20 @@ class CoreDataStack {
         var entity = NSEntityDescription.entity(forEntityName: "CommitNode", in: CoreDataStack.persistentContainer.viewContext)
         let nodeObject = NSManagedObject(entity: entity!, insertInto: CoreDataStack.persistentContainer.viewContext)
 
-
         nodeObject.setValue(date, forKey: "date")
         nodeObject.setValue(commitCount, forKey: "commitCount")
         nodeObject.setValue(commitStatus, forKey: "commitStatus")
 
+        CoreDataStack.saveContext()
+    }
+    static func saveNodes( nodes:[CommitNode]) {
+        var entity = NSEntityDescription.entity(forEntityName: "CommitNode", in: CoreDataStack.persistentContainer.viewContext)
+        let nodeObject = NSManagedObject(entity: entity!, insertInto: CoreDataStack.persistentContainer.viewContext)
+        for node in nodes {
+            nodeObject.setValue(node.date, forKey: "date")
+            nodeObject.setValue(node.commitCount, forKey: "commitCount")
+            nodeObject.setValue(node.commitStatus, forKey: "commitStatus")
+        }
         CoreDataStack.saveContext()
     }
     static func returnSavedNodes() -> [CommitNode] {
@@ -79,4 +88,30 @@ class CoreDataStack {
         return nodes
     }
 
+    // MARK: - Core Data Deleting support
+    static func deleteSavedNodes() {
+        var nodes:[CommitNode] = []
+        let context = self.persistentContainer.viewContext
+
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CommitNode")
+        do {
+            let results = try context.fetch(request) as! [CommitNode]
+            nodes = results
+            for node in nodes {
+                print(node)
+                context.delete(node)
+            }
+             CoreDataStack.saveContext()
+
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    static func deleteNode(node:CommitNode) {
+        let context = self.persistentContainer.viewContext
+            context.delete(node)
+
+            CoreDataStack.saveContext()
+
+    }
 }

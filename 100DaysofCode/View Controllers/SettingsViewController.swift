@@ -106,7 +106,7 @@ let alertController = UIAlertController(title: "Sign Out", message: "Are you sur
     }
 
 }
-extension SettingsViewController: SwitchTableViewCellDelegate {
+extension SettingsViewController: AlarmTableViewCellDelegate {
     func switchCellSwitchValueChanged(cell: AlarmTableViewCell) {
 
         guard let alarm = cell.alarm else { return }

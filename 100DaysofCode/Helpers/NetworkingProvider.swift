@@ -203,6 +203,8 @@ typealias ReturnTodaysCommit = (CalendarNode) -> ()
             for day in doc.css("rect[class^='day']") {
                 commitList += [Int(day["data-count"]!)!]
             }
+            print(" commit list \(commitList)")
+            commitList.remove(at: commitList.count - 1)
 
             streak = NetworkingProvider.getStreak(commitList: commitList)
     }
