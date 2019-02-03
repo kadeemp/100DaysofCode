@@ -62,7 +62,7 @@ class CoreDataStack {
         nodeObject.setValue(date, forKey: "date")
         nodeObject.setValue(commitCount, forKey: "commitCount")
         nodeObject.setValue(commitStatus, forKey: "commitStatus")
-
+        print("Saved Node Detais: \n date:\(date) commitCount:\(commitCount) commitStatus: \(commitStatus)")
         CoreDataStack.saveContext()
     }
     static func saveNodes( nodes:[CommitNode]) {

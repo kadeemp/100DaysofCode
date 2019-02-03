@@ -28,6 +28,16 @@ extension CGPoint {
     }
 }
 
+extension Int {
+    static func doubleDigitConverter(number:Int) -> String {
+        var result = ""
+        if number >= 10 {
+            return "\(number)"
+        } else {
+            return "0\(number)"
+        }
+    }
+}
 extension CAShapeLayer {
     func addGradient(color1:UIColor, color2:UIColor, layer:CAShapeLayer ) {
         let gradientLayer = CAGradientLayer()

@@ -60,6 +60,9 @@ typealias ReturnTodaysCommit = (CalendarNode) -> ()
         let year = todaysComponents.year!
 
 
+    let dateForatter = DateFormatter()
+    dateForatter.dateFormat = "yyyy-MM-dd"
+
          Alamofire.request("https://github.com/\(username)").responseString { response in
 
 
@@ -67,41 +70,30 @@ typealias ReturnTodaysCommit = (CalendarNode) -> ()
             var commitList: [Int] = []
             var commitStatus = false
 
-
             for day in doc.css("rect[class^='day']") {
                 commitList += [Int(day["data-count"]!)!]
-                var commitCount = Int(day["data-count"]!)!
-                var date = day["data-date"]!
-
-                if month >= 10 {
-                    if day["data-date"]! == "\(year)-\(month )-\(today)" {
-                        print("Found the date!")
-                    }
-                } else {
-                    if day["data-date"]! == "\(year)-0\(month )-\(today)" {
-                        print("Found the date!")
-                          print(" Commit Count is \(Int(day["data-count"]!)!)")
-                    }
-                }
-
+                let commitCount = Int(day["data-count"]!)!
+                let date = day["data-date"]!
+                let  date2 = dateForatter.date(from: date)
                 if commitCount == 0 {
                     commitStatus = false
                 } else {
                     commitStatus = true
                 }
-                let dateForatter = DateFormatter()
-                dateForatter.dateFormat = "yyyy-MM-dd"
-                var  date2 = dateForatter.date(from: date)
-                //print(date2!)
-                let nodeObject = NSManagedObject(entity: entity!, insertInto: CoreDataStack.persistentContainer.viewContext)
-            
-                
-                nodeObject.setValue(date2!, forKey: "date")
-                nodeObject.setValue(commitCount, forKey: "commitCount")
-                nodeObject.setValue(commitStatus, forKey: "commitStatus")
-//print(nodeObject)
-                CoreDataStack.saveContext()
 
+                if day["data-date"]! == "\(year)-\(Int.doubleDigitConverter(number: month) )-\(Int.doubleDigitConverter(number: today))" {
+                        print("Found the date!")
+                        print(" Commit Count is \(Int(day["data-count"]!)!)")
+                    //update hasCommited UserDefaults
+
+                    //CoreDataStack.saveNode(date: date2!, commitCount: commitCount, commitStatus: commitStatus)
+                    break
+                }
+
+//                print(" node date \(day["data-date"]!)")
+//                print("---------")
+//                print( "todays date \(year)-\(Int.doubleDigitConverter(number: month) )-\(Int.doubleDigitConverter(number: today))")
+               // CoreDataStack.saveNode(date: date2!, commitCount: commitCount, commitStatus: commitStatus)
             }
             }
 

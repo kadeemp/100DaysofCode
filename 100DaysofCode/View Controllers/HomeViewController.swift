@@ -49,8 +49,10 @@ class HomeViewController: UIViewController {
         //timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
         print("Nodes are \n \(nodes)")
         let calendar = Calendar.current
+        NetworkingProvider.returnNodesFromHTML()
         currentDay = Date()
-//        let todaysComponents = calendar.dateComponents([.year, .month, .day], from: currentDay)
+       let todaysComponents = calendar.dateComponents([.year, .month, .day], from: currentDay)
+        
 
         imageViewSetup()
 
