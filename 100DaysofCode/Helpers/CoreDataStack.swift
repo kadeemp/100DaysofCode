@@ -75,6 +75,33 @@ class CoreDataStack {
         }
         CoreDataStack.saveContext()
     }
+    static func returnNodeByDate( _ date:Date) -> CommitNode {
+
+        let context = self.persistentContainer.viewContext
+        var node = CommitNode(context: context)
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CommitNode")
+        let datePredicate = NSPredicate(format: "%K = %@", "date", date as CVarArg)
+        print("given date: \(date)")
+        request.predicate = datePredicate
+
+        do {
+           let  result = try  context.fetch(request) as! [CommitNode]
+            if result.count != 0 {
+                node = result[0]
+            } else {
+                //TODO:- handle error
+            }
+
+
+
+           // print(f[0])
+
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+        return node
+    }
     static func returnSavedNodes() -> [CommitNode] {
         var nodes:[CommitNode] = []
         let context = self.persistentContainer.viewContext

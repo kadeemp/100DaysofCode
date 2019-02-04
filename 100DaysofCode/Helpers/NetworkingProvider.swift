@@ -74,7 +74,9 @@ typealias ReturnTodaysCommit = (CalendarNode) -> ()
                 commitList += [Int(day["data-count"]!)!]
                 let commitCount = Int(day["data-count"]!)!
                 let date = day["data-date"]!
-                let  date2 = dateForatter.date(from: date)
+                let  formattedDate = dateForatter.date(from: date)
+               // let  convertedDate = dateFormatter.date(from: date)
+
                 if commitCount == 0 {
                     commitStatus = false
                 } else {
@@ -86,14 +88,15 @@ typealias ReturnTodaysCommit = (CalendarNode) -> ()
                         print(" Commit Count is \(Int(day["data-count"]!)!)")
                     //update hasCommited UserDefaults
 
-                    //CoreDataStack.saveNode(date: date2!, commitCount: commitCount, commitStatus: commitStatus)
+                 //   CoreDataStack.saveNode(date: date2!, commitCount: commitCount, commitStatus: commitStatus)
                     break
                 }
-
+//                print("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
 //                print(" node date \(day["data-date"]!)")
 //                print("---------")
 //                print( "todays date \(year)-\(Int.doubleDigitConverter(number: month) )-\(Int.doubleDigitConverter(number: today))")
-               // CoreDataStack.saveNode(date: date2!, commitCount: commitCount, commitStatus: commitStatus)
+//                //CoreDataStack.saveNode(date: date2!, commitCount: commitCount, commitStatus: commitStatus)
+//                print("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
             }
             }
 

@@ -12,22 +12,41 @@ import SwiftDate
 class CommitManager {
 
 
-    static func checkCommitStatus() {
-        var nodes:[CommitNode] = []
-        var currentDay:Date!
+    static func updateCommitStatus() {
+        var currentDay = Date()
 
         let calendar = Calendar.current
-        currentDay = Date()
+        var hasCommited = UserDefaults.standard.bool(forKey: "hasCommited")
 
-         nodes = CoreDataStack.returnSavedNodes()
-        let lastNode = nodes[nodes.count - 1]
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "yyyy-MM-dd"
+
         let todaysComponents = calendar.dateComponents([.year, .month, .day], from: currentDay)
-        let lastCommitComponents = calendar.dateComponents([.year,.day,.month], from: lastNode.date!)
-
-
         let thisYear = todaysComponents.year!
         let thisMonth = todaysComponents.month!
         let today = todaysComponents.day!
+
+        guard let todayAsDate = dateFormatter.date(from: "\(thisYear)-\(thisMonth)-\(today)") else { return }
+
+        let node1 = CoreDataStack.returnNodeByDate(todayAsDate)
+        print(node1.date!)
+        print(todayAsDate)
+
+        if node1 != nil {
+            if todayAsDate == node1.date! {
+                if hasCommited == true {
+                    return
+                } else {
+
+                }
+
+            }
+        }
+
+
+
+        //print(lastCommitAsDate!)
 
         
 

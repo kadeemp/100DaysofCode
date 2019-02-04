@@ -47,9 +47,17 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
-        print("Nodes are \n \(nodes)")
+     //   print("Nodes are \n \(nodes)")
         let calendar = Calendar.current
-        NetworkingProvider.returnNodesFromHTML()
+        nodes = NetworkingProvider.returnNodesFromHTML()
+        currentDay = Date()
+        //print("Current Day: \(currentDay)")
+CommitManager.updateCommitStatus()
+
+
+       // CoreDataStack.getNode(date: currentDay)
+
+
         currentDay = Date()
        let todaysComponents = calendar.dateComponents([.year, .month, .day], from: currentDay)
         
