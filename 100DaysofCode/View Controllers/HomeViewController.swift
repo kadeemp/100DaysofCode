@@ -58,219 +58,231 @@ class HomeViewController: UIViewController {
 
     func load() {
         let serialQueue = DispatchQueue(label: "squeue.loadData")
+        let operationQueue = OperationQueue()
+        operationQueue.maxConcurrentOperationCount = 1
+
+
         if self.username != nil {
             self.usernameLabel.text = self.username
-            serialQueue.async {
+
+            operationQueue.addOperation {
                 DispatchQueue.main.async {
                     self.imageViewSetup()
-                    print("1")
+//                    print("setting images")
                 }
-
+//                print("2")
             }
-
-            serialQueue.async {
-                CommitManager.updateCommitStatus(completion: { (streak, returnedNodes) in
-                    self.streak = streak
-                    self.nodes = returnedNodes
-                    DispatchQueue.main.async {
+            operationQueue.addOperation {
+                DispatchQueue.main.async {
+                    CommitManager.updateCommitStatus(completion: { (streak, returnedNodes) in
+                        self.streak = streak
+//                        print("the streak is set to \(self.streak)")
+                        self.nodes = returnedNodes
+                        self.counterLabel.text = String(self.streak)
                         self.drawCircles()
+//                        print("just drew circles")
                     }
 
-                })
-                print("2")
-            }
+                    )
 
-            serialQueue.async {
+                }
+                print("4")
+
+            }
+            operationQueue.addOperation {
                 DispatchQueue.main.async {
-                    self.counterLabel.text = String(self.streak)
+
+//                    print(" the  view streak is\(self.streak)")
 
                     self.animateCircleDrawing()
                     self.animatePulsatingLayer(nil)
 
                     self.counterActivtyIndicator.isHidden = true
+//                    print("updating streak")
                 }
+//                print("6")
 
-                print("3")
             }
+
+    } else {
+
+    }
+
+
+}
+
+func commitSetup() {
+    //  hasCommited = userDefaults.bool(forKey:"hasCommited")
+    let node = nodes[nodes.count - 1]
+    if pulsatingLayer != nil {
+        print(node.date)
+
+        if node.commitStatus {
+
+            UIView.animate(withDuration: 10, animations: {
+                self.pulsatingLayer.strokeColor = UIColor(red: 102/255, green: 255/255, blue: 100/255, alpha: 0.3).cgColor
+                self.commitStatusImage.image = UIImage(named: "Circled Green Check")
+            })
         } else {
-            
-        }
-
-
-    }
-
-    func commitSetup() {
-        //  hasCommited = userDefaults.bool(forKey:"hasCommited")
-        let node = nodes[nodes.count - 1]
-        if pulsatingLayer != nil {
-            print(node.date)
-
-            if node.commitStatus {
-
-                UIView.animate(withDuration: 10, animations: {
-                    self.pulsatingLayer.strokeColor = UIColor(red: 102/255, green: 255/255, blue: 100/255, alpha: 0.3).cgColor
-                    self.commitStatusImage.image = UIImage(named: "Circled Green Check")
-                })
-            } else {
-                UIView.animate(withDuration: 10, animations: {
-                    self.pulsatingLayer.strokeColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 0.7).cgColor
-                })
-                self.commitStatusImage.image = UIImage(named: "Circled Red X")
-            }
+            UIView.animate(withDuration: 10, animations: {
+                self.pulsatingLayer.strokeColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 0.7).cgColor
+            })
+            self.commitStatusImage.image = UIImage(named: "Circled Red X")
         }
     }
+}
 
 
-    func imageViewSetup() {
-        profilePictureImageView.layer.cornerRadius = 50
-        profilePictureImageView.clipsToBounds = true
-        view.applyMotion(toView: profilePictureImageView, magnitude: 10)
-        view.applyMotion(toView: usernameLabel, magnitude: 10)
-        view.applyMotion(toView: commitStatusImage, magnitude: 10)
+func imageViewSetup() {
+    profilePictureImageView.layer.cornerRadius = 50
+    profilePictureImageView.clipsToBounds = true
+    view.applyMotion(toView: profilePictureImageView, magnitude: 10)
+    view.applyMotion(toView: usernameLabel, magnitude: 10)
+    view.applyMotion(toView: commitStatusImage, magnitude: 10)
 
-        //  profilePictureImageView.layer.borderWidth = 3
-        //  profilePictureImageView.layer.borderColor = UIColor(red: 31/255, green: 105/255, blue: 240/255, alpha: 1).cgColor
+    //  profilePictureImageView.layer.borderWidth = 3
+    //  profilePictureImageView.layer.borderColor = UIColor(red: 31/255, green: 105/255, blue: 240/255, alpha: 1).cgColor
 
-        trackLayer.shadowOffset = CGSize(width: 10, height: 20)
-        trackLayer.shadowColor = UIColor.black.cgColor
-        trackLayer.shadowRadius = 6
-        trackLayer.shadowOpacity = 1
-        //        counterLabel.shadowColor = UIColor.gray
-        //        counterLabel.shadowOffset = CGSize(width: 10, height: 15)
-        if let username = userDefaults.string(forKey: "username") {
-            NetworkingProvider.getProfilePictureFor(username: username, completion: { url in
-                if url != "" {
-                    let urlRequest = URLRequest(url: URL(string: url)!)
+    trackLayer.shadowOffset = CGSize(width: 10, height: 20)
+    trackLayer.shadowColor = UIColor.black.cgColor
+    trackLayer.shadowRadius = 6
+    trackLayer.shadowOpacity = 1
+    //        counterLabel.shadowColor = UIColor.gray
+    //        counterLabel.shadowOffset = CGSize(width: 10, height: 15)
+    if let username = userDefaults.string(forKey: "username") {
+        NetworkingProvider.getProfilePictureFor(username: username, completion: { url in
+            if url != "" {
+                let urlRequest = URLRequest(url: URL(string: url)!)
 
-                    self.downloader.download(urlRequest) { response in
-                        if let image = response.result.value {
-                            self.profilePictureImageView.image = image
-                            self.animatePulsatingLayer(nil)
-                            self.imageViewActivityIndicator.isHidden = true
-                        }
+                self.downloader.download(urlRequest) { response in
+                    if let image = response.result.value {
+                        self.profilePictureImageView.image = image
+                        self.animatePulsatingLayer(nil)
+                        self.imageViewActivityIndicator.isHidden = true
                     }
                 }
-            })
-        }
-    }
-
-    var animator = UIViewPropertyAnimator(duration: 5, curve: .easeInOut)
-    @IBAction func US(_ sender: Any) {
-        //        updateStatus()
-        // var animator = UIViewPropertyAnimator(duration: 5, curve: .easeInOut)
-        //animatePulsatingLayer(nil)
-
-        //        if let context  = UIGraphicsGetCurrentContext() {
-        //            context.beginPath()
-        //            context.addEllipse(in: .init(origin: view.center, size: CGSize(width: 120, height: 120)))
-        //            context.addRect(CGRect(x: 100, y: 100, width: 100, height: 100))
-        //            context.clip()
-        //            let space = CGColorSpaceCreateDeviceRGB()
-        //            let color1 = UIColor.black
-        //            let color2 = UIColor.lightGray
-        //            let color3 = UIColor.gray
-        //            let colors = [color1.cgColor,color2.cgColor,color3.cgColor] as CFArray
-        //            let locations :[CGFloat] = [0.0,0.5,0.9]
-        //            let gradient = CGGradient(colorsSpace: space, colors: colors, locations: locations)
-        //            let start = CGPoint(x: 10, y: 10)
-        //            let end = CGPoint(x: 110, y: 110)
-        //
-        //            context.drawLinearGradient(gradient!, start:start , end: end, options: .drawsBeforeStartLocation)
-        //        }
-
-    }
-
-
-    @objc func updateStatus() {
-        print("pressed")
-        if hasCommited == true {
-            hasCommited = false
-            userDefaults.set(false, forKey: "hasCommited")
-            commitSetup()
-        } else if hasCommited == false {
-            hasCommited = true
-            userDefaults.set(true, forKey: "hasCommited")
-            commitSetup()
-        }
-    }
-    @objc func updateData() {
-
-        if username != nil {
-            if counter < 5 {
-                NetworkingProvider.getCurrentStreakFor(username: username) { (streakCount) in
-                    self.commitSetup()
-                    self.counterLabel.text = String(streakCount)
-                    self.streak = streakCount
-                    self.counterActivtyIndicator.isHidden = true
-                }
-            } else if counter == 2 {
-                UIView.animate(withDuration: 5) {
-                    self.pulsatingLayer.strokeColor = UIColor.clear.cgColor
-                    self.pulsatingLayer.fillColor = UIColor.blue.cgColor
-                    // self.drawCircles()
-                }
-
-            } else {
-                stopPulsing()
-                timer.invalidate()
             }
-        }
-        print(counter)
-        counter += 1
+        })
     }
+}
+
+var animator = UIViewPropertyAnimator(duration: 5, curve: .easeInOut)
+@IBAction func US(_ sender: Any) {
+    //        updateStatus()
+    // var animator = UIViewPropertyAnimator(duration: 5, curve: .easeInOut)
+    //animatePulsatingLayer(nil)
+
+    //        if let context  = UIGraphicsGetCurrentContext() {
+    //            context.beginPath()
+    //            context.addEllipse(in: .init(origin: view.center, size: CGSize(width: 120, height: 120)))
+    //            context.addRect(CGRect(x: 100, y: 100, width: 100, height: 100))
+    //            context.clip()
+    //            let space = CGColorSpaceCreateDeviceRGB()
+    //            let color1 = UIColor.black
+    //            let color2 = UIColor.lightGray
+    //            let color3 = UIColor.gray
+    //            let colors = [color1.cgColor,color2.cgColor,color3.cgColor] as CFArray
+    //            let locations :[CGFloat] = [0.0,0.5,0.9]
+    //            let gradient = CGGradient(colorsSpace: space, colors: colors, locations: locations)
+    //            let start = CGPoint(x: 10, y: 10)
+    //            let end = CGPoint(x: 110, y: 110)
+    //
+    //            context.drawLinearGradient(gradient!, start:start , end: end, options: .drawsBeforeStartLocation)
+    //        }
+
+}
 
 
-    @objc func dataRequest(){
-
-        NetworkingProvider.getCurrentStreakFor(username: username) { (streakCount) in
-
-            //self.username = username
-        }
-        usernameLabel.text = username
-    }
-
-
-
-    func drawCircles() {
-        let angle:Double = ((Double(streak)/100)*360)
-        let degrees = CGFloat(angle)
-        let center = view.center
-
-        let trackPath = UIBezierPath(arcCenter: center, radius: 120, startAngle: -CGFloat.pi / 2, endAngle:(CGFloat.pi * 2), clockwise: true)
-        let percentageCirclePath = UIBezierPath(arcCenter: center, radius: 120, startAngle: -CGFloat.pi / 2, endAngle:CGPoint.degreesToRadians(degrees: degrees - 90), clockwise: true)
-
-
+@objc func updateStatus() {
+    print("pressed")
+    if hasCommited == true {
+        hasCommited = false
+        userDefaults.set(false, forKey: "hasCommited")
         commitSetup()
-
-        //    pulsatingLayer.strokeColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 0.7).cgColor
-        pulsatingLayer.lineWidth = 10
-        pulsatingLayer.fillColor = UIColor.clear.cgColor
-        pulsatingLayer.lineCap = CAShapeLayerLineCap.round
-        pulsatingLayer.path = UIBezierPath(arcCenter: .zero, radius: 120, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true).cgPath
-        pulsatingLayer.position = view.center
-
-
-
-        trackLayer.path = trackPath.cgPath
-        trackLayer.fillColor = UIColor.clear.cgColor
-        trackLayer.strokeColor = UIColor.lightGray.cgColor
-        trackLayer.lineWidth = 10
-        //trackLayer.position = centerView.center
-
-        circleLayer.path = percentageCirclePath.cgPath
-        circleLayer.lineWidth = 10
-        circleLayer.fillColor = UIColor.clear.cgColor
-        circleLayer.strokeColor = UIColor.blue.cgColor
-        circleLayer.strokeEnd = 0
-        circleLayer.lineCap = CAShapeLayerLineCap.round
-
-        view.layer.addSublayer(pulsatingLayer)
-        view.layer.addSublayer(trackLayer)
-
-        view.layer.addSublayer(circleLayer)
-
-
+    } else if hasCommited == false {
+        hasCommited = true
+        userDefaults.set(true, forKey: "hasCommited")
+        commitSetup()
     }
+}
+@objc func updateData() {
+
+    if username != nil {
+        if counter < 5 {
+            NetworkingProvider.getCurrentStreakFor(username: username) { (streakCount) in
+                self.commitSetup()
+                self.counterLabel.text = String(streakCount)
+                self.streak = streakCount
+                self.counterActivtyIndicator.isHidden = true
+            }
+        } else if counter == 2 {
+            UIView.animate(withDuration: 5) {
+                self.pulsatingLayer.strokeColor = UIColor.clear.cgColor
+                self.pulsatingLayer.fillColor = UIColor.blue.cgColor
+                // self.drawCircles()
+            }
+
+        } else {
+            stopPulsing()
+            timer.invalidate()
+        }
+    }
+    print(counter)
+    counter += 1
+}
+
+
+@objc func dataRequest(){
+
+    NetworkingProvider.getCurrentStreakFor(username: username) { (streakCount) in
+
+        //self.username = username
+    }
+    usernameLabel.text = username
+}
+
+
+
+func drawCircles() {
+    let angle:Double = ((Double(streak)/100)*360)
+    let degrees = CGFloat(angle)
+    let center = view.center
+
+    let trackPath = UIBezierPath(arcCenter: center, radius: 120, startAngle: -CGFloat.pi / 2, endAngle:(CGFloat.pi * 2), clockwise: true)
+    let percentageCirclePath = UIBezierPath(arcCenter: center, radius: 120, startAngle: -CGFloat.pi / 2, endAngle:CGPoint.degreesToRadians(degrees: degrees - 90), clockwise: true)
+
+
+    commitSetup()
+
+    //    pulsatingLayer.strokeColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 0.7).cgColor
+    pulsatingLayer.lineWidth = 10
+    pulsatingLayer.fillColor = UIColor.clear.cgColor
+    pulsatingLayer.lineCap = CAShapeLayerLineCap.round
+    pulsatingLayer.path = UIBezierPath(arcCenter: .zero, radius: 120, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true).cgPath
+    pulsatingLayer.position = view.center
+
+
+
+    trackLayer.path = trackPath.cgPath
+    trackLayer.fillColor = UIColor.clear.cgColor
+    trackLayer.strokeColor = UIColor.lightGray.cgColor
+    trackLayer.lineWidth = 10
+    //trackLayer.position = centerView.center
+
+    circleLayer.path = percentageCirclePath.cgPath
+    circleLayer.lineWidth = 10
+    circleLayer.fillColor = UIColor.clear.cgColor
+    circleLayer.strokeColor = UIColor.blue.cgColor
+    circleLayer.strokeEnd = 0
+    circleLayer.lineCap = CAShapeLayerLineCap.round
+
+    view.layer.addSublayer(pulsatingLayer)
+    view.layer.addSublayer(trackLayer)
+
+    view.layer.addSublayer(circleLayer)
+
+
+}
 
 }
 extension HomeViewController {
