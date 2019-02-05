@@ -14,7 +14,7 @@ import CoreData
 class NetworkingProvider {
 
 typealias ReturnCommitNode = (CommitNode) -> ()
-typealias ReturnTodaysCommit = (CalendarNode) -> ()
+typealias ReturnTodaysCommit = (Bool,Int, [CalendarNode]) -> ()
 
 
     static func validateUsername(_ username:String, completion: @escaping (Int) -> ()) {
@@ -48,8 +48,8 @@ typealias ReturnTodaysCommit = (CalendarNode) -> ()
     static func returnNodesFromHTML() -> [CommitNode] {
 
         var nodes :[CommitNode] = []
+        var streak = 0
         guard let username = UserDefaults.standard.string(forKey: "username") else {return nodes}
-        var entity = NSEntityDescription.entity(forEntityName: "CommitNode", in: CoreDataStack.persistentContainer.viewContext)
         var todaysDate:Date!
         todaysDate = Date()
         let calendar = Calendar.current
@@ -98,6 +98,10 @@ typealias ReturnTodaysCommit = (CalendarNode) -> ()
 //                //CoreDataStack.saveNode(date: date2!, commitCount: commitCount, commitStatus: commitStatus)
 //                print("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
             }
+            streak = Int.getStreak(commitList: commitList)
+
+
+
             }
 
     }
@@ -106,9 +110,10 @@ typealias ReturnTodaysCommit = (CalendarNode) -> ()
 
 
     static func checkCommitStatus(completion: @escaping ReturnTodaysCommit ) {
-        var nodes :[CommitNode] = []
-        guard let username = UserDefaults.standard.string(forKey: "username") else {return }
 
+        var nodes :[CalendarNode] = []
+        var streak = 0
+        guard let username = UserDefaults.standard.string(forKey: "username") else {return }
         var todaysDate:Date!
         todaysDate = Date()
         let calendar = Calendar.current
@@ -117,8 +122,10 @@ typealias ReturnTodaysCommit = (CalendarNode) -> ()
         let today = todaysComponents.day!
         let month = todaysComponents.month!
         let year = todaysComponents.year!
-         let dateFormatter = DateFormatter()
 
+
+        let dateForatter = DateFormatter()
+        dateForatter.dateFormat = "yyyy-MM-dd"
 
         Alamofire.request("https://github.com/\(username)").responseString { response in
 
@@ -127,66 +134,49 @@ typealias ReturnTodaysCommit = (CalendarNode) -> ()
                 var commitList: [Int] = []
                 var commitStatus = false
 
-
+                var states:[String:Int] = [:]
                 for day in doc.css("rect[class^='day']") {
                     commitList += [Int(day["data-count"]!)!]
                     let commitCount = Int(day["data-count"]!)!
                     let date = day["data-date"]!
 
-                    dateFormatter.dateFormat = "yyyy-MM-dd"
-                    let  convertedDate = dateFormatter.date(from: date)
+                    states[date] = commitCount
+                    let  formattedDate = dateForatter.date(from: date)
+                    // let  convertedDate = dateFormatter.date(from: date)
 
-
-                    if month >= 10 {
-                        if day["data-date"]! == "\(year)-\(month )-\(today)" {
-                            print("Found the date!")
-                        }
+                    if commitCount == 0 {
+                        commitStatus = false
                     } else {
-                        if day["data-date"]! == "\(year)-0\(month )-\(today)" {
-                            print("Found the date!")
-                            print(" Commit Count is \(Int(day["data-count"]!)!)")
-                            if commitCount == 0 {
-                                completion(CalendarNode(date: convertedDate!, commitStatus: commitStatus, commitCount: commitCount))
-                            } else if commitCount != 0 {
-                                commitStatus = true
-
-                                completion(CalendarNode(date: convertedDate!, commitStatus: commitStatus, commitCount: commitCount))
-                                CoreDataStack.saveNode(date: convertedDate!, commitCount: commitCount, commitStatus: commitStatus)
-                            }
-                        }
+                        commitStatus = true
                     }
+
+                    if day["data-date"]! == "\(year)-\(Int.doubleDigitConverter(number: month) )-\(Int.doubleDigitConverter(number: today))" {
+                        print("Found the date!")
+                        print(" Commit Count is \(Int(day["data-count"]!)!)")
+                        //update hasCommited UserDefaults
+                        let node = CalendarNode(date: formattedDate!, commitStatus: commitStatus, commitCount: commitCount)
+                        nodes.append(node)
+
+                        //   CoreDataStack.saveNode(date: date2!, commitCount: commitCount, commitStatus: commitStatus)
+                        break
+                    }
+                    let node = CalendarNode(date: formattedDate!, commitStatus: commitStatus, commitCount: commitCount)
+                    nodes.append(node)
                 }
+                commitStatus = nodes[nodes.count - 1].commitStatus
+                streak = Int.getStreak(commitList: commitList)
+               // print(states)
+                completion(commitStatus, streak, nodes)
+
+
+
             }
+
         }
+
     }
 
-    static func getStreak(commitList:[Int]) -> Int {
-        var commits = commitList
-        var streak = 0
 
-        if commitList[ commitList.count - 1] == 0 {
-            UserDefaults.standard.set(false, forKey: "hasCommited")
-        } else  {
-            UserDefaults.standard.set(true, forKey: "hasCommited")
-        }
-        commits = commitList.reversed()
-
-        if ((commits[0] == 0) && (commits[1] != 0)) {
-            commits.remove(at: 0)
-
-        }
-
-        for day in commits {
-            if day != 0 {
-                streak += 1
-            } else {
-                break
-            }
-        }
-
-
-        return streak
-    }
 
 
     static func parseStreakFromHTML(html: String) -> Int {
@@ -201,7 +191,7 @@ typealias ReturnTodaysCommit = (CalendarNode) -> ()
             print(" commit list \(commitList)")
             commitList.remove(at: commitList.count - 1)
 
-            streak = NetworkingProvider.getStreak(commitList: commitList)
+            streak = Int.getStreak(commitList: commitList)
     }
         return streak
 }

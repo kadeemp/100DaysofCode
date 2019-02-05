@@ -37,6 +37,33 @@ extension Int {
             return "0\(number)"
         }
     }
+    static func getStreak(commitList:[Int]) -> Int {
+        var commits = commitList
+        var streak = 0
+
+        if commitList[ commitList.count - 1] == 0 {
+            UserDefaults.standard.set(false, forKey: "hasCommited")
+        } else  {
+            UserDefaults.standard.set(true, forKey: "hasCommited")
+        }
+        commits = commitList.reversed()
+
+        if ((commits[0] == 0) && (commits[1] != 0)) {
+            commits.remove(at: 0)
+
+        }
+
+        for day in commits {
+            if day != 0 {
+                streak += 1
+            } else {
+                break
+            }
+        }
+
+
+        return streak
+    }
 }
 extension CAShapeLayer {
     func addGradient(color1:UIColor, color2:UIColor, layer:CAShapeLayer ) {

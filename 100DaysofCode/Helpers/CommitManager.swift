@@ -12,7 +12,7 @@ import SwiftDate
 class CommitManager {
 
 
-    static func updateCommitStatus() {
+    static func updateCommitStatus(completion: @escaping (Int,[CalendarNode]) -> ()) {
         var currentDay = Date()
 
         let calendar = Calendar.current
@@ -30,40 +30,32 @@ class CommitManager {
         guard let todayAsDate = dateFormatter.date(from: "\(thisYear)-\(thisMonth)-\(today)") else { return }
 
         let node1 = CoreDataStack.returnNodeByDate(todayAsDate)
-        print(node1.date!)
+//        print(node1.date!)
         print(todayAsDate)
 
-        if node1 != nil {
+        if node1.date != nil {
             if todayAsDate == node1.date! {
                 if hasCommited == true {
                     return
                 } else {
-
+                    NetworkingProvider.checkCommitStatus { (status, streak, nodes) in
+                        UserDefaults.standard.set(status, forKey: "hasCommited")
+                        completion(streak, nodes)
+                    }
                 }
-
+            } else {
+                UserDefaults.standard.set(false, forKey: "hasCommited")
+                NetworkingProvider.checkCommitStatus { (status, streak, nodes) in
+                    UserDefaults.standard.set(status, forKey: "hasCommited")
+                    completion(streak, nodes)
+                }
             }
-        }
-
-
-
-        //print(lastCommitAsDate!)
-
-        
-
-//        print(currentDay.compare(.isToday))
-//
-//        print(lastCommitDate)
-//        print(currentDay)
-//        print(today)
-      //  NetworkingProvider.updateMissingNodes(dateOffset: 2)
-
-//        if today == lastCommitDate {
-//
-//        } else {
-//            let dateOffset = lastCommitDate - today
-//         //   NetworkingProvider.updateMissingNodes(dateOffset: 2)
-//        }
-
+        } else {
+            NetworkingProvider.checkCommitStatus { (status, streak, nodes) in
+                UserDefaults.standard.set(status, forKey: "hasCommited")
+                completion(streak, nodes)
+            }
+    }
     }
     
 }
