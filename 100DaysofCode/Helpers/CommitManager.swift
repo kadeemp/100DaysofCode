@@ -31,7 +31,7 @@ class CommitManager {
 
         let node1 = CoreDataStack.returnNodeByDate(todayAsDate)
 //        print(node1.date!)
-        print(todayAsDate)
+        print(#function, todayAsDate)
 
         if node1.date != nil {
             if todayAsDate == node1.date! {
