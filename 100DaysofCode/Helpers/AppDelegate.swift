@@ -61,10 +61,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         NetworkingProvider.checkCommitStatus { (status, streak, nodes) in
             if status {
-AlarmController.shared.notifyCommitConfirmation()
-            } else {
+                AlarmController.shared.notifyCommitConfirmation()
                 AlarmController.shared.disableAllAlarms()
                 NotificationCenter.default.post(name: NSNotification.updateAlarmTable, object: self, userInfo: nil)
+            } else {
+
             }
         }
     }
