@@ -31,7 +31,7 @@ class AlarmTableViewCell: UITableViewCell {
 
     //MARK: - Actions
     @IBAction func switchValueChanged(_ sender: Any) {
-      
+      NotificationCenter.default.post(name: NSNotification.updateAlarmTable, object: self, userInfo: nil)
         delegate?.switchCellSwitchValueChanged(cell:self )
     }
 

@@ -58,6 +58,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         return true
     }
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        NetworkingProvider.checkCommitStatus { (status, streak, nodes) in
+            if status {
+AlarmController.shared.notifyCommitConfirmation()
+            } else {
+                AlarmController.shared.disableAllAlarms()
+                NotificationCenter.default.post(name: NSNotification.updateAlarmTable, object: self, userInfo: nil)
+            }
+        }
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

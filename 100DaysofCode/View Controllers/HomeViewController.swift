@@ -143,10 +143,10 @@ func imageViewSetup() {
     //  profilePictureImageView.layer.borderWidth = 3
     //  profilePictureImageView.layer.borderColor = UIColor(red: 31/255, green: 105/255, blue: 240/255, alpha: 1).cgColor
 
-    trackLayer.shadowOffset = CGSize(width: 10, height: 20)
-    trackLayer.shadowColor = UIColor.black.cgColor
-    trackLayer.shadowRadius = 6
-    trackLayer.shadowOpacity = 1
+ //   trackLayer.shadowOffset = CGSize(width: 10, height: 20)
+   // trackLayer.shadowColor = UIColor.black.cgColor
+   // trackLayer.shadowRadius = 6
+ //   trackLayer.shadowOpacity = 1
     //        counterLabel.shadowColor = UIColor.gray
     //        counterLabel.shadowOffset = CGSize(width: 10, height: 15)
     if let username = userDefaults.string(forKey: "username") {

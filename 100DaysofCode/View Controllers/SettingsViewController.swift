@@ -20,12 +20,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     var userDefaults =
         UserDefaults.standard
 
-   // @IBOutlet var addAlarmButton: UIButton!
+
+    // @IBOutlet var addAlarmButton: UIButton!
     var alarms = AlarmController.shared.allAlarms
 
     override func viewDidLoad() {
         super.viewDidLoad()
-signOutButton.layer.cornerRadius = signOutButton.frame.width/6
+        signOutButton.layer.cornerRadius = signOutButton.frame.width/6
         addAlarmButton.layer.cornerRadius = addAlarmButton.frame.width/6
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: NSNotification.updateAlarmTable, object: nil)
         if let username = UserDefaults.standard.string(forKey: "username") {
@@ -41,7 +42,7 @@ signOutButton.layer.cornerRadius = signOutButton.frame.width/6
         alarms = AlarmController.shared.allAlarms
         alarmTableView.reloadData()
     }
-// MARK: - IB Actions
+    // MARK: - IB Actions
 
     @IBAction func deleteUsername(_ sender: Any) {
 
@@ -55,16 +56,16 @@ signOutButton.layer.cornerRadius = signOutButton.frame.width/6
 
     @IBAction func signOutBtnPressed(_ sender: UIButton) {
 
-let alertController = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { (action) in
-              self.userDefaults.removeObject(forKey: "username")
+            self.userDefaults.removeObject(forKey: "username")
             //TODO:- Add nav to loging
         }
         let noAction = UIAlertAction(title: "No", style: .cancel)
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
         self.navigationController?.present(alertController, animated: true, completion: nil)
-     }
+    }
     //MARK:- TableView
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -112,7 +113,6 @@ extension SettingsViewController: AlarmTableViewCellDelegate {
         guard let alarm = cell.alarm else { return }
         let index = cell.tag
         AlarmController.shared.toggleEnabledByIndex(index: index)
-        print("Test")
         cell.updateViews()
 
 

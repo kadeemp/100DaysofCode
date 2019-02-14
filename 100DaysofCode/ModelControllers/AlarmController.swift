@@ -6,7 +6,7 @@
 //  Copyright © 2018 Warren. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import UserNotifications
 
 protocol AlarmScheduler: class {
@@ -15,32 +15,36 @@ protocol AlarmScheduler: class {
 }
 
 extension AlarmScheduler {
+
     func scheduleUserNotifications(for alarm: Alarm) {
         
         let content = UNMutableNotificationContent()
         content.title = "Reminder"
         content.body = "Check in To update your streak"
         content.sound = UNNotificationSound.default
+
+        content.categoryIdentifier = "Check Status"
         
 
         let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: alarm.fireDate)
 
-       let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         let request = UNNotificationRequest(identifier: alarm.uuid, content: content, trigger: trigger)
         let center = UNUserNotificationCenter.current()
         
         print("the scheduled uuid is  \(alarm.uuid)")
-       center.add(request) { (_) in
+        center.add(request) { (_) in
             print("Notification was scheduled")
         }
         
     }
     
+    
     func cancelUserNotifications(for alarm: Alarm) {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [alarm.uuid])
     }
-    func removeAllNotifications() {
+    func removePendingNotifications() {
         let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
     }
@@ -51,8 +55,52 @@ class AlarmController: AlarmScheduler {
     static var shared = AlarmController()
     var allAlarms: [Alarm] = []
     init(){
+
         loadFromPersistentStorage()
+        confogureNotificationAction()
     }
+
+    func disableAllAlarms() {
+
+        for index in 0..<AlarmController.shared.allAlarms.count {
+            let alarm = allAlarms[index]
+            alarm.enabled = false
+            cancelUserNotifications(for: alarm)
+        }
+        NotificationCenter.default.post(name: NSNotification.updateAlarmTable, object: self, userInfo: nil)
+        saveToPersistentStorage()
+    }
+
+    func confogureNotificationAction() {
+
+        let refreshAction = UNNotificationAction(identifier: "refresh", title: "Check Status", options: [])
+
+        let notificationCategory = UNNotificationCategory(identifier: "Check Status", actions: [refreshAction], intentIdentifiers: [], options: [])
+
+        UNUserNotificationCenter.current().setNotificationCategories([notificationCategory])
+    }
+    func notifyCommitConfirmation() {
+        let content = UNMutableNotificationContent()
+        content.title = "Reminder"
+        content.body = "Check in To update your streak"
+        content.sound = UNNotificationSound.default
+
+        content.categoryIdentifier = "Check Status"
+
+
+        let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: Date())
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let request = UNNotificationRequest(identifier: "commitConfirmation", content: content, trigger: trigger)
+        let center = UNUserNotificationCenter.current()
+
+
+        center.add(request) { (_) in
+            print("commit confirmation sent")
+        }
+
+    }
+
     
     func addAlarm(fireDate: Date, name: String, enabled: Bool) {
         let newAlarm = Alarm(name: name, enabled: enabled, fireDate: fireDate)
@@ -126,3 +174,4 @@ class AlarmController: AlarmScheduler {
         }
     }
 }
+

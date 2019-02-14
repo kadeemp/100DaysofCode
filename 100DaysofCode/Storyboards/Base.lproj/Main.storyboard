@@ -325,7 +325,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVY-eq-zzr">
                                 <rect key="frame" x="207" y="448" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="78"/>
-                                <color key="textColor" red="0.55708211660385132" green="0.55653619766235352" blue="0.57647091150283813" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3aO-el-gep">
@@ -370,7 +369,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's Commit Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N11-PV-SZG">
                                 <rect key="frame" x="20" y="758" width="181" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Circled Red X" translatesAutoresizingMaskIntoConstraints="NO" id="lRI-hU-AHP">
@@ -381,7 +379,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="iwP-0h-h2M" firstAttribute="centerY" secondItem="ZVY-eq-zzr" secondAttribute="centerY" id="CNp-tv-FWR"/>
@@ -473,42 +471,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ho7-6L-OhT">
-                                <rect key="frame" x="20" y="64" width="374" height="256"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egj-qF-Q5S">
-                                <rect key="frame" x="274" y="340" width="120" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="Odq-fu-0g5"/>
-                                    <constraint firstAttribute="height" constant="50" id="Whb-gb-po2"/>
-                                </constraints>
-                                <state key="normal" title="Share">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="shareBtnPRessed:" destination="Om2-vP-CT7" eventType="touchUpInside" id="LBC-mZ-5Ux"/>
-                                </connections>
-                            </button>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vsz-Iv-3yG">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="egj-qF-Q5S" firstAttribute="top" secondItem="Ho7-6L-OhT" secondAttribute="bottom" constant="20" id="F3I-Gc-sAk"/>
-                            <constraint firstItem="Ho7-6L-OhT" firstAttribute="centerX" secondItem="HMv-Nl-eHo" secondAttribute="centerX" id="FQW-OM-nZD"/>
-                            <constraint firstItem="Ho7-6L-OhT" firstAttribute="width" secondItem="HMv-Nl-eHo" secondAttribute="width" constant="-40" id="PWb-qa-Vp1"/>
-                            <constraint firstItem="Ho7-6L-OhT" firstAttribute="top" secondItem="npn-XF-CI2" secondAttribute="top" constant="20" id="QX7-QT-0Nb"/>
-                            <constraint firstItem="Ho7-6L-OhT" firstAttribute="height" secondItem="HMv-Nl-eHo" secondAttribute="height" multiplier="2/7" id="tWj-8C-Ica"/>
-                            <constraint firstItem="npn-XF-CI2" firstAttribute="trailing" secondItem="egj-qF-Q5S" secondAttribute="trailing" constant="20" id="vbL-Xh-i89"/>
+                            <constraint firstItem="Vsz-Iv-3yG" firstAttribute="centerX" secondItem="HMv-Nl-eHo" secondAttribute="centerX" id="2AG-63-EQD"/>
+                            <constraint firstItem="Vsz-Iv-3yG" firstAttribute="width" secondItem="HMv-Nl-eHo" secondAttribute="width" id="Lrb-ow-EJd"/>
+                            <constraint firstItem="npn-XF-CI2" firstAttribute="bottom" secondItem="Vsz-Iv-3yG" secondAttribute="bottom" id="Tck-9h-K7l"/>
+                            <constraint firstItem="Vsz-Iv-3yG" firstAttribute="top" secondItem="npn-XF-CI2" secondAttribute="top" id="zbK-IZ-hfq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="npn-XF-CI2"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="4R3-4L-OaD"/>
                     <connections>
-                        <outlet property="postTextView" destination="Ho7-6L-OhT" id="cdg-Eg-Cuf"/>
-                        <outlet property="shareButton" destination="egj-qF-Q5S" id="aNR-ct-iSa"/>
+                        <outlet property="webView" destination="Vsz-Iv-3yG" id="bdf-FY-ib5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XFF-3q-n1r" userLabel="First Responder" sceneMemberID="firstResponder"/>
