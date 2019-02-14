@@ -62,8 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         NetworkingProvider.checkCommitStatus { (status, streak, nodes) in
             if status {
                 AlarmController.shared.notifyCommitConfirmation()
-                AlarmController.shared.disableAllAlarms()
-                NotificationCenter.default.post(name: NSNotification.updateAlarmTable, object: self, userInfo: nil)
+                AlarmController.shared.incrementAlarmFireDate()
             } else {
 
             }

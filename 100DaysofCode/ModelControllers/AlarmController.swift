@@ -20,13 +20,13 @@ extension AlarmScheduler {
         
         let content = UNMutableNotificationContent()
         content.title = "Reminder"
-        content.body = "Check in To update your streak"
+        content.body = "Check in to update your streak"
         content.sound = UNNotificationSound.default
 
         content.categoryIdentifier = "Check Status"
         
 
-        let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: alarm.fireDate)
+        let dateComponents = Calendar.current.dateComponents([.day, .hour, .minute], from: alarm.fireDate)
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         let request = UNNotificationRequest(identifier: alarm.uuid, content: content, trigger: trigger)
@@ -60,14 +60,19 @@ class AlarmController: AlarmScheduler {
         confogureNotificationAction()
     }
 
-    func disableAllAlarms() {
+    func incrementAlarmFireDate() {
 
         for index in 0..<AlarmController.shared.allAlarms.count {
             let alarm = allAlarms[index]
-            alarm.enabled = false
             cancelUserNotifications(for: alarm)
+
+            if let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: alarm.fireDate) {
+                 alarm.fireDate = tomorrow
+                if alarm.enabled == true {
+                    AlarmController.shared.scheduleUserNotifications(for: alarm)
+                }
+            }
         }
-        NotificationCenter.default.post(name: NSNotification.updateAlarmTable, object: self, userInfo: nil)
         saveToPersistentStorage()
     }
 
@@ -81,8 +86,8 @@ class AlarmController: AlarmScheduler {
     }
     func notifyCommitConfirmation() {
         let content = UNMutableNotificationContent()
-        content.title = "Reminder"
-        content.body = "Check in To update your streak"
+        content.title = "Keep it up! 🥳"
+        content.body = "Youre one day closer to completing the challenge 💯"
         content.sound = UNNotificationSound.default
 
         content.categoryIdentifier = "Check Status"

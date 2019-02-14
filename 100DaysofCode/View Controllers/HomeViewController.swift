@@ -42,18 +42,24 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         counterActivtyIndicator.startAnimating()
         imageViewActivityIndicator.startAnimating()
+        hasCommited = userDefaults.bool(forKey: "hasCommited")
+        if hasCommited == false {
+            load()
+        }
     }
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         //timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
-        //   print("Nodes are \n \(nodes)")
+
         username = UserDefaults.standard.string(forKey: "username")
-        //CommitManager.updateCommitStatus()
+
 
 
         pulsatingLayer = CAShapeLayer()
-        load()
+
     }
 
     func load() {
