@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         navigationController3.viewControllers = [settingsViewController]
         navigationController2.viewControllers = [postVC]
         mainTabBarController.viewControllers = [navigationController1, navigationController2, navigationController3]
-
+        CommitManager.updateHasCommited()
         if  userDefaults.string(forKey: "username") != nil {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             center.delegate = self
@@ -80,7 +80,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "Home")
+        
+        if let topVC = UIApplication.getTopMostViewController() {
+            if topVC.tabBarItem.title! == "Home" {
+                //notify refresh
+            }
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
