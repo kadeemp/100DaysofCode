@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet var signOutButton: UIButton!
 
     @IBOutlet var addAlarmButton: UIButton!
+        var window: UIWindow?
 
     var userDefaults =
         UserDefaults.standard
@@ -53,13 +54,36 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let addAlarmVC = storyboard.instantiateViewController(withIdentifier: "addAlarm")
         self.navigationController?.pushViewController(addAlarmVC, animated: true)
     }
+    func deleteAllData() {
+        CoreDataStack.deleteSavedNodes()
+        for alarm in AlarmController.shared.allAlarms {
+            AlarmController.shared.deleteAlarm(alarmBeingDeleted: alarm)
+        }
+        let domain = Bundle.main.bundleIdentifier!
+
+        userDefaults.removePersistentDomain(forName: domain)
+        userDefaults.synchronize()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController1:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+
+        let LoginViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "Login")
+
+
+        navigationController1.viewControllers = [LoginViewController]
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = LoginViewController
+        self.window?.makeKeyAndVisible()
+
+
+    }
 
     @IBAction func signOutBtnPressed(_ sender: UIButton) {
 
         let alertController = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { (action) in
-            self.userDefaults.removeObject(forKey: "username")
+            self.userDefaults.removeObject(forKey: DefaultStrings.username)
             //TODO:- Add nav to loging
+            self.deleteAllData()
         }
         let noAction = UIAlertAction(title: "No", style: .cancel)
         alertController.addAction(yesAction)

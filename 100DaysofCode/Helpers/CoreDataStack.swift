@@ -75,10 +75,10 @@ class CoreDataStack {
         }
         CoreDataStack.saveContext()
     }
-    static func returnNodeByDate( _ date:Date) -> CommitNode {
+    static func returnNodeByDate( _ date:Date) -> CommitNode? {
 
         let context = self.persistentContainer.viewContext
-        var node = CommitNode(context: context)
+        var node: CommitNode? = nil
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CommitNode")
         let datePredicate = NSPredicate(format: "%K = %@", "date", date as CVarArg)
         print("given date: \(date)")
@@ -88,7 +88,12 @@ class CoreDataStack {
            let  result = try  context.fetch(request) as! [CommitNode]
             if result.count != 0 {
                 node = result[0]
+                if let node = node {
+                    print(node)
+                }
+
             } else {
+                print(#function, "failed to load todays node")
                 //TODO:- handle error
             }
 

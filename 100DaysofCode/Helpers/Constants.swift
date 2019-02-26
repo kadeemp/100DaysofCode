@@ -16,3 +16,10 @@ struct Constants {
     static let commitCount = "commitCount"
 
 }
+
+struct DefaultStrings {
+    static let hasCommited = "hasCommited"
+    static let latestStreak = "latestSteak"
+    static let username = "username"
+    static let lastCommitDate = "lastCommitDate"
+}

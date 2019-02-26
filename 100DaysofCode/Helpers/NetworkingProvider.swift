@@ -165,6 +165,8 @@ typealias ReturnTodaysCommit = (Bool,Int, [CalendarNode]) -> ()
                 }
                 commitStatus = nodes[nodes.count - 1].commitStatus
                 streak = Int.getStreak(commitList: commitList)
+                UserDefaults.standard.set(commitStatus, forKey: DefaultStrings.hasCommited)
+                UserDefaults.standard.set(streak, forKey: DefaultStrings.latestStreak)
                // print(states)
                 completion(commitStatus, streak, nodes)
 

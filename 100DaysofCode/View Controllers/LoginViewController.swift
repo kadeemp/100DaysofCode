@@ -23,11 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         NetworkingProvider.validateUsername(usernameTextField.text!) { (status) in
             //TODO:- Add a View Controller that checks if the user found is the right user
             if status == 200 {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let mainTabBarController: UITabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
-                let homeViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "Home")
-                let settingsViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "Settings")
-                mainTabBarController.viewControllers = [homeViewController,settingsViewController]
+
                 self.performSegue(withIdentifier: "ToConfirmation", sender: nil)
 
             } else if status == 404 {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B4F63AB5192F223A31AE9CE /* Pods_100DaysofCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 343D3549E0FBCA1A2A0B1B72 /* Pods_100DaysofCode.framework */; };
+		F40ADA3E2220124A007DB21D /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ADA3D2220124A007DB21D /* Views.swift */; };
 		F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0A21F65153007A1E95 /* AppDelegate.swift */; };
 		F479FE0D21F65153007A1E95 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0C21F65153007A1E95 /* LoginViewController.swift */; };
 		F479FE1021F65153007A1E95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F479FE0E21F65153007A1E95 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		343D3549E0FBCA1A2A0B1B72 /* Pods_100DaysofCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_100DaysofCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3776BE947360A78A014C77A5 /* Pods-100DaysofCode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-100DaysofCode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode.debug.xcconfig"; sourceTree = "<group>"; };
 		EB345D512DE7CCF80B7628DD /* Pods-100DaysofCode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-100DaysofCode.release.xcconfig"; path = "Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode.release.xcconfig"; sourceTree = "<group>"; };
+		F40ADA3D2220124A007DB21D /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		F479FE0721F65153007A1E95 /* 100DaysofCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 100DaysofCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F479FE0A21F65153007A1E95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F479FE0C21F65153007A1E95 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F40ADA3C22201205007DB21D /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				F40ADA3D2220124A007DB21D /* Views.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		F479FDFE21F65152007A1E95 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +121,7 @@
 		F479FE0921F65153007A1E95 /* 100DaysofCode */ = {
 			isa = PBXGroup;
 			children = (
+				F40ADA3C22201205007DB21D /* Navigation */,
 				F4A70BF521FB2EEC00AC3865 /* Models */,
 				F4A70BE421F9956400AC3865 /* Extensions */,
 				F479FE1621F65155007A1E95 /* Info.plist */,
@@ -309,6 +320,7 @@
 				F4D1D44421FFA18300BC1DE0 /* Constants.swift in Sources */,
 				F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */,
 				F4D1D44621FFACEE00BC1DE0 /* CoreDataStack.swift in Sources */,
+				F40ADA3E2220124A007DB21D /* Views.swift in Sources */,
 				F479FE2021F6D275007A1E95 /* NetworkingProvider.swift in Sources */,
 				F4D1D43821FE648700BC1DE0 /* 100DaysofCode.xcdatamodeld in Sources */,
 				F479FE2421F6D48C007A1E95 /* SettingsViewController.swift in Sources */,

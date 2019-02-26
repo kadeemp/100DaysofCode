@@ -39,18 +39,12 @@ class LoginConfirmationViewController: UIViewController {
     
     @IBAction func confirmationPressed(_ sender: Any) {
         userDefaults.set(username, forKey: "username")
-
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
-        var mainTabBarController: UITabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
-
-        let homeViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "Home")
-        let settingsViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "Settings")
-
-        mainTabBarController.viewControllers = [homeViewController,settingsViewController]
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = mainTabBarController
-        self.window?.makeKeyAndVisible()
+//print(Nav.returnMainView().viewControllers)
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+////        self.present(Nav.returnMainView(), animated: true, completion: nil)
+//        self.window?.rootViewController = Nav.returnMainView()
+//        self.window?.makeKeyAndVisible()
+        performSegue(withIdentifier: "toMain", sender: self)
     }
     @IBAction func cancelPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
