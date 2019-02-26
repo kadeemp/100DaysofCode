@@ -40,6 +40,7 @@ extension Int {
     static func getStreak(commitList:[Int]) -> Int {
         var commits = commitList
         var streak = 0
+        if commitList.isEmpty == false {
 
         if commitList[ commitList.count - 1] == 0 {
             UserDefaults.standard.set(false, forKey: "hasCommited")
@@ -61,7 +62,7 @@ extension Int {
             }
         }
 
-
+        }
         return streak
     }
 }
@@ -153,4 +154,9 @@ extension UIView {
 }
 extension NSNotification {
     static let updateAlarmTable = NSNotification.Name.init("updateAlarmTable")
+}
+
+extension UIViewController {
+
+
 }

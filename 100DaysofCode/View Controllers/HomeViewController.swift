@@ -12,7 +12,7 @@ import CoreData
 
 class HomeViewController: UIViewController {
 
-
+    //TODO:- Add function for saving nodes to core data, add observer
 
     @IBOutlet var counterActivtyIndicator: UIActivityIndicatorView!
     @IBOutlet var imageViewActivityIndicator: UIActivityIndicatorView!
@@ -43,7 +43,10 @@ class HomeViewController: UIViewController {
         counterActivtyIndicator.startAnimating()
         imageViewActivityIndicator.startAnimating()
         hasCommited = userDefaults.bool(forKey: DefaultStrings.hasCommited)
-CommitManager.updateHasCommited()
+        CommitManager.updateHasCommited()
+        NotificationCenter.default.addObserver(self, selector: #selector(internetAlertError), name: NotificationName.internetErrorNote, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadDefaults), name: NotificationName.loadDefaults, object: nil)
+        
         if hasCommited == false {
 
         }
@@ -63,7 +66,7 @@ CommitManager.updateHasCommited()
         pulsatingLayer = CAShapeLayer()
 
     }
-    func loadDefaults() {
+    @objc func loadDefaults() {
         self.username = userDefaults.string(forKey: DefaultStrings.username) ?? "User"
         self.streak = userDefaults.integer(forKey: DefaultStrings.latestStreak)
         let coreDataNodes = CoreDataStack.returnSavedNodes()
@@ -98,11 +101,14 @@ CommitManager.updateHasCommited()
             operationQueue.addOperation {
                 DispatchQueue.main.async {
                     CommitManager.updateCommitStatus(completion: { (streak, returnedNodes) in
+
                         self.streak = streak
                         //                        print("the streak is set to \(self.streak)")
                         self.nodes = returnedNodes
                         self.counterLabel.text = String(self.streak)
                         self.drawCircles()
+
+
                         //                        print("just drew circles")
                     }
 
@@ -136,7 +142,7 @@ CommitManager.updateHasCommited()
 
     func commitSetup() {
         //  hasCommited = userDefaults.bool(forKey:"hasCommited")
-        let node = nodes[nodes.count - 1]
+        guard let node = nodes.last else { return }
         if pulsatingLayer != nil {
             print(node.date)
 
@@ -255,15 +261,6 @@ CommitManager.updateHasCommited()
     }
 
 
-    @objc func dataRequest(){
-
-        NetworkingProvider.getCurrentStreakFor(username: username) { (streakCount) in
-
-            //self.username = username
-        }
-        usernameLabel.text = username
-    }
-
 
 
     func drawCircles() {
@@ -309,6 +306,14 @@ CommitManager.updateHasCommited()
 
 }
 extension HomeViewController {
+
+   @objc func internetAlertError() {
+        let alert = UIAlertController(title: "Couldn't retrive your commits", message: "Check Your network connection and try again", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel , handler: nil)
+        alert.addAction(okAction)
+
+        self.navigationController?.present(alert, animated: true, completion: nil)
+    }
 
     @objc func animateCircleDrawing() {
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")

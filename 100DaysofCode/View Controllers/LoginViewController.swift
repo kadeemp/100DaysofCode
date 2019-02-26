@@ -21,7 +21,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         NetworkingProvider.validateUsername(usernameTextField.text!) { (status) in
-            //TODO:- Add a View Controller that checks if the user found is the right user
             if status == 200 {
 
                 self.performSegue(withIdentifier: "ToConfirmation", sender: nil)

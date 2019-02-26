@@ -23,3 +23,7 @@ struct DefaultStrings {
     static let username = "username"
     static let lastCommitDate = "lastCommitDate"
 }
+struct NotificationName {
+    static let internetErrorNote = NSNotification.Name("No Internet")
+    static let loadDefaults = NSNotification.Name("loadDefaults")
+}

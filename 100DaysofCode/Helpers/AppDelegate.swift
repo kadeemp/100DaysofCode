@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        NetworkingProvider.checkCommitStatus { (status, streak, nodes) in
+        NetworkingProvider.returnCommitData { (status, streak, nodes) in
             if status {
                 AlarmController.shared.notifyCommitConfirmation()
                 AlarmController.shared.incrementAlarmFireDate()
@@ -72,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 //notify refresh
             }
         }
+        
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
