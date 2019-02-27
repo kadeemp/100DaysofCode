@@ -75,6 +75,40 @@ class CoreDataStack {
         }
         CoreDataStack.saveContext()
     }
+
+    static func getUser(completion: @escaping (User?) -> ())  {
+        let context = self.persistentContainer.viewContext
+        let request = NSFetchRequest<User>(entityName: "User")
+
+        do {
+            let result = try context.fetch(request)
+            if result.count != 0 {
+                completion(result[0])
+            }
+        }
+        catch {
+            print(#function, "Could not get users")
+        }
+    }
+    static func getUserProfilePhoto(completion: @escaping (UIImage) -> ())  {
+        let context = self.persistentContainer.viewContext
+        let request = NSFetchRequest<User>(entityName: "User")
+
+        do {
+            let result = try context.fetch(request)
+            if result.count != 0 {
+                if let data = result[0].profilePhoto {
+                    let image = UIImage(data: data)!
+                    completion(image)
+                }
+
+            }
+        }
+        catch {
+            print(#function, "Could not get users")
+        }
+    }
+    
     static func returnNodeByDate( _ date:Date) -> CommitNode? {
 
         let context = self.persistentContainer.viewContext
@@ -91,16 +125,11 @@ class CoreDataStack {
                 if let node = node {
                     print(node)
                 }
-
             } else {
                 print(#function, "failed to load todays node")
                 //TODO:- handle error
             }
-
-
-
            // print(f[0])
-
         }
         catch {
             print(error.localizedDescription)

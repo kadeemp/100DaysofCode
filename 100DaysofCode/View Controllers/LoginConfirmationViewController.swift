@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import CoreData
 class LoginConfirmationViewController: UIViewController {
 
     @IBOutlet var cancelButton: UIButton!
@@ -16,7 +17,7 @@ class LoginConfirmationViewController: UIViewController {
     var username:String!
     var downloader = ImageDownloader()
     let userDefaults = UserDefaults.standard
-     var window: UIWindow?
+    var window: UIWindow?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +40,22 @@ class LoginConfirmationViewController: UIViewController {
     
     @IBAction func confirmationPressed(_ sender: Any) {
         userDefaults.set(username, forKey: "username")
-//print(Nav.returnMainView().viewControllers)
-//        self.window = UIWindow(frame: UIScreen.main.bounds)
-////        self.present(Nav.returnMainView(), animated: true, completion: nil)
-//        self.window?.rootViewController = Nav.returnMainView()
-//        self.window?.makeKeyAndVisible()
+        let context = CoreDataStack.persistentContainer.viewContext
+        guard let entity = NSEntityDescription.entity(forEntityName: "User", in: context) else {print(#function, #line,"ISSUE HERE"); return}
+
+        let user = NSManagedObject(entity: entity, insertInto: context)
+        user.setValue(username, forKey: "username")
+        user.setValue(profilePictureImageView.image?.jpegData(compressionQuality: 1), forKey: "profilePhoto")
+
+        do {
+            try context.save()
+        }
+        catch {
+            print("COULD NOT SAVE")
+        }
+
+
+
         performSegue(withIdentifier: "toMain", sender: self)
     }
     @IBAction func cancelPressed(_ sender: Any) {

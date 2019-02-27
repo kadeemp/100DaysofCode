@@ -95,6 +95,9 @@ class HomeViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.imageViewSetup()
                     //                    print("setting images")
+                    CoreDataStack.getUser(completion: { (user) in
+//                        print(user)
+                    })
                 }
                 //                print("2")
             }
@@ -178,21 +181,11 @@ class HomeViewController: UIViewController {
         //   trackLayer.shadowOpacity = 1
         //        counterLabel.shadowColor = UIColor.gray
         //        counterLabel.shadowOffset = CGSize(width: 10, height: 15)
-        if let username = userDefaults.string(forKey: DefaultStrings.username) {
-            NetworkingProvider.getProfilePictureFor(username: username, completion: { url in
-                if url != "" {
-                    let urlRequest = URLRequest(url: URL(string: url)!)
-
-                    self.downloader.download(urlRequest) { response in
-                        if let image = response.result.value {
-                            self.profilePictureImageView.image = image
-                            self.animatePulsatingLayer(nil)
-                            self.imageViewActivityIndicator.isHidden = true
-                        }
-                    }
-                }
-            })
-        }
+        CoreDataStack.getUserProfilePhoto(completion: {
+            image in self.profilePictureImageView.image = image
+        })
+        imageViewActivityIndicator.stopAnimating()
+        imageViewActivityIndicator.isHidden = true
     }
 
     var animator = UIViewPropertyAnimator(duration: 5, curve: .easeInOut)
@@ -222,18 +215,6 @@ class HomeViewController: UIViewController {
     }
 
 
-    @objc func updateStatus() {
-        print("pressed")
-        if hasCommited == true {
-            hasCommited = false
-            userDefaults.set(false, forKey:DefaultStrings.hasCommited)
-            commitSetup()
-        } else if hasCommited == false {
-            hasCommited = true
-            userDefaults.set(true, forKey: DefaultStrings.hasCommited)
-            commitSetup()
-        }
-    }
     @objc func updateData() {
 
         if username != nil {
