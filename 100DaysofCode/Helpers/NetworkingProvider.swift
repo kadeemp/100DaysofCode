@@ -13,8 +13,7 @@ import CoreData
 
 class NetworkingProvider {
 
-    typealias ReturnCommitData = (Bool,Int, [CalendarNode]) -> ()
-
+    typealias ReturnCommitData = (Bool,Int, [CommitNode]) -> ()
 
     static func validateUsername(_ username:String, completion: @escaping (Int?) -> ()) {
         Alamofire.request("https://github.com/\(username)").responseString { (response) in
@@ -28,7 +27,6 @@ class NetworkingProvider {
                 print("Could not validate username. \n  error: \(response.error!)")
                 completion(0)
             }
-
         }
     }
     static func getCurrentStreakFor(username: String, completion: @escaping (Int) -> Void) {
@@ -77,7 +75,7 @@ class NetworkingProvider {
 
     static func returnCommitData(completion: @escaping ReturnCommitData ) {
 
-        var nodes :[CalendarNode] = []
+        var nodes :[CommitNode] = []
         var streak = 0
         guard let username = UserDefaults.standard.string(forKey: "username") else {return }
         var todaysDate:Date!
@@ -88,7 +86,6 @@ class NetworkingProvider {
         let today = todaysComponents.day!
         let month = todaysComponents.month!
         let year = todaysComponents.year!
-
 
         let dateForatter = DateFormatter()
         dateForatter.dateFormat = "yyyy-MM-dd"
@@ -103,7 +100,6 @@ class NetworkingProvider {
                         NetworkingProvider.validateUsername(username, completion: { (status) in
                             if status == 404 {
                                 //TODO:- post notification to alert user
-
                             }
                             return
                         })
@@ -121,7 +117,7 @@ class NetworkingProvider {
                         let date = day["data-date"]!
 
                         states[date] = commitCount
-                        let  formattedDate = dateForatter.date(from: date)
+                        guard let  formattedDate = dateForatter.date(from: date) else { return }
                         // let  convertedDate = dateFormatter.date(from: date)
 
                         if commitCount == 0 {
@@ -134,22 +130,27 @@ class NetworkingProvider {
                             print("Found the date!")
                             print(" Commit Count is \(Int(day["data-count"]!)!)")
                             //update hasCommited UserDefaults
-                            let node = CalendarNode(date: formattedDate!, commitStatus: commitStatus, commitCount: commitCount)
+                            let node = CommitNode(context: CoreDataStack.persistentContainer.viewContext)
+                            node.setValue(formattedDate, forKey: CommitNodeKeys.date)
+                            node.setValue(commitCount, forKey: CommitNodeKeys.commitCount)
+                            node.setValue(commitStatus, forKey: CommitNodeKeys.commitStatus)
                             nodes.append(node)
                             break
                         }
-                        let node = CalendarNode(date: formattedDate!, commitStatus: commitStatus, commitCount: commitCount)
+                        let node = CommitNode(context: CoreDataStack.persistentContainer.viewContext)
+                        node.setValue(formattedDate, forKey: CommitNodeKeys.date)
+                        node.setValue(commitCount, forKey: CommitNodeKeys.commitCount)
+                        node.setValue(commitStatus, forKey: CommitNodeKeys.commitStatus)
                         nodes.append(node)
                     }
                     if nodes.isEmpty == false {
                         commitStatus = nodes[nodes.count - 1].commitStatus
+                    } else {
+//   TODO:- Handle error
                     }
 
                     streak = Int.getStreak(commitList: commitList)
 
-                    UserDefaults.standard.set(commitStatus, forKey: DefaultStrings.hasCommited)
-                    UserDefaults.standard.set(streak, forKey: DefaultStrings.latestStreak)
-                   // print(nodes)
                     completion(commitStatus, streak, nodes)
 
                 }

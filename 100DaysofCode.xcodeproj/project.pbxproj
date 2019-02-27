@@ -26,7 +26,6 @@
 		F4A70C2B21FB93B400AC3865 /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70C2A21FB93B400AC3865 /* AlarmTableViewCell.swift */; };
 		F4A70C2D21FB9B3B00AC3865 /* NewAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70C2C21FB9B3B00AC3865 /* NewAlarmViewController.swift */; };
 		F4D1D43821FE648700BC1DE0 /* 100DaysofCode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D43621FE648700BC1DE0 /* 100DaysofCode.xcdatamodeld */; };
-		F4D1D43E21FE6E7300BC1DE0 /* CalendarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D43D21FE6E7300BC1DE0 /* CalendarNode.swift */; };
 		F4D1D44421FFA18300BC1DE0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44321FFA18300BC1DE0 /* Constants.swift */; };
 		F4D1D44621FFACEE00BC1DE0 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44521FFACEE00BC1DE0 /* CoreDataStack.swift */; };
 		F4D1D44821FFC5D800BC1DE0 /* CommitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44721FFC5D800BC1DE0 /* CommitManager.swift */; };
@@ -56,7 +55,6 @@
 		F4A70C2A21FB93B400AC3865 /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 		F4A70C2C21FB9B3B00AC3865 /* NewAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlarmViewController.swift; sourceTree = "<group>"; };
 		F4D1D43721FE648700BC1DE0 /* 100DaysofCode.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 100DaysofCode.xcdatamodel; sourceTree = "<group>"; };
-		F4D1D43D21FE6E7300BC1DE0 /* CalendarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNode.swift; sourceTree = "<group>"; };
 		F4D1D44321FFA18300BC1DE0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F4D1D44521FFACEE00BC1DE0 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		F4D1D44721FFC5D800BC1DE0 /* CommitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitManager.swift; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 			children = (
 				F4A70C2521FB919600AC3865 /* Alarm.swift */,
 				F4A70C2A21FB93B400AC3865 /* AlarmTableViewCell.swift */,
-				F4D1D43D21FE6E7300BC1DE0 /* CalendarNode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -314,7 +311,6 @@
 			files = (
 				F4A70BF421FB217B00AC3865 /* PostViewController.swift in Sources */,
 				F4A70C2921FB920100AC3865 /* AlarmController.swift in Sources */,
-				F4D1D43E21FE6E7300BC1DE0 /* CalendarNode.swift in Sources */,
 				F479FE0D21F65153007A1E95 /* LoginViewController.swift in Sources */,
 				F4A70C2621FB919600AC3865 /* Alarm.swift in Sources */,
 				F4D1D44421FFA18300BC1DE0 /* Constants.swift in Sources */,

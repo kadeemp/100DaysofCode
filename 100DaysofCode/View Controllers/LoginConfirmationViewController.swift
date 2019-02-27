@@ -19,6 +19,7 @@ class LoginConfirmationViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     var window: UIWindow?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NetworkingProvider.getProfilePictureFor(username: username, completion: { url in
@@ -35,7 +36,7 @@ class LoginConfirmationViewController: UIViewController {
         })
         usernameLabel.text = username
     }
-        // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
 
     
     @IBAction func confirmationPressed(_ sender: Any) {
@@ -56,7 +57,7 @@ class LoginConfirmationViewController: UIViewController {
 
 
 
-        performSegue(withIdentifier: "toMain", sender: self)
+        performSegue(withIdentifier: SegueIdentifiers.toMainVC, sender: self)
     }
     @IBAction func cancelPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -64,13 +65,20 @@ class LoginConfirmationViewController: UIViewController {
 
 
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == SegueIdentifiers.toLoginConfirmation {
+            let destinationVC = segue.destination as! HomeViewController
+
+        }
     }
-    */
 
 }

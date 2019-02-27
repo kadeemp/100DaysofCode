@@ -44,3 +44,9 @@ struct EntityKeys {
     static let User = "User"
     static let CommitNode = "CommitNode"
 }
+
+ struct SegueIdentifiers {
+    static let toLoginConfirmation = "ToConfirmation"
+    static let toAddAlarmVC = "addAlarm"
+    static let toMainVC = "toMain"
+}

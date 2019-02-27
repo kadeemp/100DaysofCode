@@ -23,7 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         NetworkingProvider.validateUsername(usernameTextField.text!) { (status) in
             if status == 200 {
 
-                self.performSegue(withIdentifier: "ToConfirmation", sender: nil)
+                self.performSegue(withIdentifier: SegueIdentifiers.toLoginConfirmation, sender: nil)
 
             } else if status == 404 {
                 let errorAlertView = UIAlertController(title: "Error", message: "We couldn't find an account with that username", preferredStyle: .actionSheet )
@@ -35,7 +35,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ToConfirmation" {
+        if segue.identifier == SegueIdentifiers.toLoginConfirmation {
             let destinationVC = segue.destination as! LoginConfirmationViewController
             destinationVC.username = usernameTextField.text!
         }

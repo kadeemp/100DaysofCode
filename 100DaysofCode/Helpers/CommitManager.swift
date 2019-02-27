@@ -38,7 +38,7 @@ class CommitManager {
         return false
     }
 
-    static func updateCommitStatus(completion: @escaping (Int,[CalendarNode]) -> ()) {
+    static func updateCommitStatus(completion: @escaping (Int,[CommitNode]) -> ()) {
 
         NetworkingProvider.returnCommitData { (status, streak, nodes) in
             UserDefaults.standard.set(status, forKey: "hasCommited")

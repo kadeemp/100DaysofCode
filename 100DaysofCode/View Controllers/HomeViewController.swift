@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
     var timer :Timer!
     var counter = 0
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var nodes:[CalendarNode] = []
+    var nodes:[CommitNode] = []
     var currentDay:Date!
 
 
@@ -75,8 +75,7 @@ class HomeViewController: UIViewController {
         })
         let coreDataNodes = CoreDataStack.returnSavedNodes()
         for node in coreDataNodes {
-            let newNode = CalendarNode(date: node.date ?? Date(), commitStatus: node.commitStatus, commitCount: Int(node.commitCount))
-            self.nodes.append(newNode)
+            self.nodes.append(node)
         }
         usernameLabel.text = self.username
         counterLabel.text = String(self.streak)
