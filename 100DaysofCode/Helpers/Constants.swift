@@ -27,3 +27,20 @@ struct NotificationName {
     static let internetErrorNote = NSNotification.Name("No Internet")
     static let loadDefaults = NSNotification.Name("loadDefaults")
 }
+struct UserKeys {
+    static let streak = "streak"
+    static let username = "username"
+    static let profilePhoto = "profilePhoto"
+    static let firstName = "firstName"
+    static let lastName = "lastName"
+}
+struct CommitNodeKeys {
+    static let date = "date"
+    static let commitStatus = "commitStatus"
+    static let commitCount = "commitCount"
+}
+
+struct EntityKeys {
+    static let User = "User"
+    static let CommitNode = "CommitNode"
+}

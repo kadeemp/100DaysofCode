@@ -56,6 +56,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func deleteAllData() {
         CoreDataStack.deleteSavedNodes()
+        CoreDataStack.deleteSavedUsers()
         for alarm in AlarmController.shared.allAlarms {
             AlarmController.shared.deleteAlarm(alarmBeingDeleted: alarm)
         }

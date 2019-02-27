@@ -43,7 +43,7 @@ class CoreDataStack {
 
     // MARK: - Core Data Saving support
 
-   static func saveContext () {
+    static func saveContext () {
         let context = self.persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -59,9 +59,9 @@ class CoreDataStack {
         var entity = NSEntityDescription.entity(forEntityName: "CommitNode", in: CoreDataStack.persistentContainer.viewContext)
         let nodeObject = NSManagedObject(entity: entity!, insertInto: CoreDataStack.persistentContainer.viewContext)
 
-        nodeObject.setValue(date, forKey: "date")
-        nodeObject.setValue(commitCount, forKey: "commitCount")
-        nodeObject.setValue(commitStatus, forKey: "commitStatus")
+        nodeObject.setValue(date, forKey: CommitNodeKeys.date)
+        nodeObject.setValue(commitCount, forKey: CommitNodeKeys.commitCount)
+        nodeObject.setValue(commitStatus, forKey: CommitNodeKeys.commitStatus)
         print("Saved Node Detais: \n date:\(date) commitCount:\(commitCount) commitStatus: \(commitStatus)")
         CoreDataStack.saveContext()
     }
@@ -69,16 +69,24 @@ class CoreDataStack {
         var entity = NSEntityDescription.entity(forEntityName: "CommitNode", in: CoreDataStack.persistentContainer.viewContext)
         let nodeObject = NSManagedObject(entity: entity!, insertInto: CoreDataStack.persistentContainer.viewContext)
         for node in nodes {
-            nodeObject.setValue(node.date, forKey: "date")
-            nodeObject.setValue(node.commitCount, forKey: "commitCount")
-            nodeObject.setValue(node.commitStatus, forKey: "commitStatus")
+            nodeObject.setValue(node.date, forKey: CommitNodeKeys.date)
+            nodeObject.setValue(node.commitCount, forKey: CommitNodeKeys.commitCount)
+            nodeObject.setValue(node.commitStatus, forKey: CommitNodeKeys.commitStatus)
         }
         CoreDataStack.saveContext()
     }
 
+    static func saveStreak(streak:Int) {
+        getUser(completion: { returnedUser in
+            returnedUser?.setValue(streak, forKey: UserKeys.streak)
+        })
+        CoreDataStack.saveContext()
+    }
+    
+
     static func getUser(completion: @escaping (User?) -> ())  {
         let context = self.persistentContainer.viewContext
-        let request = NSFetchRequest<User>(entityName: "User")
+        let request = NSFetchRequest<User>(entityName: EntityKeys.User)
 
         do {
             let result = try context.fetch(request)
@@ -92,7 +100,7 @@ class CoreDataStack {
     }
     static func getUserProfilePhoto(completion: @escaping (UIImage) -> ())  {
         let context = self.persistentContainer.viewContext
-        let request = NSFetchRequest<User>(entityName: "User")
+        let request = NSFetchRequest<User>(entityName: EntityKeys.User)
 
         do {
             let result = try context.fetch(request)
@@ -108,18 +116,50 @@ class CoreDataStack {
             print(#function, "Could not get users")
         }
     }
+    static func getStreak(completion: @escaping (Int) -> ())  {
+        let context = self.persistentContainer.viewContext
+        let request = NSFetchRequest<User>(entityName: EntityKeys.User)
+
+        do {
+            let result = try context.fetch(request)
+            if result.count != 0 {
+                let streak = result[0].streak
+                completion(Int(streak))
+            }
+        }
+        catch {
+            print(#function, "Could not get streak")
+        }
+    }
+    static func getUsername(completion: @escaping (String) -> ())  {
+        let context = self.persistentContainer.viewContext
+        let request = NSFetchRequest<User>(entityName: EntityKeys.User)
+
+        do {
+            let result = try context.fetch(request)
+            if result.count != 0 {
+                if let username = result[0].username {
+                    completion(username)
+                }
+
+            }
+        }
+        catch {
+            print(#function, "Could not get streak")
+        }
+    }
     
     static func returnNodeByDate( _ date:Date) -> CommitNode? {
 
         let context = self.persistentContainer.viewContext
         var node: CommitNode? = nil
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CommitNode")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: EntityKeys.CommitNode)
         let datePredicate = NSPredicate(format: "%K = %@", "date", date as CVarArg)
         print("given date: \(date)")
         request.predicate = datePredicate
 
         do {
-           let  result = try  context.fetch(request) as! [CommitNode]
+            let  result = try  context.fetch(request) as! [CommitNode]
             if result.count != 0 {
                 node = result[0]
                 if let node = node {
@@ -129,7 +169,7 @@ class CoreDataStack {
                 print(#function, "failed to load todays node")
                 //TODO:- handle error
             }
-           // print(f[0])
+            // print(f[0])
         }
         catch {
             print(error.localizedDescription)
@@ -139,10 +179,10 @@ class CoreDataStack {
     static func returnSavedNodes() -> [CommitNode] {
         var nodes:[CommitNode] = []
         let context = self.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CommitNode")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: EntityKeys.CommitNode)
         do {
             let results = try context.fetch(request) as! [CommitNode]
-                nodes = results
+            nodes = results
         } catch {
             print(error.localizedDescription)
         }
@@ -154,7 +194,7 @@ class CoreDataStack {
         var nodes:[CommitNode] = []
         let context = self.persistentContainer.viewContext
 
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CommitNode")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: EntityKeys.CommitNode)
         do {
             let results = try context.fetch(request) as! [CommitNode]
             nodes = results
@@ -162,7 +202,7 @@ class CoreDataStack {
                 print(node)
                 context.delete(node)
             }
-             CoreDataStack.saveContext()
+            CoreDataStack.saveContext()
 
         } catch {
             print(error.localizedDescription)
@@ -170,9 +210,27 @@ class CoreDataStack {
     }
     static func deleteNode(node:CommitNode) {
         let context = self.persistentContainer.viewContext
-            context.delete(node)
+        context.delete(node)
+        CoreDataStack.saveContext()
 
+    }
+
+    static func deleteSavedUsers() {
+        var users:[User] = []
+        let context = self.persistentContainer.viewContext
+
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: EntityKeys.User)
+        do {
+            let results = try context.fetch(request) as! [User]
+            users = results
+            for user in users {
+                print(user)
+                context.delete(user)
+            }
             CoreDataStack.saveContext()
 
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }

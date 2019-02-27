@@ -53,22 +53,26 @@ class HomeViewController: UIViewController {
         load()
     }
 
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         //timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
 
         username = UserDefaults.standard.string(forKey: "username")
-
-
-
         pulsatingLayer = CAShapeLayer()
 
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        CoreDataStack.saveStreak(streak: self.streak)
+    }
     @objc func loadDefaults() {
-        self.username = userDefaults.string(forKey: DefaultStrings.username) ?? "User"
-        self.streak = userDefaults.integer(forKey: DefaultStrings.latestStreak)
+        CoreDataStack.getUsername(completion: { username in
+            self.usernameLabel.text = username
+            self.username = username
+        })
+        CoreDataStack.getStreak(completion: {streak in
+            self.streak =  streak
+            self.counterLabel.text = String(streak)
+        })
         let coreDataNodes = CoreDataStack.returnSavedNodes()
         for node in coreDataNodes {
             let newNode = CalendarNode(date: node.date ?? Date(), commitStatus: node.commitStatus, commitCount: Int(node.commitCount))
@@ -83,7 +87,7 @@ class HomeViewController: UIViewController {
         self.counterActivtyIndicator.isHidden = true
     }
     func load() {
-        let serialQueue = DispatchQueue(label: "squeue.loadData")
+
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 1
 
@@ -96,7 +100,7 @@ class HomeViewController: UIViewController {
                     self.imageViewSetup()
                     //                    print("setting images")
                     CoreDataStack.getUser(completion: { (user) in
-//                        print(user)
+                        //                        print(user)
                     })
                 }
                 //                print("2")
@@ -104,17 +108,13 @@ class HomeViewController: UIViewController {
             operationQueue.addOperation {
                 DispatchQueue.main.async {
                     CommitManager.updateCommitStatus(completion: { (streak, returnedNodes) in
-
                         self.streak = streak
                         //                        print("the streak is set to \(self.streak)")
                         self.nodes = returnedNodes
                         self.counterLabel.text = String(self.streak)
                         self.drawCircles()
-
-
                         //                        print("just drew circles")
                     }
-
                     )
 
                 }
@@ -123,24 +123,16 @@ class HomeViewController: UIViewController {
             }
             operationQueue.addOperation {
                 DispatchQueue.main.async {
-
                     //                    print(" the  view streak is\(self.streak)")
-
                     self.animateCircleDrawing()
                     self.animatePulsatingLayer(nil)
-
                     self.counterActivtyIndicator.isHidden = true
                     //                    print("updating streak")
                 }
                 //                print("6")
-
             }
-
         } else {
-
         }
-
-
     }
 
     func commitSetup() {
@@ -211,9 +203,7 @@ class HomeViewController: UIViewController {
         //
         //            context.drawLinearGradient(gradient!, start:start , end: end, options: .drawsBeforeStartLocation)
         //        }
-
     }
-
 
     @objc func updateData() {
 
@@ -231,7 +221,6 @@ class HomeViewController: UIViewController {
                     self.pulsatingLayer.fillColor = UIColor.blue.cgColor
                     // self.drawCircles()
                 }
-
             } else {
                 stopPulsing()
                 timer.invalidate()
@@ -241,9 +230,6 @@ class HomeViewController: UIViewController {
         counter += 1
     }
 
-
-
-
     func drawCircles() {
         let angle:Double = ((Double(streak)/100)*360)
         let degrees = CGFloat(angle)
@@ -251,7 +237,6 @@ class HomeViewController: UIViewController {
 
         let trackPath = UIBezierPath(arcCenter: center, radius: 120, startAngle: -CGFloat.pi / 2, endAngle:(CGFloat.pi * 2), clockwise: true)
         let percentageCirclePath = UIBezierPath(arcCenter: center, radius: 120, startAngle: -CGFloat.pi / 2, endAngle:CGPoint.degreesToRadians(degrees: degrees - 90), clockwise: true)
-
 
         commitSetup()
 
@@ -261,8 +246,6 @@ class HomeViewController: UIViewController {
         pulsatingLayer.lineCap = CAShapeLayerLineCap.round
         pulsatingLayer.path = UIBezierPath(arcCenter: .zero, radius: 120, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true).cgPath
         pulsatingLayer.position = view.center
-
-
 
         trackLayer.path = trackPath.cgPath
         trackLayer.fillColor = UIColor.clear.cgColor
@@ -279,20 +262,15 @@ class HomeViewController: UIViewController {
 
         view.layer.addSublayer(pulsatingLayer)
         view.layer.addSublayer(trackLayer)
-
         view.layer.addSublayer(circleLayer)
-
-
     }
-
 }
 extension HomeViewController {
 
-   @objc func internetAlertError() {
+    @objc func internetAlertError() {
         let alert = UIAlertController(title: "Couldn't retrive your commits", message: "Check Your network connection and try again", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel , handler: nil)
         alert.addAction(okAction)
-
         self.navigationController?.present(alert, animated: true, completion: nil)
     }
 
