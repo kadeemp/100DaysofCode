@@ -18,8 +18,7 @@ class LoginConfirmationViewController: UIViewController {
     var downloader = ImageDownloader()
     let userDefaults = UserDefaults.standard
     var window: UIWindow?
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         NetworkingProvider.getProfilePictureFor(username: username, completion: { url in
@@ -51,18 +50,16 @@ class LoginConfirmationViewController: UIViewController {
         do {
             try context.save()
         }
+
         catch {
             print("COULD NOT SAVE")
         }
-
-
 
         performSegue(withIdentifier: SegueIdentifiers.toMainVC, sender: self)
     }
     @IBAction func cancelPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-
 
     /*
      // MARK: - Navigation

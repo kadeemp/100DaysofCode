@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import UIKit
+import AlamofireImage
 
 class CoreDataStack {
     // MARK: - Core Data stack
@@ -110,6 +111,21 @@ class CoreDataStack {
                     completion(image)
                 }
 
+            } else  {
+                NetworkingProvider.getProfilePictureFor(username: DefaultStrings.username, completion: { url in
+                    if url != "" {
+                        let urlRequest = URLRequest(url: URL(string: url)!)
+
+                       ImageDownloader().download(urlRequest) { response in
+                            if let image = response.result.value {
+
+                                completion(image)
+                                
+
+                            }
+                        }
+                    }
+                })
             }
         }
         catch {

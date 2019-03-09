@@ -172,8 +172,8 @@ class HomeViewController: UIViewController {
         //   trackLayer.shadowOpacity = 1
         //        counterLabel.shadowColor = UIColor.gray
         //        counterLabel.shadowOffset = CGSize(width: 10, height: 15)
-        CoreDataStack.getUserProfilePhoto(completion: {
-            image in self.profilePictureImageView.image = image
+        CoreDataStack.getUserProfilePhoto(completion: { image in
+            self.profilePictureImageView.image = image
         })
         imageViewActivityIndicator.stopAnimating()
         imageViewActivityIndicator.isHidden = true
