@@ -22,24 +22,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
      //   CommitManager.updateHasCommited()
-        if  userDefaults.string(forKey: "username") != nil {
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            center.delegate = self
-            self.window?.rootViewController = Nav.returnMainView()
-            self.window?.makeKeyAndVisible()
-        } else {
-
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = Nav.returnLoginView()
-            self.window?.makeKeyAndVisible()
-        }
-        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-            if granted {
-
-            } else {
-
-            }
-        }
+//        if  userDefaults.string(forKey: "username") != nil {
+//            self.window = UIWindow(frame: UIScreen.main.bounds)
+//            center.delegate = self
+//            self.window?.rootViewController = Nav.returnMainView()
+//            self.window?.makeKeyAndVisible()
+//        } else {
+//
+//            self.window = UIWindow(frame: UIScreen.main.bounds)
+//            self.window?.rootViewController = Nav.returnLoginView()
+//            self.window?.makeKeyAndVisible()
+//        }
+//        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+//            if granted {
+//
+//            } else {
+//
+//            }
+//        }
         return true
     }
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         userDefaults.synchronize()
 
             self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = Nav.returnLoginView()
+            self.window?.rootViewController = Nav.tempLoginView()
             self.window?.makeKeyAndVisible()
 
 

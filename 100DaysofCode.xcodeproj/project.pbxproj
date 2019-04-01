@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0B4F63AB5192F223A31AE9CE /* Pods_100DaysofCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 343D3549E0FBCA1A2A0B1B72 /* Pods_100DaysofCode.framework */; };
+		F4024EF1223DAC2000524D17 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4024EF0223DAC2000524D17 /* TestViewController.swift */; };
+		F4024EFA223DB47B00524D17 /* CustomTextFieldInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4024EF9223DB47B00524D17 /* CustomTextFieldInput.swift */; };
 		F40ADA3E2220124A007DB21D /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ADA3D2220124A007DB21D /* Views.swift */; };
+		F41CE32B2252AE90005E6151 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE32A2252AE90005E6151 /* SignUpViewController.swift */; };
 		F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0A21F65153007A1E95 /* AppDelegate.swift */; };
 		F479FE0D21F65153007A1E95 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0C21F65153007A1E95 /* LoginViewController.swift */; };
 		F479FE1021F65153007A1E95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F479FE0E21F65153007A1E95 /* Main.storyboard */; };
@@ -35,7 +38,10 @@
 		343D3549E0FBCA1A2A0B1B72 /* Pods_100DaysofCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_100DaysofCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3776BE947360A78A014C77A5 /* Pods-100DaysofCode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-100DaysofCode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode.debug.xcconfig"; sourceTree = "<group>"; };
 		EB345D512DE7CCF80B7628DD /* Pods-100DaysofCode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-100DaysofCode.release.xcconfig"; path = "Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode.release.xcconfig"; sourceTree = "<group>"; };
+		F4024EF0223DAC2000524D17 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		F4024EF9223DB47B00524D17 /* CustomTextFieldInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldInput.swift; sourceTree = "<group>"; };
 		F40ADA3D2220124A007DB21D /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
+		F41CE32A2252AE90005E6151 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F479FE0721F65153007A1E95 /* 100DaysofCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 100DaysofCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F479FE0A21F65153007A1E95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F479FE0C21F65153007A1E95 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +96,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F4024EF8223DB44600524D17 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F4024EF9223DB47B00524D17 /* CustomTextFieldInput.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F40ADA3C22201205007DB21D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +133,7 @@
 		F479FE0921F65153007A1E95 /* 100DaysofCode */ = {
 			isa = PBXGroup;
 			children = (
+				F4024EF8223DB44600524D17 /* Views */,
 				F40ADA3C22201205007DB21D /* Navigation */,
 				F4A70BF521FB2EEC00AC3865 /* Models */,
 				F4A70BE421F9956400AC3865 /* Extensions */,
@@ -142,6 +157,8 @@
 				F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */,
 				F4A70BF321FB217B00AC3865 /* PostViewController.swift */,
 				F4A70C2C21FB9B3B00AC3865 /* NewAlarmViewController.swift */,
+				F4024EF0223DAC2000524D17 /* TestViewController.swift */,
+				F41CE32A2252AE90005E6151 /* SignUpViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -323,8 +340,11 @@
 				F4A70C2B21FB93B400AC3865 /* AlarmTableViewCell.swift in Sources */,
 				F479FE2221F6D47B007A1E95 /* HomeViewController.swift in Sources */,
 				F4A70C2D21FB9B3B00AC3865 /* NewAlarmViewController.swift in Sources */,
+				F41CE32B2252AE90005E6151 /* SignUpViewController.swift in Sources */,
 				F479FE2821F6E83F007A1E95 /* LoginConfirmationViewController.swift in Sources */,
 				F4A70BE621F9957500AC3865 /* Extensions.swift in Sources */,
+				F4024EF1223DAC2000524D17 /* TestViewController.swift in Sources */,
+				F4024EFA223DB47B00524D17 /* CustomTextFieldInput.swift in Sources */,
 				F4D1D44821FFC5D800BC1DE0 /* CommitManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

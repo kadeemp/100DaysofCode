@@ -24,9 +24,9 @@ class NewAlarmViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        datePicker.layer.backgroundColor = UIColor.gray.cgColor
-        
-
+        datePicker.layer.backgroundColor = UIColor.black.cgColor
+        datePicker.tintColor = UIColor.white
+        datePicker.setValue(UIColor.white, forKey: "textColor")
         // Do any additional setup after loading the view.
     }
 

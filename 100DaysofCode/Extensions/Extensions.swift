@@ -104,9 +104,6 @@ extension CAShapeLayer {
         circle.strokeEnd = 0
         circle.lineCap = CAShapeLayerLineCap.round
         return circle
-
-
-
     }
 
    static  func drawPartialCircle(streak:Int,width:Int, fillColor:UIColor?, strokeColor:UIColor?, center:CGPoint) -> CAShapeLayer {
@@ -121,12 +118,10 @@ extension CAShapeLayer {
         circle.strokeEnd = 0
         circle.lineCap = CAShapeLayerLineCap.round
         return circle
-
-
-
     }
 }
 extension UIView {
+
      func addGradient(color1:UIColor, color2:UIColor ) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.locations = [0.0, 0.9]
@@ -136,6 +131,7 @@ extension UIView {
         gradientLayer.endPoint = CGPoint(x: 0, y: 0)
         layer.insertSublayer(gradientLayer, at: 0)
     }
+
     func applyMotion(toView view:UIView, magnitude:Float)  {
         let xMotion = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
         xMotion.minimumRelativeValue = -magnitude
@@ -148,15 +144,23 @@ extension UIView {
         let group = UIMotionEffectGroup()
         group.motionEffects = [xMotion, yMotion]
         view.addMotionEffect(group)
-
     }
-
 }
+
 extension NSNotification {
     static let updateAlarmTable = NSNotification.Name.init("updateAlarmTable")
 }
 
 extension UIViewController {
 
+//    func tapToDismiss(textFields:[UITextField]) {
+//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+//        
+//        view.addGestureRecognizer(tapGestureRecognizer)
+//
+//    }
+//    @objc func dismissKeyboard() {
+//
+//    }
 
 }

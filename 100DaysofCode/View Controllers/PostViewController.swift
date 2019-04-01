@@ -19,7 +19,7 @@ class PostViewController: UIViewController, UITextViewDelegate, WKNavigationDele
 //            postTextView.layer.cornerRadius = postTextView.frame.height/8
 //        shareButton.layer.cornerRadius = shareButton.frame.height/4
 
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard1)))
         let twitter = "https://twitter.com/hashtag/100daysofcode?f=tweets&vertical=default&src=hash"
         let url = URL(string: twitter)
         webView.navigationDelegate = self
@@ -28,7 +28,7 @@ class PostViewController: UIViewController, UITextViewDelegate, WKNavigationDele
        // webView.loadHTMLString("0", baseURL: url)
         // Do any additional setup after loading the view.
     }
-    @objc func dismissKeyboard() {
+    @objc func dismissKeyboard1() {
         if postTextView.isFirstResponder == true {
             postTextView.resignFirstResponder()
         }

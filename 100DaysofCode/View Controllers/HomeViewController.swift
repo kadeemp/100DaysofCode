@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
 
     @IBOutlet var counterActivtyIndicator: UIActivityIndicatorView!
     @IBOutlet var imageViewActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet var usernameLabel: UILabel!
+
     @IBOutlet var counterLabel: UILabel!
     @IBOutlet var profilePictureImageView: UIImageView!
     @IBOutlet var streakCounterImageView: UIImageView!
@@ -66,7 +66,7 @@ class HomeViewController: UIViewController {
     }
     @objc func loadDefaults() {
         CoreDataStack.getUsername(completion: { username in
-            self.usernameLabel.text = username
+
             self.username = username
         })
         CoreDataStack.getStreak(completion: {streak in
@@ -77,7 +77,7 @@ class HomeViewController: UIViewController {
         for node in coreDataNodes {
             self.nodes.append(node)
         }
-        usernameLabel.text = self.username
+
         counterLabel.text = String(self.streak)
         imageViewSetup()
         drawCircles()
@@ -92,7 +92,7 @@ class HomeViewController: UIViewController {
 
 
         if self.username != nil {
-            self.usernameLabel.text = self.username
+
 
             operationQueue.addOperation {
                 DispatchQueue.main.async {
@@ -157,10 +157,9 @@ class HomeViewController: UIViewController {
 
 
     func imageViewSetup() {
-        profilePictureImageView.layer.cornerRadius = 50
+        profilePictureImageView.layer.cornerRadius = 30
         profilePictureImageView.clipsToBounds = true
         view.applyMotion(toView: profilePictureImageView, magnitude: 10)
-        view.applyMotion(toView: usernameLabel, magnitude: 10)
         view.applyMotion(toView: commitStatusImage, magnitude: 10)
 
         //  profilePictureImageView.layer.borderWidth = 3
