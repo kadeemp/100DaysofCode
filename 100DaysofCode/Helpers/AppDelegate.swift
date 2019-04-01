@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import UserNotifications
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        FirebaseApp.configure()
      //   CommitManager.updateHasCommited()
 //        if  userDefaults.string(forKey: "username") != nil {
 //            self.window = UIWindow(frame: UIScreen.main.bounds)

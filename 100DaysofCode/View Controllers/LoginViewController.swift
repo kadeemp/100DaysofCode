@@ -1,45 +1,49 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  100DaysofCode
 //
-//  Created by Kadeem Palacios on 1/21/19.
+//  Created by Kadeem Palacios on 4/1/19.
 //  Copyright © 2019 Kadeem Palacios. All rights reserved.
 //
 
 import UIKit
-import Alamofire
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController {
 
-    @IBOutlet var usernameTextField: UITextField!
+    @IBOutlet var emailTextField: CustomTextFieldInput!
+    @IBOutlet var passwordTextField: CustomTextFieldInput!
+    @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
+
+    @IBOutlet var loginBtn: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameTextField.delegate = self
-        usernameTextField.text = "kadeemp"
 
+        // Do any additional setup after loading the view.
     }
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        NetworkingProvider.validateUsername(usernameTextField.text!) { (status) in
-            if status == 200 {
+    @IBAction func screenTappedAction(_ sender: Any) {
+        let textFields = [emailTextField, passwordTextField]
 
-                self.performSegue(withIdentifier: SegueIdentifiers.toLoginConfirmation, sender: nil)
-
-            } else if status == 404 {
-                let errorAlertView = UIAlertController(title: "Error", message: "We couldn't find an account with that username", preferredStyle: .actionSheet )
-                let alertAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-                errorAlertView.addAction(alertAction)
-                self.present(errorAlertView, animated: true, completion: nil)
+        for field in textFields {
+            if (field?.isFirstResponder)! {
+                field?.resignFirstResponder()
             }
         }
-        return true
+
     }
+    @IBAction func loginBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: SegueIdentifiers.loginToMain, sender: self)
+    }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == SegueIdentifiers.toLoginConfirmation {
-            let destinationVC = segue.destination as! LoginConfirmationViewController
-            destinationVC.username = usernameTextField.text!
-        }
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
+    */
 
 }
-

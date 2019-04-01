@@ -12,8 +12,10 @@
 		F4024EFA223DB47B00524D17 /* CustomTextFieldInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4024EF9223DB47B00524D17 /* CustomTextFieldInput.swift */; };
 		F40ADA3E2220124A007DB21D /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ADA3D2220124A007DB21D /* Views.swift */; };
 		F41CE32B2252AE90005E6151 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE32A2252AE90005E6151 /* SignUpViewController.swift */; };
+		F41CE32D2252B236005E6151 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE32C2252B236005E6151 /* LoginViewController.swift */; };
+		F41CE32F2252C64B005E6151 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41CE32E2252C64B005E6151 /* GoogleService-Info.plist */; };
 		F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0A21F65153007A1E95 /* AppDelegate.swift */; };
-		F479FE0D21F65153007A1E95 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0C21F65153007A1E95 /* LoginViewController.swift */; };
+		F479FE0D21F65153007A1E95 /* TempLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0C21F65153007A1E95 /* TempLoginViewController.swift */; };
 		F479FE1021F65153007A1E95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F479FE0E21F65153007A1E95 /* Main.storyboard */; };
 		F479FE1221F65155007A1E95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F479FE1121F65155007A1E95 /* Assets.xcassets */; };
 		F479FE1521F65155007A1E95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F479FE1321F65155007A1E95 /* LaunchScreen.storyboard */; };
@@ -42,9 +44,11 @@
 		F4024EF9223DB47B00524D17 /* CustomTextFieldInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldInput.swift; sourceTree = "<group>"; };
 		F40ADA3D2220124A007DB21D /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		F41CE32A2252AE90005E6151 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		F41CE32C2252B236005E6151 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F41CE32E2252C64B005E6151 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F479FE0721F65153007A1E95 /* 100DaysofCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 100DaysofCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F479FE0A21F65153007A1E95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F479FE0C21F65153007A1E95 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F479FE0C21F65153007A1E95 /* TempLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempLoginViewController.swift; sourceTree = "<group>"; };
 		F479FE0F21F65153007A1E95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F479FE1121F65155007A1E95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F479FE1421F65155007A1E95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 		F479FDFE21F65152007A1E95 = {
 			isa = PBXGroup;
 			children = (
+				F41CE32E2252C64B005E6151 /* GoogleService-Info.plist */,
 				F479FE0921F65153007A1E95 /* 100DaysofCode */,
 				F479FE0821F65153007A1E95 /* Products */,
 				04653AE7E3095D525C1C746F /* Pods */,
@@ -151,7 +156,7 @@
 		F479FE1C21F6D179007A1E95 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F479FE0C21F65153007A1E95 /* LoginViewController.swift */,
+				F479FE0C21F65153007A1E95 /* TempLoginViewController.swift */,
 				F479FE2121F6D47B007A1E95 /* HomeViewController.swift */,
 				F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */,
 				F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */,
@@ -159,6 +164,7 @@
 				F4A70C2C21FB9B3B00AC3865 /* NewAlarmViewController.swift */,
 				F4024EF0223DAC2000524D17 /* TestViewController.swift */,
 				F41CE32A2252AE90005E6151 /* SignUpViewController.swift */,
+				F41CE32C2252B236005E6151 /* LoginViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -271,6 +277,7 @@
 			files = (
 				F479FE1521F65155007A1E95 /* LaunchScreen.storyboard in Resources */,
 				F479FE1221F65155007A1E95 /* Assets.xcassets in Resources */,
+				F41CE32F2252C64B005E6151 /* GoogleService-Info.plist in Resources */,
 				F499A54D21F79F100020F53D /* Podfile in Resources */,
 				F479FE1021F65153007A1E95 /* Main.storyboard in Resources */,
 			);
@@ -303,20 +310,24 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -326,9 +337,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F41CE32D2252B236005E6151 /* LoginViewController.swift in Sources */,
 				F4A70BF421FB217B00AC3865 /* PostViewController.swift in Sources */,
 				F4A70C2921FB920100AC3865 /* AlarmController.swift in Sources */,
-				F479FE0D21F65153007A1E95 /* LoginViewController.swift in Sources */,
+				F479FE0D21F65153007A1E95 /* TempLoginViewController.swift in Sources */,
 				F4A70C2621FB919600AC3865 /* Alarm.swift in Sources */,
 				F4D1D44421FFA18300BC1DE0 /* Constants.swift in Sources */,
 				F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */,
@@ -499,7 +511,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.palacios.-00DaysofCode";
+				PRODUCT_BUNDLE_IDENTIFIER = com.palacios.codeStreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -518,7 +530,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.palacios.-00DaysofCode";
+				PRODUCT_BUNDLE_IDENTIFIER = com.palacios.codeStreak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

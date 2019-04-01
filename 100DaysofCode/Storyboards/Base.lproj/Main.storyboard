@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Test View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="0Ac-d1-FzB">
             <objects>
-                <viewController id="hKj-GS-Grx" customClass="TestViewController" customModule="_00DaysofCode" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LOGIN" id="hKj-GS-Grx" customClass="LoginViewController" customModule="_00DaysofCode" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vlz-Tb-1hm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,15 +62,18 @@
                                 <state key="normal" title="LOGIN">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginBtnPressed:" destination="hKj-GS-Grx" eventType="touchUpInside" id="qyK-45-q1m"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1t5-qI-88o">
-                                <rect key="frame" x="57" y="792" width="181" height="21"/>
+                                <rect key="frame" x="57" y="841" width="181" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACF-iF-SCw">
-                                <rect key="frame" x="252" y="787.66666666666663" width="92" height="30"/>
+                                <rect key="frame" x="252" y="836.66666666666663" width="92" height="30"/>
                                 <state key="normal" title="Register here">
                                     <color key="titleColor" red="0.31845900420000001" green="0.61050242190000004" blue="0.84319502120000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -112,8 +115,10 @@
                     <navigationItem key="navigationItem" id="Qfo-6n-Lij"/>
                     <connections>
                         <outlet property="emailTextField" destination="aQe-gt-Kgk" id="9IW-y0-sYn"/>
+                        <outlet property="loginBtn" destination="nb4-sW-5ib" id="ORp-aF-u78"/>
                         <outlet property="passwordTextField" destination="D9O-7X-HAH" id="EJI-vs-UgB"/>
                         <outlet property="tapGestureRecognizer" destination="AaY-6j-XwW" id="Aby-tz-GdY"/>
+                        <segue destination="qAO-6m-iAH" kind="presentation" identifier="LOGINTOMAIN" id="igG-tP-0W4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mBA-0m-Yci" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -128,7 +133,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="Er7-xF-WBF">
             <objects>
-                <viewController id="aV8-NS-lb4" customClass="SignUpViewController" customModule="_00DaysofCode" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SIGNUP" id="aV8-NS-lb4" customClass="SignUpViewController" customModule="_00DaysofCode" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="feW-LG-4gZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -153,6 +158,9 @@
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="submitBtnPressed:" destination="aV8-NS-lb4" eventType="touchUpInside" id="djp-bn-exT"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="lPw-O1-4mY">
                                 <rect key="frame" x="77" y="242" width="260" height="214"/>
@@ -249,9 +257,11 @@
                     <connections>
                         <outlet property="emailTextField" destination="sdC-MA-tdn" id="LbP-9q-WZF"/>
                         <outlet property="firstNameTextField" destination="SdH-CG-MyK" id="DM3-IS-QxD"/>
+                        <outlet property="infoSubmissionBtn" destination="Iep-DF-CA5" id="gJc-it-d4X"/>
                         <outlet property="lastNameTextField" destination="lus-dO-Lxd" id="PTE-6B-n9u"/>
                         <outlet property="passwordTextField" destination="dmT-2J-2S3" id="gbe-NR-vCO"/>
                         <outlet property="tapGestureRecognizer" destination="1xB-X5-ffv" id="q2g-9Z-F3F"/>
+                        <segue destination="qAO-6m-iAH" kind="presentation" identifier="SIGNUPTOMAIN" id="gDR-i2-b80"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OOc-6X-lcm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -263,10 +273,10 @@
             </objects>
             <point key="canvasLocation" x="1846" y="3652"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Temp Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="Login" id="BYZ-38-t0r" customClass="LoginViewController" customModule="_00DaysofCode" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="BYZ-38-t0r" customClass="TempLoginViewController" customModule="_00DaysofCode" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -686,7 +696,8 @@
         <scene sceneID="5Mt-Zg-OBc">
             <objects>
                 <tabBarController storyboardIdentifier="MainTabBar" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qAO-6m-iAH" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3Ib-V8-exT">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="3Ib-V8-exT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -694,7 +705,6 @@
                     <connections>
                         <segue destination="byY-Z3-rFu" kind="relationship" relationship="viewControllers" id="raJ-jx-FzA"/>
                         <segue destination="E7F-qR-hpF" kind="relationship" relationship="viewControllers" id="cAB-jE-Z0e"/>
-                        <segue destination="Om2-vP-CT7" kind="relationship" relationship="viewControllers" id="KqG-v0-5v0"/>
                         <segue destination="qxu-Yf-wyj" kind="relationship" relationship="viewControllers" id="P8C-e8-93A"/>
                     </connections>
                 </tabBarController>
@@ -729,7 +739,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vsz-Iv-3yG">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -746,18 +756,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="npn-XF-CI2"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="WriteIcon" id="4R3-4L-OaD"/>
+                    <tabBarItem key="tabBarItem" title="Twitter" image="WriteIcon" id="4R3-4L-OaD"/>
                     <connections>
                         <outlet property="webView" destination="Vsz-Iv-3yG" id="bdf-FY-ib5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XFF-3q-n1r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1034.7826086956522" y="1913.8392857142856"/>
+            <point key="canvasLocation" x="1007" y="2043"/>
         </scene>
         <!--Test View Controller-->
         <scene sceneID="Xcy-vj-ufz">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XLK-G3-dwU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Test" id="z6g-nE-nAw" customClass="TestViewController" customModule="_00DaysofCode" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fq3-5a-eQZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -784,9 +795,6 @@
                                 <rect key="frame" x="233" y="548" width="46" height="30"/>
                                 <color key="backgroundColor" red="0.67086373730000004" green="0.2235728874" blue="0.22985377730000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="cHq-DS-jxo" kind="show" id="dwU-cl-S8S"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -807,7 +815,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="HBi-79-5vb"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XLK-G3-dwU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2875.36231884058" y="2689.2857142857142"/>
         </scene>
@@ -828,7 +835,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Afz-F4-wfL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1034.7826086956522" y="1234.8214285714284"/>
+            <point key="canvasLocation" x="1035" y="1181"/>
         </scene>
         <!--Item-->
         <scene sceneID="nCB-gG-V1W">
@@ -836,7 +843,9 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qxu-Yf-wyj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="obS-F3-KE3"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TRu-fn-m8C">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="TRu-fn-m8C">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -866,7 +875,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHm-T1-i0k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3009" y="3652"/>
+            <point key="canvasLocation" x="367" y="3652"/>
         </scene>
     </scenes>
     <resources>
@@ -879,4 +888,7 @@
         <image name="WriteIcon" width="25" height="26"/>
         <image name="gradient" width="414" height="234"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="gDR-i2-b80"/>
+    </inferredMetricsTieBreakers>
 </document>

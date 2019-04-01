@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "25622BDCA24151D7C101C916DCD4C64D"
+               BlueprintIdentifier = "1E0B9DFE11A3B2711C371DDBBA9BDAA6"
                BlueprintName = "Kanna"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "Kanna.framework">

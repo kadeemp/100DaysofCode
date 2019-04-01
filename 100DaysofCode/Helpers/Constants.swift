@@ -49,4 +49,6 @@ struct EntityKeys {
     static let toLoginConfirmation = "ToConfirmation"
     static let toAddAlarmVC = "addAlarm"
     static let toMainVC = "toMain"
+    static let loginToMain = "LOGINTOMAIN"
+    static let signupToMain = "SIGNUPTOMAIN"
 }

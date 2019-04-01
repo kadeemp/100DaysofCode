@@ -14,6 +14,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet var lastNameTextField: CustomTextFieldInput!
     @IBOutlet var emailTextField: CustomTextFieldInput!
     @IBOutlet var passwordTextField: CustomTextFieldInput!
+    @IBOutlet var infoSubmissionBtn: UIButton!
 
 
 
@@ -33,6 +34,9 @@ class SignUpViewController: UIViewController {
                 field?.resignFirstResponder()
             }
         }
+    }
+    @IBAction func submitBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: SegueIdentifiers.signupToMain, sender: self)
     }
 
     
