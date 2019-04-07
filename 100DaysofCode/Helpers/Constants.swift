@@ -16,6 +16,16 @@ struct Constants {
     static let commitCount = "commitCount"
 
 }
+struct VCIdentifiers {
+
+    static let LOGIN = "LOGIN"
+    static let Home = "Home"
+    static let Settings = "Settings"
+    static let Test = "Test"
+    static let PostVC = "PostVC"
+    static let SIGNUP = "SIGNUP"
+    static let SIGNINWEBVIEW = "SIGNINWEBVIEW"
+}
 
 struct DefaultStrings {
     static let hasCommited = "hasCommited"
@@ -51,4 +61,5 @@ struct EntityKeys {
     static let toMainVC = "toMain"
     static let loginToMain = "LOGINTOMAIN"
     static let signupToMain = "SIGNUPTOMAIN"
+    static let toSIGNUP = "toSIGNUP"
 }

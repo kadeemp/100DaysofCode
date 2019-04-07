@@ -15,6 +15,15 @@ class NetworkingProvider {
 
     typealias ReturnCommitData = (Bool,Int, [CommitNode]) -> ()
 
+    static func searchGithubs(_ email:String) {
+        var urlString = "https://api.github.com/search/users?q=" + email
+        let url = URL(string: urlString)
+        Alamofire.request(url!).responseJSON { response in
+            
+
+        }
+    }
+
     static func validateUsername(_ username:String, completion: @escaping (Int?) -> ()) {
         Alamofire.request("https://github.com/\(username)").responseString { (response) in
             switch response.result {

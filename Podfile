@@ -7,6 +7,8 @@ target '100DaysofCode' do
 pod 'Kanna', '~> 4.0.0'
 pod 'AlamofireImage', '~> 3.1'
 pod 'Firebase/Core'
+pod 'Firebase/Database'
+pod 'Firebase/Auth'
 
 
 

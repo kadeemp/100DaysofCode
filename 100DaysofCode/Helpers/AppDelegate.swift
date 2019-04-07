@@ -71,9 +71,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let homeViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "Home")
         
         if let topVC = UIApplication.getTopMostViewController() {
-            if topVC.tabBarItem.title! == "Home" {
-                //notify refresh
-            }
+//            if topVC.tabBarItem.title! == "Home" {
+//                //notify refresh
+//            }
         }
         
     }

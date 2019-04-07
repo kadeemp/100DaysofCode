@@ -11,6 +11,7 @@
 		F4024EF1223DAC2000524D17 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4024EF0223DAC2000524D17 /* TestViewController.swift */; };
 		F4024EFA223DB47B00524D17 /* CustomTextFieldInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4024EF9223DB47B00524D17 /* CustomTextFieldInput.swift */; };
 		F40ADA3E2220124A007DB21D /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ADA3D2220124A007DB21D /* Views.swift */; };
+		F4108BB622566A2F0070CA13 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108BB522566A2F0070CA13 /* FirebaseController.swift */; };
 		F41CE32B2252AE90005E6151 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE32A2252AE90005E6151 /* SignUpViewController.swift */; };
 		F41CE32D2252B236005E6151 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE32C2252B236005E6151 /* LoginViewController.swift */; };
 		F41CE32F2252C64B005E6151 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41CE32E2252C64B005E6151 /* GoogleService-Info.plist */; };
@@ -30,10 +31,12 @@
 		F4A70C2921FB920100AC3865 /* AlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70C2821FB920100AC3865 /* AlarmController.swift */; };
 		F4A70C2B21FB93B400AC3865 /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70C2A21FB93B400AC3865 /* AlarmTableViewCell.swift */; };
 		F4A70C2D21FB9B3B00AC3865 /* NewAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70C2C21FB9B3B00AC3865 /* NewAlarmViewController.swift */; };
+		F4C6FB59225812CC00EF3676 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6FB58225812CC00EF3676 /* APIConstants.swift */; };
 		F4D1D43821FE648700BC1DE0 /* 100DaysofCode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D43621FE648700BC1DE0 /* 100DaysofCode.xcdatamodeld */; };
 		F4D1D44421FFA18300BC1DE0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44321FFA18300BC1DE0 /* Constants.swift */; };
 		F4D1D44621FFACEE00BC1DE0 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44521FFACEE00BC1DE0 /* CoreDataStack.swift */; };
 		F4D1D44821FFC5D800BC1DE0 /* CommitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44721FFC5D800BC1DE0 /* CommitManager.swift */; };
+		F4EAC0A3225801C8001C23E3 /* SignInWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EAC0A2225801C8001C23E3 /* SignInWebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,7 @@
 		F4024EF0223DAC2000524D17 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		F4024EF9223DB47B00524D17 /* CustomTextFieldInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldInput.swift; sourceTree = "<group>"; };
 		F40ADA3D2220124A007DB21D /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
+		F4108BB522566A2F0070CA13 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		F41CE32A2252AE90005E6151 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F41CE32C2252B236005E6151 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F41CE32E2252C64B005E6151 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -64,10 +68,12 @@
 		F4A70C2821FB920100AC3865 /* AlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmController.swift; sourceTree = "<group>"; };
 		F4A70C2A21FB93B400AC3865 /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 		F4A70C2C21FB9B3B00AC3865 /* NewAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlarmViewController.swift; sourceTree = "<group>"; };
+		F4C6FB58225812CC00EF3676 /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		F4D1D43721FE648700BC1DE0 /* 100DaysofCode.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 100DaysofCode.xcdatamodel; sourceTree = "<group>"; };
 		F4D1D44321FFA18300BC1DE0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F4D1D44521FFACEE00BC1DE0 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		F4D1D44721FFC5D800BC1DE0 /* CommitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitManager.swift; sourceTree = "<group>"; };
+		F4EAC0A2225801C8001C23E3 /* SignInWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,7 @@
 		F4024EF8223DB44600524D17 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F40ADA3C22201205007DB21D /* Navigation */,
 				F4024EF9223DB47B00524D17 /* CustomTextFieldInput.swift */,
 			);
 			path = Views;
@@ -139,23 +146,22 @@
 			isa = PBXGroup;
 			children = (
 				F4024EF8223DB44600524D17 /* Views */,
-				F40ADA3C22201205007DB21D /* Navigation */,
 				F4A70BF521FB2EEC00AC3865 /* Models */,
 				F4A70BE421F9956400AC3865 /* Extensions */,
 				F479FE1621F65155007A1E95 /* Info.plist */,
-				F4A70C2721FB920100AC3865 /* ModelControllers */,
 				F479FE1121F65155007A1E95 /* Assets.xcassets */,
 				F479FE1E21F6D1AE007A1E95 /* Storyboards */,
 				F479FE1D21F6D192007A1E95 /* Helpers */,
-				F479FE1C21F6D179007A1E95 /* View Controllers */,
+				F479FE1C21F6D179007A1E95 /* Controllers */,
 				F4D1D43621FE648700BC1DE0 /* 100DaysofCode.xcdatamodeld */,
 			);
 			path = 100DaysofCode;
 			sourceTree = "<group>";
 		};
-		F479FE1C21F6D179007A1E95 /* View Controllers */ = {
+		F479FE1C21F6D179007A1E95 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F4A70C2821FB920100AC3865 /* AlarmController.swift */,
 				F479FE0C21F65153007A1E95 /* TempLoginViewController.swift */,
 				F479FE2121F6D47B007A1E95 /* HomeViewController.swift */,
 				F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */,
@@ -165,18 +171,21 @@
 				F4024EF0223DAC2000524D17 /* TestViewController.swift */,
 				F41CE32A2252AE90005E6151 /* SignUpViewController.swift */,
 				F41CE32C2252B236005E6151 /* LoginViewController.swift */,
+				F4EAC0A2225801C8001C23E3 /* SignInWebViewController.swift */,
 			);
-			path = "View Controllers";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		F479FE1D21F6D192007A1E95 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F4C6FB58225812CC00EF3676 /* APIConstants.swift */,
 				F479FE0A21F65153007A1E95 /* AppDelegate.swift */,
 				F479FE1F21F6D275007A1E95 /* NetworkingProvider.swift */,
 				F4D1D44321FFA18300BC1DE0 /* Constants.swift */,
 				F4D1D44521FFACEE00BC1DE0 /* CoreDataStack.swift */,
 				F4D1D44721FFC5D800BC1DE0 /* CommitManager.swift */,
+				F4108BB522566A2F0070CA13 /* FirebaseController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -205,14 +214,6 @@
 				F4A70C2A21FB93B400AC3865 /* AlarmTableViewCell.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		F4A70C2721FB920100AC3865 /* ModelControllers */ = {
-			isa = PBXGroup;
-			children = (
-				F4A70C2821FB920100AC3865 /* AlarmController.swift */,
-			);
-			path = ModelControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,16 +314,20 @@
 				"${PODS_ROOT}/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F41CE32D2252B236005E6151 /* LoginViewController.swift in Sources */,
+				F4EAC0A3225801C8001C23E3 /* SignInWebViewController.swift in Sources */,
 				F4A70BF421FB217B00AC3865 /* PostViewController.swift in Sources */,
 				F4A70C2921FB920100AC3865 /* AlarmController.swift in Sources */,
 				F479FE0D21F65153007A1E95 /* TempLoginViewController.swift in Sources */,
@@ -356,7 +362,9 @@
 				F479FE2821F6E83F007A1E95 /* LoginConfirmationViewController.swift in Sources */,
 				F4A70BE621F9957500AC3865 /* Extensions.swift in Sources */,
 				F4024EF1223DAC2000524D17 /* TestViewController.swift in Sources */,
+				F4C6FB59225812CC00EF3676 /* APIConstants.swift in Sources */,
 				F4024EFA223DB47B00524D17 /* CustomTextFieldInput.swift in Sources */,
+				F4108BB622566A2F0070CA13 /* FirebaseController.swift in Sources */,
 				F4D1D44821FFC5D800BC1DE0 /* CommitManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

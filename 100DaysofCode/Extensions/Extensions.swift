@@ -162,5 +162,10 @@ extension UIViewController {
 //    @objc func dismissKeyboard() {
 //
 //    }
+    static func toInstantiate(_ viewName:String) -> UIViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc  = storyboard.instantiateViewController(withIdentifier: viewName)
+        return(vc)
+    }
 
 }
