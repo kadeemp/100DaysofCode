@@ -36,6 +36,15 @@ class Nav {
         return mainTabBarController
     }
 
+    static func returnLoginView() -> UIViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController1:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+        let loginVC = storyboard.instantiateViewController(withIdentifier: VCIdentifiers.LOGIN)
+        navigationController1.viewControllers = [loginVC]
+
+        return navigationController1
+    }
+
     static func tempLoginView() -> UINavigationController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let navigationController1:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController

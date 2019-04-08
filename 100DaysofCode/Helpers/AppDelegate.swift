@@ -25,6 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         FirebaseApp.configure()
      //   CommitManager.updateHasCommited()
+        if let user = Auth.auth().currentUser {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = Nav.returnMainView()
+            self.window?.makeKeyAndVisible()
+        } else  {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = Nav.returnLoginView()
+            self.window?.makeKeyAndVisible()
+        }
+        center.delegate = self
 //        if  userDefaults.string(forKey: "username") != nil {
 //            self.window = UIWindow(frame: UIScreen.main.bounds)
 //            center.delegate = self
@@ -102,10 +112,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         userDefaults.synchronize()
 
             self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = Nav.tempLoginView()
+            self.window?.rootViewController = Nav.returnLoginView()
             self.window?.makeKeyAndVisible()
-
-
 }
 }
 

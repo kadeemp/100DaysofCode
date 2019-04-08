@@ -41,21 +41,16 @@ class FirebaseController {
         REF_STREAKS.child(String(Auth.auth().currentUser!.uid)).updateChildValues(["streak" : streak])
     }
 
-    func registerUser(withEmail email:String, andPassword password:String, firstName:String, lastName:String, completion: @escaping (_ status:Bool,_ error:Error?) -> ()) {
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-            guard let user = user else {
-                completion(false, error)
-                return
-            }
-            let fullName = firstName + " " + lastName
+    func registerUser(firstName:String, lastName:String, username:String, completion: @escaping (_ status:Bool,_ error:Error?) -> ()) {
 
-            let uuid = NSUUID().uuidString.lowercased()
-
-            let userData = ["provider":user.user.providerID , "email":user.user.email!, "firstName": firstName, "fullName": fullName, "streak": 0  ] as [String : Any]
+            guard let user = Auth.auth().currentUser else {
+                print("user not signed in")
+                return }
+            let userData = ["provider":user.providerID , "email":user.email!, "firstName": firstName, "fullName": user.displayName, "username":username, "streak": 0  ] as [String : Any]
             self.updateStreak(streak: 0)
-            FirebaseController.instance.createDBUser(uid: user.user.uid, userData: userData)
+            FirebaseController.instance.createDBUser(uid: user.uid, userData: userData)
             completion(true, nil)
-        }
+
     }
 
     func loginUser(withEmail email:String, andPassword password:String, completion: @escaping (_ status:Bool,_ error:Error?) -> ()) {

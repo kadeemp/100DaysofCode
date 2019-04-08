@@ -4,6 +4,7 @@
 target '100DaysofCode' do
   # Comment the next line if you're not using Swift and don't want to use dynamic 
  pod 'Alamofire', '~> 4.7'
+ pod 'SwiftyJSON', '~> 4.0'
 pod 'Kanna', '~> 4.0.0'
 pod 'AlamofireImage', '~> 3.1'
 pod 'Firebase/Core'

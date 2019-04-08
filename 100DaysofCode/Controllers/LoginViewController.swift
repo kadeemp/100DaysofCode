@@ -34,16 +34,30 @@ class LoginViewController: UIViewController {
     }
     @IBAction func loginBtnPressed(_ sender: Any) {
        // performSegue(withIdentifier: SegueIdentifiers.loginToMain, sender: self)
-        print(Auth.auth().currentUser)
-        FirebaseController.instance.loginUser(withEmail: emailTextField.text!, andPassword: passwordTextField.text!) { (status, error) in
-            print(status)
-
-            if let error = error {
-                print(error)
-            }
-        }
+//        print(Auth.auth().currentUser)
+//        FirebaseController.instance.loginUser(withEmail: emailTextField.text!, andPassword: passwordTextField.text!) { (status, error) in
+//            switch status {
+//            case true:
+//                self.performSegue(withIdentifier: SegueIdentifiers.loginToMain, sender: self)
+//            case false:
+//                print(false)
+//            }
+//
+//            if let error = error {
+//                print(error)
+//            }
+//        }
+        
     }
 
+    @IBAction func signout(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        }
+        catch {
+            print(error)
+        }
+    }
     /*
     // MARK: - Navigation
 

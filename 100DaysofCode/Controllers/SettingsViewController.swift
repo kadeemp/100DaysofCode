@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -64,16 +65,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
         userDefaults.removePersistentDomain(forName: domain)
         userDefaults.synchronize()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let navigationController1:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
 
-        let LoginViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "Login")
-
-
-        navigationController1.viewControllers = [LoginViewController]
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = LoginViewController
-        self.window?.makeKeyAndVisible()
 
 
     }
@@ -83,8 +75,16 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let alertController = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { (action) in
             self.userDefaults.removeObject(forKey: DefaultStrings.username)
+            do {
+                try Auth.auth().signOut()
+            }
+            catch {
+                print(error)
+            }
             //TODO:- Add nav to loging
             self.deleteAllData()
+            self.performSegue(withIdentifier: SegueIdentifiers.SettingsToLogin, sender: self)
+
         }
         let noAction = UIAlertAction(title: "No", style: .cancel)
         alertController.addAction(yesAction)

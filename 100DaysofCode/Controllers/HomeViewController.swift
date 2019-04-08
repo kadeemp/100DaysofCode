@@ -131,6 +131,7 @@ class HomeViewController: UIViewController {
                 //                print("6")
             }
         } else {
+            loadDefaults()
         }
     }
 

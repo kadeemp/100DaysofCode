@@ -17,6 +17,7 @@ class SignInWebViewController: UIViewController, WKNavigationDelegate {
     var firstName:String!
     var lastName:String!
     var email:String!
+    var username:String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,7 @@ class SignInWebViewController: UIViewController, WKNavigationDelegate {
         let url = URL(string: "https://github.com/login/oauth/authorize?client_id=07115a59a506ae187548")
         let request = URLRequest(url: url!)
         loginWebView.load(request)
+
         // Do any additional setup after loading the view.
     }
 
@@ -42,24 +44,27 @@ class SignInWebViewController: UIViewController, WKNavigationDelegate {
 //        }
     }
 
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print(webView.url!, #function)
-        if webView.url!.host == "codestreak.firebaseapp.com" {
-            print(webView.url!.absoluteString.suffix(20))
-            submitCredentials(code: String(webView.url!.absoluteString.suffix(20)))
-        }
 
-       // let code =  webView.url!.absoluteString[0..<(webView.url!.absoluteString.count - 1)]
-    }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         print(error, #function)
     }
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         print(webView.url!, #function)
+        if let user = Auth.auth().currentUser {
+            performSegue(withIdentifier: SegueIdentifiers.WebviewToMain, sender: self)
+
+
+        }
         if webView.url!.host == "codestreak.firebaseapp.com" {
             print(webView.url!.absoluteString.suffix(20))
             submitCredentials(code: String(webView.url!.absoluteString.suffix(20)))
+            webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { (cookies) in
+
+                for cookie in cookies {
+                    webView.configuration.websiteDataStore.httpCookieStore.delete(cookie, completionHandler: nil)
+                }
+            }
         }
     }
 
@@ -80,6 +85,7 @@ class SignInWebViewController: UIViewController, WKNavigationDelegate {
             vc.email = self.email
             vc.firstName = self.firstName
             vc.lastName = self.lastName
+            vc.username = self.username
             
         }
     }
@@ -104,14 +110,20 @@ extension SignInWebViewController {
                         print(error)
                         return
                     }
+
                     if !FirebaseController.instance.isDuplicateEmail((Auth.auth().currentUser?.email)!) {
                         self.email = Auth.auth().currentUser!.email
                         let name = Auth.auth().currentUser!.displayName
                         let names = name?.split(separator: " ")
                         self.firstName = String(names![0])
                         self.lastName = String(names![1])
-                        print("1")
-                        self.performSegue(withIdentifier: SegueIdentifiers.toSIGNUP, sender: self)
+                        NetworkingProvider.searchGithubs(self.email, completion: { (username) in
+                            self.username = username
+                            self.performSegue(withIdentifier: SegueIdentifiers.toSIGNUP, sender: self)
+
+                        })
+                    } else {
+                        self.performSegue(withIdentifier: SegueIdentifiers.WebviewToMain, sender: self)
                     }
                     print("Successfull sign in ")
                     print(Auth.auth().currentUser!.email)
@@ -119,6 +131,7 @@ extension SignInWebViewController {
 
                     print(Auth.auth().currentUser!.photoURL)
                     print(Auth.auth().currentUser)
+
                 })
               //  self.navigationController?.popViewController(animated: true)
 

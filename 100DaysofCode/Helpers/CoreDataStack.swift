@@ -83,7 +83,25 @@ class CoreDataStack {
         })
         CoreDataStack.saveContext()
     }
-    
+
+    static func saveProfilePhoto(_ imageToSave:Image) {
+        let context = persistentContainer.viewContext
+        guard let entity = NSEntityDescription.entity(forEntityName: "User", in: context) else {print(#function, #line,"ISSUE HERE"); return}
+
+        let user = NSManagedObject(entity: entity, insertInto: context)
+        user.setValue(imageToSave.jpegData(compressionQuality: 1), forKey: "profilePhoto")
+
+        do {
+            try context.save()
+            print("image saving success")
+        }
+
+        catch {
+            print("COULD NOT SAVE")
+        }
+
+
+    }
 
     static func getUser(completion: @escaping (User?) -> ())  {
         let context = self.persistentContainer.viewContext

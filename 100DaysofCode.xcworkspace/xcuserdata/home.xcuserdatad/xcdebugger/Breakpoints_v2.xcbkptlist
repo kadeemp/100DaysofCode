@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "100DaysofCode/Views/Navigation/Views.swift"
-            timestampString = "576363731.298093"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "returnMainView()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "100DaysofCode/Helpers/FirebaseController.swift"
-            timestampString = "576363731.298159"
+            timestampString = "576445852.8443429"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "registerUser(withEmail:andPassword:firstName:lastName:completion:)"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "registerUser(withEmail:andPassword:firstName:lastName:username:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,11 +26,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "100DaysofCode/Controllers/SignUpViewController.swift"
-            timestampString = "576363731.298208"
+            timestampString = "576445852.84471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "submitBtnPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "100DaysofCode/Helpers/FirebaseController.swift"
+            timestampString = "576445852.844849"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "registerUser(withEmail:andPassword:firstName:lastName:username:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "100DaysofCode/Controllers/SignUpViewController.swift"
+            timestampString = "576445852.844954"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "submitBtnPressed(_:)"
             landmarkType = "7">
             <Locations>
@@ -54,31 +70,31 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "_00DaysofCode.SignUpViewController.submitBtnPressed(Any) -&gt; ()"
+                  symbolName = "closure #1 () -&gt; () in _00DaysofCode.SignUpViewController.submitBtnPressed(Any) -&gt; ()"
                   moduleName = "100DaysofCode"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/home/Desktop/Directory/Swift/100DaysofCode/100DaysofCode/Controllers/SignUpViewController.swift"
-                  timestampString = "576363731.555774"
+                  timestampString = "576445853.3537149"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80"
-                  offsetFromSymbolStart = "100">
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "46">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in _00DaysofCode.SignUpViewController.submitBtnPressed(Any) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 () -&gt; () in _00DaysofCode.SignUpViewController.submitBtnPressed(Any) -&gt; ()"
                   moduleName = "100DaysofCode"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/home/Desktop/Directory/Swift/100DaysofCode/100DaysofCode/Controllers/SignUpViewController.swift"
-                  timestampString = "576363731.557712"
+                  timestampString = "576445853.3579251"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "82"
-                  endingLineNumber = "82"
-                  offsetFromSymbolStart = "156">
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "153">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -89,13 +105,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "100DaysofCode/Controllers/SignInWebViewController.swift"
-            timestampString = "576363731.2982531"
+            filePath = "100DaysofCode/Controllers/SignUpViewController.swift"
+            timestampString = "576445852.845057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "submitBtnPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,13 +121,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "100DaysofCode/Controllers/SignInWebViewController.swift"
-            timestampString = "576363731.298571"
+            filePath = "100DaysofCode/Controllers/SignUpViewController.swift"
+            timestampString = "576445852.845157"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "webView(_:didFinish:)"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "submitBtnPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,29 +137,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "100DaysofCode/Controllers/SignInWebViewController.swift"
-            timestampString = "576363731.298787"
+            filePath = "100DaysofCode/Controllers/SignUpViewController.swift"
+            timestampString = "576445852.845248"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "webView(_:didFail:withError:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "100DaysofCode/Controllers/SignInWebViewController.swift"
-            timestampString = "576363731.298993"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "webView(_:didCommit:)"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "submitBtnPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
