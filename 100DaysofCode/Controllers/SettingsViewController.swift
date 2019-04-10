@@ -54,6 +54,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let addAlarmVC = storyboard.instantiateViewController(withIdentifier: "addAlarm")
         self.navigationController?.pushViewController(addAlarmVC, animated: true)
+
     }
     func deleteAllData() {
         CoreDataStack.deleteSavedNodes()
@@ -82,7 +83,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 print(error)
             }
             //TODO:- Add nav to loging
-            self.deleteAllData()
+           // self.deleteAllData()
             self.performSegue(withIdentifier: SegueIdentifiers.SettingsToLogin, sender: self)
 
         }

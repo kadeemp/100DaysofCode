@@ -67,3 +67,17 @@ struct EntityKeys {
     static let WebviewToMain = "WebviewToMain"
     static let SettingsToLogin = "SettingsToLogin"
 }
+struct FirebaseUserKeys {
+    static let email = "email"
+    static let firstName = "firstName"
+    static let fullName = "fullName"
+    static let provider = "provider"
+    static let streak = "streak"
+    static let username = "username"
+}
+
+struct URLIDs {
+
+    static let githubSearchURL = URL(string: "https://api.github.com/search/users?q=")
+    static let githubTokenRequest = URL(string:"https://github.com/login/oauth/authorize?client_id=\(APIConstants.client_id)")
+}

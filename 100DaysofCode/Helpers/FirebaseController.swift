@@ -41,15 +41,30 @@ class FirebaseController {
         REF_STREAKS.child(String(Auth.auth().currentUser!.uid)).updateChildValues(["streak" : streak])
     }
 
+    func returnUserInfo(category:String, completion: @escaping (Any) -> ())  {
+
+        var result:Any!
+        REF_USERS.child(Auth.auth().currentUser!.uid).observe(.value) { (userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            for user in userSnapshot {
+                if user.key == category {
+                    guard let result = user.value  else {return}
+                    print(result)
+                    completion(result)
+
+                }
+            }
+        }
+    }
     func registerUser(firstName:String, lastName:String, username:String, completion: @escaping (_ status:Bool,_ error:Error?) -> ()) {
 
-            guard let user = Auth.auth().currentUser else {
-                print("user not signed in")
-                return }
-            let userData = ["provider":user.providerID , "email":user.email!, "firstName": firstName, "fullName": user.displayName, "username":username, "streak": 0  ] as [String : Any]
-            self.updateStreak(streak: 0)
-            FirebaseController.instance.createDBUser(uid: user.uid, userData: userData)
-            completion(true, nil)
+        guard let user = Auth.auth().currentUser else {
+            print("user not signed in")
+            return }
+        let userData = ["provider":user.providerID , "email":user.email!, "firstName": firstName, "fullName": user.displayName, "username":username, "streak": 0  ] as [String : Any]
+        self.updateStreak(streak: 0)
+        FirebaseController.instance.createDBUser(uid: user.uid, userData: userData)
+        completion(true, nil)
 
     }
 

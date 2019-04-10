@@ -9,20 +9,23 @@
 import UIKit
 import AlamofireImage
 import CoreData
+import Firebase
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrollViewDelegate {
 
     //TODO:- Add function for saving nodes to core data, add observer
 
+    @IBOutlet var greetingLabel: UILabel!
     @IBOutlet var counterActivtyIndicator: UIActivityIndicatorView!
     @IBOutlet var imageViewActivityIndicator: UIActivityIndicatorView!
 
-    @IBOutlet var counterLabel: UILabel!
     @IBOutlet var profilePictureImageView: UIImageView!
     @IBOutlet var streakCounterImageView: UIImageView!
     @IBOutlet var commitStatusImage: UIImageView!
 
     @IBOutlet var centerView: UIView!
+    var newCounterLabel:UILabel!
+    var counterView:UIView!
     var profilePictureURL:URLRequest!
     var userDefaults = UserDefaults.standard
     var username:String!
@@ -31,10 +34,7 @@ class HomeViewController: UIViewController {
     var trackLayer = CAShapeLayer()
     var pulsatingLayer : CAShapeLayer!
     var streak = 0
-    var hasCommited = false
-    var timer :Timer!
-    var counter = 0
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
     var nodes:[CommitNode] = []
     var currentDay:Date!
 
@@ -42,43 +42,111 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         counterActivtyIndicator.startAnimating()
         imageViewActivityIndicator.startAnimating()
-        hasCommited = userDefaults.bool(forKey: DefaultStrings.hasCommited)
-        CommitManager.updateHasCommited()
+
+       // CommitManager.updateHasCommited()
         NotificationCenter.default.addObserver(self, selector: #selector(internetAlertError), name: NotificationName.internetErrorNote, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadDefaults), name: NotificationName.loadDefaults, object: nil)
-        
-        if hasCommited == false {
 
-        }
-        load()
+        imageViewActivityIndicator.isHidden = true
+        counterActivtyIndicator.isHidden = true
     }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != 0 {
+            scrollView.contentOffset.x = 0
+        } else if scrollView.contentOffset.y >= 0 {
+            scrollView.contentOffset.y = 0
+        }
+
+    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+
+        if scrollView.bounds.maxY < 550 {
+            print("execture")
+        }
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
-
+        scrollViewSetup()
+        trackLayerSetup()
+        counterLabelSetup()
+        if let user = Auth.auth().currentUser {
+            FirebaseController.instance.returnUserInfo(category: FirebaseUserKeys.firstName, completion: {(name)  in
+                self.greetingLabel.text = "Hello \(name)"
+            }
+            )
+        }
         username = UserDefaults.standard.string(forKey: "username")
         pulsatingLayer = CAShapeLayer()
 
     }
+    func scrollViewSetup() {
+        let scrollerView = UIScrollView(frame:  CGRect(x: 0, y: 0, width: self.view.frame.width, height: (self.view.frame.height) * 0.8))
+        scrollerView.contentSize = CGSize(width: 250, height: 600)
+        scrollerView.center = CGPoint(x: view.frame.midX, y: view.frame.midY)
+        scrollerView.delegate = self
+
+        counterView = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
+        counterView.center = CGPoint(x: scrollerView.bounds.midX, y: scrollerView.bounds.midY)
+
+        //counterView.layer.backgroundColor = UIColor.brown.cgColor
+        self.view.addSubview(scrollerView)
+        scrollerView.addSubview(counterView)
+
+
+    }
+
+    func trackLayerSetup(){
+        let center = CGPoint(x: counterView.bounds.midX, y: counterView.bounds.midY) //CGPoint(x: (counterView.frame.minX) + 40, y: (counterView.frame.minY) - 120)
+        let trackPath = UIBezierPath(arcCenter: center, radius: 170, startAngle: -CGFloat.pi / 2, endAngle: (CGFloat.pi * 2), clockwise: true)
+        trackLayer.path = trackPath.cgPath
+        trackLayer.fillColor = UIColor.clear.cgColor
+        trackLayer.strokeColor = UIColor.lightGray.cgColor
+        trackLayer.lineWidth = 3
+        trackLayer.fillColor = UIColor.black.cgColor
+
+        trackLayer.shadowOffset = .zero
+        trackLayer.shadowColor = UIColor(red: 81/255, green: 156/255, blue: 215/255, alpha: 1).cgColor
+        trackLayer.shadowRadius = 20
+        trackLayer.shadowOpacity = 1
+        trackLayer.shadowPath = trackPath.cgPath
+        counterView.layer.addSublayer(trackLayer)
+    }
+
+    func counterLabelSetup() {
+        newCounterLabel = UILabel(frame: CGRect(x: counterView.bounds.midX, y: counterView.bounds.midY, width: 100, height: 60))
+
+        newCounterLabel.center = CGPoint(x: counterView.bounds.midX, y: counterView.bounds.midY)
+        newCounterLabel.text = "15"
+        newCounterLabel.textColor = UIColor.white
+        newCounterLabel.font = UIFont(name: "Marion", size: 60)
+        newCounterLabel.textAlignment = .center
+
+
+        counterView.addSubview(newCounterLabel)
+    }
+
+
     override func viewWillDisappear(_ animated: Bool) {
         CoreDataStack.saveStreak(streak: self.streak)
     }
     @objc func loadDefaults() {
         CoreDataStack.getUsername(completion: { username in
 
+
             self.username = username
         })
         CoreDataStack.getStreak(completion: {streak in
             self.streak =  streak
-            self.counterLabel.text = String(streak)
+            //            self.counterLabel.text = String(streak)
         })
         let coreDataNodes = CoreDataStack.returnSavedNodes()
         for node in coreDataNodes {
             self.nodes.append(node)
         }
 
-        counterLabel.text = String(self.streak)
+
         imageViewSetup()
         drawCircles()
         animateCircleDrawing()
@@ -92,8 +160,6 @@ class HomeViewController: UIViewController {
 
 
         if self.username != nil {
-
-
             operationQueue.addOperation {
                 DispatchQueue.main.async {
                     self.imageViewSetup()
@@ -110,8 +176,6 @@ class HomeViewController: UIViewController {
                         self.streak = streak
                         //                        print("the streak is set to \(self.streak)")
                         self.nodes = returnedNodes
-                        self.counterLabel.text = String(self.streak)
-                        self.drawCircles()
                         //                        print("just drew circles")
                     }
                     )
@@ -162,16 +226,6 @@ class HomeViewController: UIViewController {
         profilePictureImageView.clipsToBounds = true
         view.applyMotion(toView: profilePictureImageView, magnitude: 10)
         view.applyMotion(toView: commitStatusImage, magnitude: 10)
-
-        //  profilePictureImageView.layer.borderWidth = 3
-        //  profilePictureImageView.layer.borderColor = UIColor(red: 31/255, green: 105/255, blue: 240/255, alpha: 1).cgColor
-
-        //   trackLayer.shadowOffset = CGSize(width: 10, height: 20)
-        // trackLayer.shadowColor = UIColor.black.cgColor
-        // trackLayer.shadowRadius = 6
-        //   trackLayer.shadowOpacity = 1
-        //        counterLabel.shadowColor = UIColor.gray
-        //        counterLabel.shadowOffset = CGSize(width: 10, height: 15)
         CoreDataStack.getUserProfilePhoto(completion: { image in
             self.profilePictureImageView.image = image
         })
@@ -204,30 +258,7 @@ class HomeViewController: UIViewController {
         //        }
     }
 
-    @objc func updateData() {
 
-        if username != nil {
-            if counter < 5 {
-                NetworkingProvider.getCurrentStreakFor(username: username) { (streakCount) in
-                    self.commitSetup()
-                    self.counterLabel.text = String(streakCount)
-                    self.streak = streakCount
-                    self.counterActivtyIndicator.isHidden = true
-                }
-            } else if counter == 2 {
-                UIView.animate(withDuration: 5) {
-                    self.pulsatingLayer.strokeColor = UIColor.clear.cgColor
-                    self.pulsatingLayer.fillColor = UIColor.blue.cgColor
-                    // self.drawCircles()
-                }
-            } else {
-                stopPulsing()
-                timer.invalidate()
-            }
-        }
-        print(counter)
-        counter += 1
-    }
 
     func drawCircles() {
         let angle:Double = ((Double(streak)/100)*360)
@@ -250,6 +281,7 @@ class HomeViewController: UIViewController {
         trackLayer.fillColor = UIColor.clear.cgColor
         trackLayer.strokeColor = UIColor.lightGray.cgColor
         trackLayer.lineWidth = 10
+
         //trackLayer.position = centerView.center
 
         circleLayer.path = percentageCirclePath.cgPath

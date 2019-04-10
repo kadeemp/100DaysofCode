@@ -26,7 +26,7 @@ class SignInWebViewController: UIViewController, WKNavigationDelegate {
         loginWebView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
 
 
-        let url = URL(string: "https://github.com/login/oauth/authorize?client_id=07115a59a506ae187548")
+        let url = URL(string: "https://github.com/login/oauth/authorize?client_id=\(APIConstants.client_id)")
         let request = URLRequest(url: url!)
         loginWebView.load(request)
 

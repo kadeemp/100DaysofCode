@@ -18,15 +18,17 @@ class NetworkingProvider {
 
     static func searchGithubs(_ email:String, completion: @escaping (String) -> ()) {
         var urlString = "https://api.github.com/search/users?q=" + email
+        print(urlString)
         let url = URL(string: urlString)
         Alamofire.request(url!).responseJSON { (response) in
             switch response.result {
             case .success:
-
-                let jsonData = JSON(response.data)["items"].array!
+                print(JSON(response.data), #function  )
+                if let jsonData = JSON(response.data)["items"].array {
                 for github in jsonData {
                     let username = github["login"].string!
                     completion(username)
+                }
                 }
 
                //let githubArray = jsonData["items"].array!

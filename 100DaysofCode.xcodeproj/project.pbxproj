@@ -12,6 +12,7 @@
 		F4024EFA223DB47B00524D17 /* CustomTextFieldInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4024EF9223DB47B00524D17 /* CustomTextFieldInput.swift */; };
 		F40ADA3E2220124A007DB21D /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ADA3D2220124A007DB21D /* Views.swift */; };
 		F4108BB622566A2F0070CA13 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108BB522566A2F0070CA13 /* FirebaseController.swift */; };
+		F411C35D225D38AD001C23E6 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411C35C225D38AD001C23E6 /* CounterView.swift */; };
 		F41CE32B2252AE90005E6151 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE32A2252AE90005E6151 /* SignUpViewController.swift */; };
 		F41CE32D2252B236005E6151 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE32C2252B236005E6151 /* LoginViewController.swift */; };
 		F41CE32F2252C64B005E6151 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41CE32E2252C64B005E6151 /* GoogleService-Info.plist */; };
@@ -47,6 +48,7 @@
 		F4024EF9223DB47B00524D17 /* CustomTextFieldInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldInput.swift; sourceTree = "<group>"; };
 		F40ADA3D2220124A007DB21D /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		F4108BB522566A2F0070CA13 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
+		F411C35C225D38AD001C23E6 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		F41CE32A2252AE90005E6151 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F41CE32C2252B236005E6151 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F41CE32E2252C64B005E6151 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			children = (
 				F4A70C2521FB919600AC3865 /* Alarm.swift */,
 				F4A70C2A21FB93B400AC3865 /* AlarmTableViewCell.swift */,
+				F411C35C225D38AD001C23E6 /* CounterView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				F4D1D44421FFA18300BC1DE0 /* Constants.swift in Sources */,
 				F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */,
 				F4D1D44621FFACEE00BC1DE0 /* CoreDataStack.swift in Sources */,
+				F411C35D225D38AD001C23E6 /* CounterView.swift in Sources */,
 				F40ADA3E2220124A007DB21D /* Views.swift in Sources */,
 				F479FE2021F6D275007A1E95 /* NetworkingProvider.swift in Sources */,
 				F4D1D43821FE648700BC1DE0 /* 100DaysofCode.xcdatamodeld in Sources */,
