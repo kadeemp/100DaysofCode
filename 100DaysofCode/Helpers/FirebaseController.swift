@@ -45,60 +45,80 @@ class FirebaseController {
     func returnUserInfo(category:String, completion: @escaping (Any) -> ())  {
 
         var result:Any!
-        REF_USERS.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (keySnapshot) in
+        if let thisUser = Auth.auth().currentUser {
+            REF_USERS.child(thisUser.uid).observeSingleEvent(of: .value, with: { (keySnapshot) in
 
-            guard let keySnapshot = keySnapshot.children.allObjects as? [DataSnapshot] else { return }
-            for user in keySnapshot {
-                if user.key == category {
-                    guard let result = user.value  else {return}
-                    completion(result)
+                guard let keySnapshot = keySnapshot.children.allObjects as? [DataSnapshot] else { return }
+                for user in keySnapshot {
+                    if user.key == category {
+                        guard let result = user.value  else {return}
+                        completion(result)
 
+                    }
                 }
-            }
-        })
+            })
+        } else {
+            print("cound not load \(#function)")
+        }
+
     }
     func returnUserFirstName(category:String, completion: @escaping (String) -> ())  {
 
         var result:String!
-        REF_USERS.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (userSnapshot) in
-            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
-            for user in userSnapshot {
-                if user.key == category {
-                    guard let result = user.value as? String  else {return}
-                    completion(result)
+        if let thisUser = Auth.auth().currentUser {
+            REF_USERS.child(thisUser.uid).observeSingleEvent(of: .value, with: { (userSnapshot) in
+                guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
+                for user in userSnapshot {
+                    if user.key == category {
+                        guard let result = user.value as? String  else {return}
+                        completion(result)
 
+                    }
                 }
-            }
-        })
+            })
+        } else {
+            print("cound not load \(#function)")
+        }
+
     }
     func returnUsername( completion: @escaping (String) -> ())  {
 
         var result:String!
-        REF_USERS.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: {(userSnapshot) in
-            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
-            for user in userSnapshot {
-                if user.key ==
-                    FirebaseUserKeys.username {
-                    guard let result = user.value  as? String else {return}
-                    completion(result)
+        if let thisUser = Auth.auth().currentUser {
+            REF_USERS.child(thisUser.uid).observeSingleEvent(of: .value, with: {(userSnapshot) in
+                guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
+                for user in userSnapshot {
+                    if user.key ==
+                        FirebaseUserKeys.username {
+                        guard let result = user.value  as? String else {return}
+                        completion(result)
 
+                    }
                 }
-            }
-        })
+            })
+        } else {
+            print("cound not load \(#function)")
+        }
+
     }
     func returnUserStreak( completion: @escaping (Int) -> ())  {
 
         var result:Int!
-        REF_USERS.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (userSnapshot) in
-            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
-            for user in userSnapshot {
-                if user.key == FirebaseUserKeys.streak {
-                    guard let result = user.value as? Int  else {return}
-                    completion(result)
+        if let user = Auth.auth().currentUser {
+            REF_USERS.child(user.uid).observeSingleEvent(of: .value, with: { (userSnapshot) in
+                guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
+                for user in userSnapshot {
+                    if user.key == FirebaseUserKeys.streak {
+                        guard let result = user.value as? Int  else {return}
+                        completion(result)
 
+                    }
                 }
-            }
-        })
+            })
+        } else {
+            print("cound not load \(#function)")
+        }
+
     }
     func registerUser(firstName:String, lastName:String, username:String, completion: @escaping (_ status:Bool,_ error:Error?) -> ()) {
 

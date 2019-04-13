@@ -233,7 +233,7 @@ class SignUpViewController: UIViewController,WKNavigationDelegate  {
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         print(webView.url!, #function)
         if let user = Auth.auth().currentUser {
-            performSegue(withIdentifier: SegueIdentifiers.WebviewToMain, sender: self)
+            performSegue(withIdentifier: SegueIdentifiers.SignUpToMain, sender: self)
 
 
         }
@@ -249,15 +249,7 @@ class SignUpViewController: UIViewController,WKNavigationDelegate  {
             }
         }
     }
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { (cookies) in
 
-
-
-        }
-
-        
-    }
 
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { (cookies) in
@@ -299,10 +291,10 @@ class SignUpViewController: UIViewController,WKNavigationDelegate  {
                 let credential = GitHubAuthProvider.credential(withToken: token)
                 Auth.auth().signInAndRetrieveData(with: credential, completion: { (result, error) in
                     if let error = error {
-                        print(error)
+                        print(error , #function)
                         return
                     }
-print(FirebaseController.instance.isDuplicateEmail((Auth.auth().currentUser?.email)!) )
+
                     if !FirebaseController.instance.isDuplicateEmail((Auth.auth().currentUser?.email)!) {
                         self.emailTextField.text = Auth.auth().currentUser!.email!
                         let name = Auth.auth().currentUser!.displayName

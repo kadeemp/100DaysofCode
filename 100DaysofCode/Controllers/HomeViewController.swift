@@ -22,6 +22,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
     @IBOutlet var profilePictureImageView: UIImageView!
     @IBOutlet var streakCounterImageView: UIImageView!
     @IBOutlet var commitStatusImage: UIImageView!
+    @IBOutlet var commitStatusLabel: UILabel!
 
 
     var newCounterLabel:UILabel!
@@ -42,27 +43,14 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
     override func viewWillAppear(_ animated: Bool) {
         counterActivtyIndicator.startAnimating()
         imageViewActivityIndicator.startAnimating()
-
+        profilePictureImageView.clipsToBounds = true
+        profilePictureImageView.layer.cornerRadius = profilePictureImageView.frame.width/2
+        profilePictureImageView.af_setImage(withURL: Auth.auth().currentUser!.photoURL!)
         NotificationCenter.default.addObserver(self, selector: #selector(internetAlertError), name: NotificationName.internetErrorNote, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadDefaults), name: NotificationName.loadDefaults, object: nil)
 
         imageViewActivityIndicator.isHidden = true
         counterActivtyIndicator.isHidden = true
-    }
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x != 0 {
-            scrollView.contentOffset.x = 0
-        } else if scrollView.contentOffset.y >= 0 {
-            scrollView.contentOffset.y = 0
-        }
-    }
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-
-        if scrollView.bounds.maxY < 550 {
-            FirebaseController.instance.returnUserStreak { (streak) in
-                self.newCounterLabel.text = String(streak)
-            }
-        }
     }
 
 
@@ -71,6 +59,9 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
         scrollViewSetup()
         trackLayerSetup()
         counterLabelSetup()
+        commitStatusLabel.font = UIFont(name: "Marion", size: 22)
+        greetingLabel.font = UIFont(name: "Marion", size: 33)
+        
         if let user = Auth.auth().currentUser {
             FirebaseController.instance.returnUserInfo(category: FirebaseUserKeys.firstName, completion: {(name)  in
                 self.greetingLabel.text = "Hello \(name)"
@@ -97,6 +88,23 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
 
 
     }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != 0 {
+            scrollView.contentOffset.x = 0
+        } else if scrollView.contentOffset.y >= 0 {
+            scrollView.contentOffset.y = 0
+        }
+    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+
+        if scrollView.bounds.maxY < 550 {
+            FirebaseController.instance.returnUserStreak { (streak) in
+                self.newCounterLabel.text = String(streak)
+            }
+        }
+    }
+
 
     func trackLayerSetup(){
         let center = CGPoint(x: counterView.bounds.midX, y: counterView.bounds.midY) //CGPoint(x: (counterView.frame.minX) + 40, y: (counterView.frame.minY) - 120)

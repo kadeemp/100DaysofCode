@@ -667,11 +667,11 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3aO-el-gep">
-                                <rect key="frame" x="334" y="64" width="60" height="60"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3aO-el-gep">
+                                <rect key="frame" x="354" y="64" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="c2Z-aB-eof"/>
-                                    <constraint firstAttribute="height" constant="60" id="m2X-Xr-WGE"/>
+                                    <constraint firstAttribute="width" constant="40" id="c2Z-aB-eof"/>
+                                    <constraint firstAttribute="height" constant="40" id="m2X-Xr-WGE"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -684,7 +684,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Cau-mG-1MW">
-                                <rect key="frame" x="354" y="84" width="20" height="20"/>
+                                <rect key="frame" x="364" y="74" width="20" height="20"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commit Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N11-PV-SZG">
                                 <rect key="frame" x="20" y="758" width="118" height="21"/>
@@ -700,7 +705,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello Kadeem" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSy-Pe-a8e">
-                                <rect key="frame" x="35" y="78.666666666666671" width="183" height="31"/>
+                                <rect key="frame" x="35" y="68.666666666666671" width="183" height="31"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="27"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -733,6 +738,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="HomeIcon" id="Mor-KZ-TND"/>
                     <connections>
                         <outlet property="commitStatusImage" destination="lRI-hU-AHP" id="aya-9m-ko9"/>
+                        <outlet property="commitStatusLabel" destination="N11-PV-SZG" id="Fkd-Xe-gq3"/>
                         <outlet property="counterActivtyIndicator" destination="iwP-0h-h2M" id="IDK-DM-jlg"/>
                         <outlet property="greetingLabel" destination="dSy-Pe-a8e" id="3zA-sU-3al"/>
                         <outlet property="imageViewActivityIndicator" destination="Cau-mG-1MW" id="xHR-8E-gnv"/>
