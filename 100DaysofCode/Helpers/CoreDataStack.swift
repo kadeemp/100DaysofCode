@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 import AlamofireImage
+import Firebase
 
 class CoreDataStack {
     // MARK: - Core Data stack
@@ -108,9 +109,15 @@ class CoreDataStack {
         let request = NSFetchRequest<User>(entityName: EntityKeys.User)
 
         do {
-            let result = try context.fetch(request)
-            if result.count != 0 {
-                completion(result[0])
+            let results = try context.fetch(request)
+            if results.count != 0 {
+                for result in results {
+                    if result.firstName == "" {
+                        
+                    }
+                }
+
+                completion(results[0])
             }
         }
         catch {

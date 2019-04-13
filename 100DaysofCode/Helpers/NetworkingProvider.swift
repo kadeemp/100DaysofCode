@@ -17,7 +17,8 @@ class NetworkingProvider {
     typealias ReturnCommitData = (Bool,Int, [CommitNode]) -> ()
 
     static func searchGithubs(_ email:String, completion: @escaping (String) -> ()) {
-        var urlString = "https://api.github.com/search/users?q=" + email
+        var urlString = "https://api.github.com/search/users?q=\(email)"
+
         print(urlString)
         let url = URL(string: urlString)
         Alamofire.request(url!).responseJSON { (response) in
@@ -36,8 +37,6 @@ class NetworkingProvider {
             case .failure(let error):
                 print(error)
             }
-            
-
         }
     }
 
@@ -55,10 +54,12 @@ class NetworkingProvider {
             }
         }
     }
+
     static func getCurrentStreakFor(username: String, completion: @escaping (Int) -> Void) {
         Alamofire.request("https://github.com/\(username)").responseString { response in
             completion(self.parseStreakFromHTML(html: response.result.value!))    }
     }
+
     static func getProfilePictureFor(username: String, completion: @escaping (String) -> Void) {
         Alamofire.request("https://github.com/\(username)").responseString { response in
             switch response.result {

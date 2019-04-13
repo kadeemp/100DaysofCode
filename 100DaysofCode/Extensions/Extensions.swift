@@ -29,6 +29,12 @@ extension CGPoint {
 }
 
 extension Int {
+
+    static func asString(_ number:Int) -> String {
+        return String(number)
+
+
+    }
     static func doubleDigitConverter(number:Int) -> String {
         var result = ""
         if number >= 10 {

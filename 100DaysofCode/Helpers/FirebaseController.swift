@@ -41,20 +41,64 @@ class FirebaseController {
         REF_STREAKS.child(String(Auth.auth().currentUser!.uid)).updateChildValues(["streak" : streak])
     }
 
+
     func returnUserInfo(category:String, completion: @escaping (Any) -> ())  {
 
         var result:Any!
-        REF_USERS.child(Auth.auth().currentUser!.uid).observe(.value) { (userSnapshot) in
-            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
-            for user in userSnapshot {
+        REF_USERS.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (keySnapshot) in
+
+            guard let keySnapshot = keySnapshot.children.allObjects as? [DataSnapshot] else { return }
+            for user in keySnapshot {
                 if user.key == category {
                     guard let result = user.value  else {return}
-                    print(result)
                     completion(result)
 
                 }
             }
-        }
+        })
+    }
+    func returnUserFirstName(category:String, completion: @escaping (String) -> ())  {
+
+        var result:String!
+        REF_USERS.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            for user in userSnapshot {
+                if user.key == category {
+                    guard let result = user.value as? String  else {return}
+                    completion(result)
+
+                }
+            }
+        })
+    }
+    func returnUsername( completion: @escaping (String) -> ())  {
+
+        var result:String!
+        REF_USERS.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: {(userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            for user in userSnapshot {
+                if user.key ==
+                    FirebaseUserKeys.username {
+                    guard let result = user.value  as? String else {return}
+                    completion(result)
+
+                }
+            }
+        })
+    }
+    func returnUserStreak( completion: @escaping (Int) -> ())  {
+
+        var result:Int!
+        REF_USERS.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            for user in userSnapshot {
+                if user.key == FirebaseUserKeys.streak {
+                    guard let result = user.value as? Int  else {return}
+                    completion(result)
+
+                }
+            }
+        })
     }
     func registerUser(firstName:String, lastName:String, username:String, completion: @escaping (_ status:Bool,_ error:Error?) -> ()) {
 
@@ -96,7 +140,9 @@ class FirebaseController {
         var result:Bool = false
 
         REF_USERS.observe(.value) { (userSnapshot) in
-            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {
+                print("failed")
+                return }
             for user in userSnapshot {
                 let email = user.childSnapshot(forPath: "email").value as? String
                 print(emailString, "\n" , email! , "\n", "-------------_")

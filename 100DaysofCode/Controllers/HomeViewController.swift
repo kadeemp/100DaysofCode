@@ -23,7 +23,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
     @IBOutlet var streakCounterImageView: UIImageView!
     @IBOutlet var commitStatusImage: UIImageView!
 
-    @IBOutlet var centerView: UIView!
+
     var newCounterLabel:UILabel!
     var counterView:UIView!
     var profilePictureURL:URLRequest!
@@ -43,7 +43,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
         counterActivtyIndicator.startAnimating()
         imageViewActivityIndicator.startAnimating()
 
-       // CommitManager.updateHasCommited()
         NotificationCenter.default.addObserver(self, selector: #selector(internetAlertError), name: NotificationName.internetErrorNote, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadDefaults), name: NotificationName.loadDefaults, object: nil)
 
@@ -56,12 +55,13 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
         } else if scrollView.contentOffset.y >= 0 {
             scrollView.contentOffset.y = 0
         }
-
     }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 
         if scrollView.bounds.maxY < 550 {
-            print("execture")
+            FirebaseController.instance.returnUserStreak { (streak) in
+                self.newCounterLabel.text = String(streak)
+            }
         }
     }
 
@@ -76,6 +76,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
                 self.greetingLabel.text = "Hello \(name)"
             }
             )
+
         }
         username = UserDefaults.standard.string(forKey: "username")
         pulsatingLayer = CAShapeLayer()
@@ -122,7 +123,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
         newCounterLabel.textColor = UIColor.white
         newCounterLabel.font = UIFont(name: "Marion", size: 60)
         newCounterLabel.textAlignment = .center
-
 
         counterView.addSubview(newCounterLabel)
     }

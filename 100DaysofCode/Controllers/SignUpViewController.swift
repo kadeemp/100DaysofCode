@@ -238,6 +238,7 @@ class SignUpViewController: UIViewController,WKNavigationDelegate  {
 
         }
         if webView.url!.host == "codestreak.firebaseapp.com" {
+
             print(webView.url!.absoluteString.suffix(20))
             submitCredentials(code: String(webView.url!.absoluteString.suffix(20)))
             webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { (cookies) in
@@ -246,6 +247,42 @@ class SignUpViewController: UIViewController,WKNavigationDelegate  {
                     webView.configuration.websiteDataStore.httpCookieStore.delete(cookie, completionHandler: nil)
                 }
             }
+        }
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { (cookies) in
+
+
+
+        }
+
+        
+    }
+
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { (cookies) in
+
+            for cookie in cookies {
+                webView.configuration.websiteDataStore.httpCookieStore.delete(cookie, completionHandler: nil)
+            }
+        }
+    }
+    func clearCache() {
+        print("Cache cleared")
+        if #available(iOS 9.0, *) {
+            let websiteDataTypes = NSSet(array: [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache])
+            let date = NSDate(timeIntervalSince1970: 0)
+            WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date as Date, completionHandler:{ })
+        } else {
+            var libraryPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, false).first!
+            libraryPath += "/Cookies"
+
+            do {
+                try FileManager.default.removeItem(atPath: libraryPath)
+            } catch {
+                print("error")
+            }
+            URLCache.shared.removeAllCachedResponses()
         }
     }
     func submitCredentials(code:String) {
@@ -265,15 +302,15 @@ class SignUpViewController: UIViewController,WKNavigationDelegate  {
                         print(error)
                         return
                     }
-
-                    if FirebaseController.instance.isDuplicateEmail((Auth.auth().currentUser?.email)!) {
+print(FirebaseController.instance.isDuplicateEmail((Auth.auth().currentUser?.email)!) )
+                    if !FirebaseController.instance.isDuplicateEmail((Auth.auth().currentUser?.email)!) {
                         self.emailTextField.text = Auth.auth().currentUser!.email!
                         let name = Auth.auth().currentUser!.displayName
                         let names = name?.split(separator: " ")
                         self.firstNameTextField.text = String(names![0])
                         self.lastNameTextField.text = String(names![1])
                         self.completeWebRequestAnimation(webV: self.signInWebView)
-                        NetworkingProvider.searchGithubs(self.email, completion: { (username) in
+                        NetworkingProvider.searchGithubs(Auth.auth().currentUser!.email!, completion: { (username) in
                             self.username = username
                         })
                     } else {
@@ -282,7 +319,7 @@ class SignUpViewController: UIViewController,WKNavigationDelegate  {
 
                     }
                     print("Successfull sign in ")
-
+                     self.clearCache()
 
                 })
 
