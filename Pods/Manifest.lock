@@ -65,6 +65,7 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
   - Kanna (4.0.3)
+  - KeychainSwift (14.0.0)
   - leveldb-library (1.20)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -80,6 +81,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Kanna (~> 4.0.0)
+  - KeychainSwift (~> 14.0)
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
@@ -97,6 +99,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - Kanna
+    - KeychainSwift
     - leveldb-library
     - nanopb
     - SwiftyJSON
@@ -115,10 +118,11 @@ SPEC CHECKSUMS:
   GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   Kanna: 0ebbdd0e7e3308f0aafbd569e79c8cadc5eb877c
+  KeychainSwift: d3cce449feb5198907aa3c50ae7409fdbd9d3e20
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 19e198836834944fb1171a5c211c9f0749e1557a
+PODFILE CHECKSUM: c0d00a2ec83e523a39c0cf78fe9a1f1e8eda2b42
 
 COCOAPODS: 1.6.0

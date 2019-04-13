@@ -10,6 +10,7 @@ pod 'AlamofireImage', '~> 3.1'
 pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'Firebase/Auth'
+pod 'KeychainSwift', '~> 14.0'
 
 
 
