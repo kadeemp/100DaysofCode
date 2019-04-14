@@ -156,10 +156,10 @@ class FirebaseController {
             handler(emailArray)
         }
     }
-    func isDuplicateEmail(_ emailString:String) -> Bool {
-        var result:Bool = false
+    func isDuplicateEmail(_ emailString:String, completion: @escaping (Bool) -> ()){
 
         REF_USERS.observe(.value) { (userSnapshot) in
+            print(userSnapshot)
             guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {
                 print("failed")
                 return }
@@ -167,13 +167,16 @@ class FirebaseController {
                 let email = user.childSnapshot(forPath: "email").value as? String
                 print(emailString, "\n" , email! , "\n", "-------------_")
 
-                if email?.capitalized == emailString.capitalized  {
-                    result = true
-
+                if email!.lowercased() == emailString.lowercased()  {
+                    print("isduplicate email is \(true)")
+                        completion(true)
+                    return
                 }
             }
+            print("isduplicate email is \(false)")
+            completion(false)
         }
-        return result
+
     }
 }
 

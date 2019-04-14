@@ -66,6 +66,7 @@ struct EntityKeys {
     static let SignUpToMain = "SignUpToMain"
     static let WebviewToMain = "WebviewToMain"
     static let SettingsToLogin = "SettingsToLogin"
+    static let LoginToSignup = "LoginToSignup"
 }
 struct FirebaseUserKeys {
     static let email = "email"

@@ -25,7 +25,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aQe-gt-Kgk" customClass="CustomTextFieldInput" customModule="_00DaysofCode" customModuleProvider="target">
-                                <rect key="frame" x="41.333333333333343" y="419" width="331.33333333333326" height="40"/>
+                                <rect key="frame" x="41.333333333333343" y="379.66666666666669" width="331.33333333333326" height="40"/>
                                 <color key="backgroundColor" red="0.50521494290000002" green="0.48491661450000001" blue="0.5036078504" alpha="0.29987157530000003" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="6yx-fu-05w"/>
@@ -35,28 +35,28 @@
                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="KfC-lg-LLa">
-                                <rect key="frame" x="51.333333333333336" y="431.66666666666669" width="15.000000000000007" height="15"/>
+                                <rect key="frame" x="51.333333333333336" y="392" width="15.000000000000007" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="5Nz-yU-Q2P"/>
                                     <constraint firstAttribute="height" constant="15" id="Z4L-tO-1W6"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D9O-7X-HAH" customClass="CustomTextFieldInput" customModule="_00DaysofCode" customModuleProvider="target">
-                                <rect key="frame" x="41.333333333333343" y="486" width="331.33333333333326" height="40"/>
+                                <rect key="frame" x="41.333333333333343" y="446.66666666666669" width="331.33333333333326" height="40"/>
                                 <color key="backgroundColor" red="0.50521494290000002" green="0.48491661450000001" blue="0.5036078504" alpha="0.29987157530000003" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LockIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YTB-xb-2dV">
-                                <rect key="frame" x="51.333333333333336" y="498.66666666666669" width="15.000000000000007" height="15.000000000000057"/>
+                                <rect key="frame" x="51.333333333333336" y="459" width="15.000000000000007" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="UkQ-z7-wfM"/>
                                     <constraint firstAttribute="width" constant="15" id="dPg-cq-4av"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nb4-sW-5ib">
-                                <rect key="frame" x="62" y="587" width="290" height="52"/>
+                                <rect key="frame" x="62" y="547.66666666666663" width="290" height="52"/>
                                 <color key="backgroundColor" red="0.31845900416374207" green="0.61050242185592651" blue="0.84319502115249634" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                 <state key="normal" title="LOGIN">
@@ -78,20 +78,21 @@
                                     <color key="titleColor" red="0.31845900420000001" green="0.61050242190000004" blue="0.84319502120000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <segue destination="aV8-NS-lb4" kind="show" id="QjG-RM-TRk"/>
+                                    <segue destination="aV8-NS-lb4" kind="show" identifier="LoginToSignup" id="QjG-RM-TRk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVl-BU-p4Y">
-                                <rect key="frame" x="143.66666666666666" y="666" width="126.99999999999997" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="109" y="626.66666666666663" width="196.00000000000006" height="69.333333333333371"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ZNG-tV-ngw"/>
+                                    <constraint firstAttribute="width" secondItem="qVl-BU-p4Y" secondAttribute="height" multiplier="65:23" id="XeA-18-zOa"/>
                                 </constraints>
-                                <state key="normal" title="Sign in with github">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" backgroundImage="BlackGithubButton">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Rhn-6c-S1t" kind="show" id="07q-7f-rcl"/>
+                                    <action selector="loadGthubWebview:" destination="hKj-GS-Grx" eventType="touchUpInside" id="mch-Lq-jjE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -130,6 +131,7 @@
                     <navigationItem key="navigationItem" id="Qfo-6n-Lij"/>
                     <connections>
                         <outlet property="emailTextField" destination="aQe-gt-Kgk" id="9IW-y0-sYn"/>
+                        <outlet property="githubLoginButton" destination="qVl-BU-p4Y" id="phE-Yf-uyf"/>
                         <outlet property="loginBtn" destination="nb4-sW-5ib" id="ORp-aF-u78"/>
                         <outlet property="passwordTextField" destination="D9O-7X-HAH" id="EJI-vs-UgB"/>
                         <outlet property="tapGestureRecognizer" destination="AaY-6j-XwW" id="Aby-tz-GdY"/>
@@ -143,7 +145,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1072" y="3639"/>
+            <point key="canvasLocation" x="950.72463768115949" y="3667.6339285714284"/>
         </scene>
         <!--Sign In Web View Controller-->
         <scene sceneID="60Y-v8-IIg">
@@ -343,7 +345,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1944.9275362318842" y="3638.8392857142853"/>
+            <point key="canvasLocation" x="2203" y="3652"/>
         </scene>
         <!--Temp Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -938,6 +940,7 @@
     </scenes>
     <resources>
         <image name="Account Icon" width="22" height="16"/>
+        <image name="BlackGithubButton" width="196" height="69"/>
         <image name="Circled Red X" width="18" height="18"/>
         <image name="HomeIcon" width="26" height="27"/>
         <image name="LockIcon" width="17" height="23"/>

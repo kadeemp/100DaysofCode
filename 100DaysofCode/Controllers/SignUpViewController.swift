@@ -39,7 +39,7 @@ class SignUpViewController: UIViewController,WKNavigationDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         if authenticated {
-
+            githubvalidateButton.isHidden = true
         } else {
             invalidatedViewAnimation()
         }
@@ -85,9 +85,9 @@ class SignUpViewController: UIViewController,WKNavigationDelegate  {
     @IBAction func submitBtnPressed(_ sender: Any) {
         DispatchQueue.main.async {
             FirebaseController.instance.registerUser(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!, username: self.username) { (complete, error) in
-                //            FirebaseController.instance.updateStreak(streak: 10)
 
                 if let user = Auth.auth().currentUser {
+
                     let credential = EmailAuthProvider.credential(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!)
                     user.linkAndRetrieveData(with: credential, completion: { (status, error) in
                         print("result is \(String(describing: status))\n")
@@ -100,40 +100,7 @@ class SignUpViewController: UIViewController,WKNavigationDelegate  {
             }
         }
 
-        //        NetworkingProvider.searchGithubs(emailTextField.text!, completion: { username in
-        //            UserDefaults.standard.set(username, forKey: "username")
-        //            NetworkingProvider.getProfilePictureFor(username: username, completion: { (url) in
-        //                if url != "" {
-        //                    let urlRequest = URLRequest(url: URL(string: url)!)
-        //
-        //                    ImageDownloader().download(urlRequest) { response in
-        //                        switch response.result {
-        //                        case .success:
-        //                            if let image = response.result.value {
-        //
-        //                               // CoreDataStack.saveProfilePhoto(image)
-        //
-        //
-        //                            }
-        //                        case .failure(let error):
-        //                            print(error)
-        //                        }
-        //
-        //                    }
-        //                }
-        //            })
-        //        })
-        //        self.navigationController?.setViewControllers([Nav.returnMainView()], animated: true)
-
         // performSegue(withIdentifier: SegueIdentifiers.signupToMain, sender: self)
-
-
-        let banner = UIView(frame: CGRect(x: 0, y:  -self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.30))
-        banner.layer.backgroundColor = UIColor.blue.cgColor
-        banner.layer.cornerRadius = banner.frame.width * 0.1
-        //        self.view.addSubview(banner)
-
-
         //        UIView.animate(withDuration: 1) {
         //            banner.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height * 0.30)
         //        }
@@ -294,32 +261,30 @@ class SignUpViewController: UIViewController,WKNavigationDelegate  {
                         print(error , #function)
                         return
                     }
-
-                    if !FirebaseController.instance.isDuplicateEmail((Auth.auth().currentUser?.email)!) {
-                        self.emailTextField.text = Auth.auth().currentUser!.email!
-                        let name = Auth.auth().currentUser!.displayName
-                        let names = name?.split(separator: " ")
-                        self.firstNameTextField.text = String(names![0])
-                        self.lastNameTextField.text = String(names![1])
-                        self.completeWebRequestAnimation(webV: self.signInWebView)
-                        NetworkingProvider.searchGithubs(Auth.auth().currentUser!.email!, completion: { (username) in
-                            self.username = username
-                        })
-                    } else {
-                        self.completeWebRequestAnimation(webV: self.signInWebView)
-                        self.performSegue(withIdentifier: SegueIdentifiers.SignUpToMain, sender: self)
-
-                    }
+                     FirebaseController.instance.isDuplicateEmail((Auth.auth().currentUser?.email)!, completion:{ (isDouble) in
+                        if isDouble {
+                            self.completeWebRequestAnimation(webV: self.signInWebView)
+                            self.performSegue(withIdentifier: SegueIdentifiers.SignUpToMain, sender: self)
+                        } else {
+                            self.emailTextField.text = Auth.auth().currentUser!.email!
+                            let name = Auth.auth().currentUser!.displayName
+                            let names = name?.split(separator: " ")
+                            self.firstNameTextField.text = String(names![0])
+                            self.lastNameTextField.text = String(names![1])
+                            self.completeWebRequestAnimation(webV: self.signInWebView)
+                            NetworkingProvider.searchGithubs(Auth.auth().currentUser!.email!, completion: { (username) in
+                                self.username = username
+                                
+                            })
+                        }
+                    })
                     print("Successfull sign in ")
                      self.clearCache()
-
                 })
 
             case .failure:
                 print(response.error.debugDescription)
             }
-
-
         })
     }
 
