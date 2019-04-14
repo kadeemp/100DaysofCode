@@ -38,6 +38,7 @@ class FirebaseController {
 
     func updateStreak(streak:Int) {
         // Auth.auth().sign
+        REF_USERS.child(Auth.auth().currentUser!.uid).updateChildValues(["streak" : streak])
         REF_STREAKS.child(String(Auth.auth().currentUser!.uid)).updateChildValues(["streak" : streak])
     }
 

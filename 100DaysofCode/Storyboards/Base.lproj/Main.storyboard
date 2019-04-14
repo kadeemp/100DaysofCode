@@ -25,7 +25,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aQe-gt-Kgk" customClass="CustomTextFieldInput" customModule="_00DaysofCode" customModuleProvider="target">
-                                <rect key="frame" x="41.333333333333343" y="379.66666666666669" width="331.33333333333326" height="40"/>
+                                <rect key="frame" x="41.333333333333343" y="429" width="331.33333333333326" height="40"/>
                                 <color key="backgroundColor" red="0.50521494290000002" green="0.48491661450000001" blue="0.5036078504" alpha="0.29987157530000003" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="6yx-fu-05w"/>
@@ -35,28 +35,28 @@
                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="KfC-lg-LLa">
-                                <rect key="frame" x="51.333333333333336" y="392" width="15.000000000000007" height="15"/>
+                                <rect key="frame" x="51.333333333333336" y="441.66666666666669" width="15.000000000000007" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="5Nz-yU-Q2P"/>
                                     <constraint firstAttribute="height" constant="15" id="Z4L-tO-1W6"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D9O-7X-HAH" customClass="CustomTextFieldInput" customModule="_00DaysofCode" customModuleProvider="target">
-                                <rect key="frame" x="41.333333333333343" y="446.66666666666669" width="331.33333333333326" height="40"/>
+                                <rect key="frame" x="41.333333333333343" y="496" width="331.33333333333326" height="40"/>
                                 <color key="backgroundColor" red="0.50521494290000002" green="0.48491661450000001" blue="0.5036078504" alpha="0.29987157530000003" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LockIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YTB-xb-2dV">
-                                <rect key="frame" x="51.333333333333336" y="459" width="15.000000000000007" height="15"/>
+                                <rect key="frame" x="51.333333333333336" y="508.66666666666674" width="15.000000000000007" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="UkQ-z7-wfM"/>
                                     <constraint firstAttribute="width" constant="15" id="dPg-cq-4av"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nb4-sW-5ib">
-                                <rect key="frame" x="62" y="547.66666666666663" width="290" height="52"/>
+                                <rect key="frame" x="62" y="597" width="290" height="52"/>
                                 <color key="backgroundColor" red="0.31845900416374207" green="0.61050242185592651" blue="0.84319502115249634" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                 <state key="normal" title="LOGIN">
@@ -82,7 +82,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVl-BU-p4Y">
-                                <rect key="frame" x="109" y="626.66666666666663" width="196.00000000000006" height="69.333333333333371"/>
+                                <rect key="frame" x="178.66666666666666" y="676" width="56.666666666666657" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qVl-BU-p4Y" secondAttribute="height" multiplier="65:23" id="XeA-18-zOa"/>
