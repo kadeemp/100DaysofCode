@@ -19,19 +19,10 @@ class Nav {
         
         let homeViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: VCIdentifiers.Home)
         let settingsViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: VCIdentifiers.Settings)
-        let postVC :UIViewController = storyboard.instantiateViewController(withIdentifier: VCIdentifiers.PostVC)
 
-        postVC.tabBarItem = UITabBarItem(title: "Write a post", image: UIImage(named: "WriteIcon"), selectedImage: UIImage(named: "WriteIcon"))
         homeViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "HomeIcon"), selectedImage: UIImage(named: "HomeIcon"))
         settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "WhiteSettingsIcon"), selectedImage: UIImage(named: "WhiteSettingsIcon"))
-        let controllerTabs = [homeViewController,settingsViewController,postVC]
-
-//        for vc in controllerTabs {
-//            let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
-//            navigationController.isNavigationBarHidden = true
-//            navigationController.viewControllers = [vc]
-//            mainTabBarController.viewControllers?.append(navigationController)
-//        }
+        let controllerTabs = [homeViewController,settingsViewController]
 
         return mainTabBarController
     }
@@ -45,12 +36,5 @@ class Nav {
         return navigationController1
     }
 
-    static func tempLoginView() -> UINavigationController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let navigationController1:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
-         let LoginViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "Login")
-         navigationController1.viewControllers = [LoginViewController]
-        return navigationController1
-    }
 
 }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0B4F63AB5192F223A31AE9CE /* Pods_100DaysofCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 343D3549E0FBCA1A2A0B1B72 /* Pods_100DaysofCode.framework */; };
-		F4024EF1223DAC2000524D17 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4024EF0223DAC2000524D17 /* TestViewController.swift */; };
 		F4024EFA223DB47B00524D17 /* CustomTextFieldInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4024EF9223DB47B00524D17 /* CustomTextFieldInput.swift */; };
 		F40ADA3E2220124A007DB21D /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ADA3D2220124A007DB21D /* Views.swift */; };
 		F4108BB622566A2F0070CA13 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4108BB522566A2F0070CA13 /* FirebaseController.swift */; };
@@ -17,17 +16,14 @@
 		F41CE32D2252B236005E6151 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41CE32C2252B236005E6151 /* LoginViewController.swift */; };
 		F41CE32F2252C64B005E6151 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F41CE32E2252C64B005E6151 /* GoogleService-Info.plist */; };
 		F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0A21F65153007A1E95 /* AppDelegate.swift */; };
-		F479FE0D21F65153007A1E95 /* TempLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE0C21F65153007A1E95 /* TempLoginViewController.swift */; };
 		F479FE1021F65153007A1E95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F479FE0E21F65153007A1E95 /* Main.storyboard */; };
 		F479FE1221F65155007A1E95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F479FE1121F65155007A1E95 /* Assets.xcassets */; };
 		F479FE1521F65155007A1E95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F479FE1321F65155007A1E95 /* LaunchScreen.storyboard */; };
 		F479FE2021F6D275007A1E95 /* NetworkingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE1F21F6D275007A1E95 /* NetworkingProvider.swift */; };
 		F479FE2221F6D47B007A1E95 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2121F6D47B007A1E95 /* HomeViewController.swift */; };
 		F479FE2421F6D48C007A1E95 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */; };
-		F479FE2821F6E83F007A1E95 /* LoginConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */; };
 		F499A54D21F79F100020F53D /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F499A54C21F79F100020F53D /* Podfile */; };
 		F4A70BE621F9957500AC3865 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70BE521F9957500AC3865 /* Extensions.swift */; };
-		F4A70BF421FB217B00AC3865 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70BF321FB217B00AC3865 /* PostViewController.swift */; };
 		F4A70C2621FB919600AC3865 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70C2521FB919600AC3865 /* Alarm.swift */; };
 		F4A70C2921FB920100AC3865 /* AlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70C2821FB920100AC3865 /* AlarmController.swift */; };
 		F4A70C2B21FB93B400AC3865 /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70C2A21FB93B400AC3865 /* AlarmTableViewCell.swift */; };
@@ -37,14 +33,12 @@
 		F4D1D44421FFA18300BC1DE0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44321FFA18300BC1DE0 /* Constants.swift */; };
 		F4D1D44621FFACEE00BC1DE0 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44521FFACEE00BC1DE0 /* CoreDataStack.swift */; };
 		F4D1D44821FFC5D800BC1DE0 /* CommitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44721FFC5D800BC1DE0 /* CommitManager.swift */; };
-		F4EAC0A3225801C8001C23E3 /* SignInWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EAC0A2225801C8001C23E3 /* SignInWebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		343D3549E0FBCA1A2A0B1B72 /* Pods_100DaysofCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_100DaysofCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3776BE947360A78A014C77A5 /* Pods-100DaysofCode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-100DaysofCode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode.debug.xcconfig"; sourceTree = "<group>"; };
 		EB345D512DE7CCF80B7628DD /* Pods-100DaysofCode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-100DaysofCode.release.xcconfig"; path = "Pods/Target Support Files/Pods-100DaysofCode/Pods-100DaysofCode.release.xcconfig"; sourceTree = "<group>"; };
-		F4024EF0223DAC2000524D17 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		F4024EF9223DB47B00524D17 /* CustomTextFieldInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldInput.swift; sourceTree = "<group>"; };
 		F40ADA3D2220124A007DB21D /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		F4108BB522566A2F0070CA13 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
@@ -54,7 +48,6 @@
 		F41CE32E2252C64B005E6151 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F479FE0721F65153007A1E95 /* 100DaysofCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 100DaysofCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F479FE0A21F65153007A1E95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F479FE0C21F65153007A1E95 /* TempLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempLoginViewController.swift; sourceTree = "<group>"; };
 		F479FE0F21F65153007A1E95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F479FE1121F65155007A1E95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F479FE1421F65155007A1E95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,10 +55,8 @@
 		F479FE1F21F6D275007A1E95 /* NetworkingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProvider.swift; sourceTree = "<group>"; };
 		F479FE2121F6D47B007A1E95 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfirmationViewController.swift; sourceTree = "<group>"; };
 		F499A54C21F79F100020F53D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F4A70BE521F9957500AC3865 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		F4A70BF321FB217B00AC3865 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		F4A70C2521FB919600AC3865 /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		F4A70C2821FB920100AC3865 /* AlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmController.swift; sourceTree = "<group>"; };
 		F4A70C2A21FB93B400AC3865 /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
@@ -75,7 +66,6 @@
 		F4D1D44321FFA18300BC1DE0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F4D1D44521FFACEE00BC1DE0 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		F4D1D44721FFC5D800BC1DE0 /* CommitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitManager.swift; sourceTree = "<group>"; };
-		F4EAC0A2225801C8001C23E3 /* SignInWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,16 +154,11 @@
 			isa = PBXGroup;
 			children = (
 				F4A70C2821FB920100AC3865 /* AlarmController.swift */,
-				F479FE0C21F65153007A1E95 /* TempLoginViewController.swift */,
 				F479FE2121F6D47B007A1E95 /* HomeViewController.swift */,
 				F479FE2321F6D48C007A1E95 /* SettingsViewController.swift */,
-				F479FE2721F6E83F007A1E95 /* LoginConfirmationViewController.swift */,
-				F4A70BF321FB217B00AC3865 /* PostViewController.swift */,
 				F4A70C2C21FB9B3B00AC3865 /* NewAlarmViewController.swift */,
-				F4024EF0223DAC2000524D17 /* TestViewController.swift */,
 				F41CE32A2252AE90005E6151 /* SignUpViewController.swift */,
 				F41CE32C2252B236005E6151 /* LoginViewController.swift */,
-				F4EAC0A2225801C8001C23E3 /* SignInWebViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -350,10 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F41CE32D2252B236005E6151 /* LoginViewController.swift in Sources */,
-				F4EAC0A3225801C8001C23E3 /* SignInWebViewController.swift in Sources */,
-				F4A70BF421FB217B00AC3865 /* PostViewController.swift in Sources */,
 				F4A70C2921FB920100AC3865 /* AlarmController.swift in Sources */,
-				F479FE0D21F65153007A1E95 /* TempLoginViewController.swift in Sources */,
 				F4A70C2621FB919600AC3865 /* Alarm.swift in Sources */,
 				F4D1D44421FFA18300BC1DE0 /* Constants.swift in Sources */,
 				F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */,
@@ -367,9 +349,7 @@
 				F479FE2221F6D47B007A1E95 /* HomeViewController.swift in Sources */,
 				F4A70C2D21FB9B3B00AC3865 /* NewAlarmViewController.swift in Sources */,
 				F41CE32B2252AE90005E6151 /* SignUpViewController.swift in Sources */,
-				F479FE2821F6E83F007A1E95 /* LoginConfirmationViewController.swift in Sources */,
 				F4A70BE621F9957500AC3865 /* Extensions.swift in Sources */,
-				F4024EF1223DAC2000524D17 /* TestViewController.swift in Sources */,
 				F4C6FB59225812CC00EF3676 /* APIConstants.swift in Sources */,
 				F4024EFA223DB47B00524D17 /* CustomTextFieldInput.swift in Sources */,
 				F4108BB622566A2F0070CA13 /* FirebaseController.swift in Sources */,

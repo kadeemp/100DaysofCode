@@ -64,7 +64,6 @@ struct EntityKeys {
     static let signupToMain = "SIGNUPTOMAIN"
     static let toSIGNUP = "toSIGNUP"
     static let SignUpToMain = "SignUpToMain"
-    static let WebviewToMain = "WebviewToMain"
     static let SettingsToLogin = "SettingsToLogin"
     static let LoginToSignup = "LoginToSignup"
 }
