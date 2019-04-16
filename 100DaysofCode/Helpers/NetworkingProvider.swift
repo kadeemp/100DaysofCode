@@ -144,7 +144,6 @@ class NetworkingProvider {
 
                             states[date] = commitCount
                             guard let  formattedDate = dateForatter.date(from: date) else { return }
-                            // let  convertedDate = dateFormatter.date(from: date)
 
                             if commitCount == 0 {
                                 commitStatus = false
@@ -153,9 +152,6 @@ class NetworkingProvider {
                             }
 
                             if day["data-date"]! == "\(year)-\(Int.doubleDigitConverter(number: month) )-\(Int.doubleDigitConverter(number: today))" {
-                                print("Found the date!")
-                                print(" Commit Count is \(Int(day["data-count"]!)!)")
-                                //update hasCommited UserDefaults
                                 let node = CommitNode(context: CoreDataStack.persistentContainer.viewContext)
                                 node.setValue(formattedDate, forKey: CommitNodeKeys.date)
                                 node.setValue(commitCount, forKey: CommitNodeKeys.commitCount)

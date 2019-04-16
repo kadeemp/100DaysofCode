@@ -20,6 +20,8 @@ class FirebaseController {
     private var _REF_BASE = DB_BASE
     private var _REF_USERS = DB_BASE.child("users")
     private var _REF_STREAKS = DB_BASE.child("streaks")
+    private var _REF_NODES = DB_BASE.child("nodes")
+    private var _REF_HALLOFFAME = DB_BASE.child("hallOfFame")
 
     var REF_BASE: DatabaseReference {
         return _REF_BASE
@@ -32,6 +34,12 @@ class FirebaseController {
     var REF_STREAKS:DatabaseReference {
         return _REF_STREAKS
     }
+    var REF_NODES:DatabaseReference {
+        return _REF_NODES
+    }
+    var REF_HALLOFFAME:DatabaseReference {
+        return _REF_HALLOFFAME
+    }
     func createDBUser(uid:String, userData:Dictionary<String,Any>) {
         REF_USERS.child(uid).updateChildValues(userData)
     }
@@ -40,7 +48,22 @@ class FirebaseController {
         REF_USERS.child(Auth.auth().currentUser!.uid).updateChildValues(["streak" : streak])
         REF_STREAKS.child(String(Auth.auth().currentUser!.uid)).updateChildValues(["streak" : streak])
     }
+    func saveAllNodes(nodesToSave:[CommitNode]) {
 
+        for n in nodesToSave {
+            REF_NODES.child(Auth.auth().currentUser!.uid).child("\(n.date!)").updateChildValues(["commit count": n.commitCount,"commit status":n.commitStatus])
+        }
+
+    }
+
+    func saveNode(_ nodeToSave:CommitNode) {
+        REF_NODES.child(Auth.auth().currentUser!.uid).child("\(nodeToSave.date!)").updateChildValues(["commit count": nodeToSave.commitCount,"commit status":nodeToSave.commitStatus])
+
+    }
+
+    func addToHallOfFame() {
+        REF_HALLOFFAME.child((Auth.auth().currentUser?.uid)!).updateChildValues([ "date":"\(Date())", "Date started": "unknown", "username":"placeholder" ])
+    }
 
     func returnUserInfo(category:String, completion: @escaping (Any) -> ())  {
 

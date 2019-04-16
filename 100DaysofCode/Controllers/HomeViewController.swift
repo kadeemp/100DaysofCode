@@ -42,12 +42,15 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
         profilePictureImageView.layer.cornerRadius = profilePictureImageView.frame.width/2
         profilePictureImageView.layer.borderWidth = 2
         profilePictureImageView.layer.borderColor = UIColor.white.cgColor
+
         profilePictureImageView.af_setImage(withURL: Auth.auth().currentUser!.photoURL!)
         NotificationCenter.default.addObserver(self, selector: #selector(internetAlertError), name: NotificationName.internetErrorNote, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadDefaults), name: NotificationName.loadDefaults, object: nil)
 
         imageViewActivityIndicator.isHidden = true
         counterActivtyIndicator.isHidden = true
+
+        counterView.trackLayer.lineWidth = 0.5
     }
 
 
@@ -75,9 +78,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
     func animateTrackShadow() {
 
         counterView.triggerStreakLoadAnim()
-
-
-//
 //        UIView.animateKeyframes(withDuration: 4, delay: 0, options: .repeat, animations: {
 //            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25, animations: {
 //                self.counterView.shadowLayer.shadowColor = UIColor.clear.cgColor
@@ -115,11 +115,13 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
     }
     func updateStreak() {
 
-            NetworkingProvider.returnCommitData(completion: { (hasCommited, streak, nodes) in
+            NetworkingProvider.returnCommitData(completion: { (hasCommited, streak, node) in
+                FirebaseController.instance.saveAllNodes(nodesToSave: node)
                 FirebaseController.instance.returnUserStreak(completion: { (lastStreak) in
                     if streak > lastStreak {
                         FirebaseController.instance.updateStreak(streak: streak)
                         self.counterView.setStreak(streak)
+                        FirebaseController.instance.addToHallOfFame()
                     }
                     else {
                         self.counterView.setStreak(lastStreak)
@@ -149,8 +151,10 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
                 updateStreak()
                 counterView.streakLayer.opacity = 0
                 UIView.animate(withDuration: 1) {
+                    self.counterView.shadowLayer.shadowRadius = 20
                     self.counterView.shadowLayer.opacity = 0
                     self.counterView.counterLabel.layer.opacity = 0
+                    self.counterView.trackLayer.lineWidth = 0.5
                 }
 
             }

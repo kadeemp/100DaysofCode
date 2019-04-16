@@ -59,10 +59,11 @@ class CView: UIView {
 
         layer.path = trackPath()
         layer.fillColor = UIColor.clear.cgColor
-        layer.strokeColor = UIColor(red: 40/255, green: 148/255, blue: 216/255, alpha: 1).cgColor
-        layer.lineWidth = 10
+        layer.strokeColor = UIColor(red: 40/255, green: 155/255, blue: 235/255, alpha: 1).cgColor
+        layer.lineWidth = 25
         layer.fillColor = UIColor.black.cgColor
         layer.strokeEnd = 0
+
         layer.lineCap = CAShapeLayerLineCap.round
 
         return layer
@@ -117,9 +118,11 @@ class CView: UIView {
             shadowLayer.shadowPath = trackPath()
         }
 
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.5) {
             self.counterLabel.layer.opacity = 1
             self.shadowLayer.opacity = 1
+            self.shadowLayer.shadowRadius = 17
+            self.trackLayer.lineWidth = 3
         }
         streakLayer.opacity = 1
         streakLayer.path = percentagePath()
