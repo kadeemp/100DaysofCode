@@ -26,11 +26,10 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
 
 
     var counterView: CView!
-    var profilePictureURL:URLRequest!
     var userDefaults = UserDefaults.standard
     var username:String!
     var downloader = ImageDownloader()
-    var streak = 0
+
 
     var nodes:[CommitNode] = []
     var currentDay:Date!
@@ -55,12 +54,13 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollViewSetup()
-        //trackLayerSetup()
-//        counterLabelSetup()//
+        counterView.counterLabel.layer.opacity = 0
+        counterView.shadowLayer.opacity = 0
+
         commitStatusLabel.font = UIFont(name: "Marion", size: 22)
         greetingLabel.font = UIFont(name: "Marion", size: 33)
         
-        if let user = Auth.auth().currentUser {
+        if Auth.auth().currentUser != nil {
             updateStreak()
             FirebaseController.instance.returnUserInfo(category: FirebaseUserKeys.firstName, completion: {(name)  in
                 self.greetingLabel.text = "Hello \(name)"
@@ -74,21 +74,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
 
     func animateTrackShadow() {
 
-        counterView.animatea()
-
-// let animation = CABasicAnimation(keyPath: "strokeEnd")
-//print(Double(100/79) )
-//        animation.fromValue = 0
-//        animation.toValue =  1
-//
-//        animation.duration = 1
-//        animation.isRemovedOnCompletion = true
-//        //animation.autoreverses = true
-//
-//             self.counterView.streakLayer.add(animation, forKey: "StrokeEnd")
-
-            //self.counterView.streakLayer.strokeEnd = 0.5
-
+        counterView.triggerStreakLoadAnim()
 
 
 //
@@ -117,8 +103,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
         counterView = CView(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
         counterView.center = CGPoint(x: scrollerView.bounds.midX, y: scrollerView.bounds.midY)
         counterView.counterLabel.text = "0"
-
-        //counterView.layer.backgroundColor = UIColor.brown.cgColor
+        
         self.view.addSubview(scrollerView)
         scrollerView.addSubview(counterView)
 
@@ -134,11 +119,11 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
                 FirebaseController.instance.returnUserStreak(completion: { (lastStreak) in
                     if streak > lastStreak {
                         FirebaseController.instance.updateStreak(streak: streak)
-                        self.counterView.counterLabel.text = String(streak)
+                        self.counterView.setStreak(streak)
                     }
                     else {
-                        self.counterView.counterLabel.text = String(lastStreak)
-                        //self.animateTrackShadow()
+                        self.counterView.setStreak(lastStreak)
+
                     }
                 })
                 if hasCommited {
@@ -162,12 +147,17 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
 
             if scrollView.bounds.maxY < 550 {
                 updateStreak()
+                counterView.streakLayer.opacity = 0
+                UIView.animate(withDuration: 1) {
+                    self.counterView.shadowLayer.opacity = 0
+                    self.counterView.counterLabel.layer.opacity = 0
+                }
+
             }
         }
 
-
         override func viewWillDisappear(_ animated: Bool) {
-            CoreDataStack.saveStreak(streak: self.streak)
+            CoreDataStack.saveStreak(streak: counterView.streak)
         }
         @objc func loadDefaults() {
             CoreDataStack.getUsername(completion: { username in
@@ -176,7 +166,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
                 self.username = username
             })
             CoreDataStack.getStreak(completion: {streak in
-                self.streak =  streak
+                self.counterView.streak =  streak
                 //            self.counterLabel.text = String(streak)
             })
             let coreDataNodes = CoreDataStack.returnSavedNodes()
@@ -208,7 +198,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate, UIScrol
                 operationQueue.addOperation {
                     DispatchQueue.main.async {
                         CommitManager.updateCommitStatus(completion: { (streak, returnedNodes) in
-                            self.streak = streak
+                           self.counterView.streak = streak
                             //                        print("the streak is set to \(self.streak)")
                             self.nodes = returnedNodes
                             //                        print("just drew circles")

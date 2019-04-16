@@ -547,7 +547,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6V-uw-IKe">
-                                <rect key="frame" x="91" y="632" width="271" height="86"/>
+                                <rect key="frame" x="72" y="45" width="271" height="86"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="86" id="A6d-g7-XTm"/>
@@ -563,7 +563,7 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="dSy-Pe-a8e" firstAttribute="leading" secondItem="lua-Rz-1YU" secondAttribute="leading" constant="35" id="1Pu-ea-Moe"/>
-                            <constraint firstItem="U6V-uw-IKe" firstAttribute="leading" secondItem="lua-Rz-1YU" secondAttribute="leading" constant="91" id="FSO-wG-PYQ"/>
+                            <constraint firstItem="U6V-uw-IKe" firstAttribute="leading" secondItem="lua-Rz-1YU" secondAttribute="leading" constant="72" id="FSO-wG-PYQ"/>
                             <constraint firstItem="lRI-hU-AHP" firstAttribute="centerY" secondItem="N11-PV-SZG" secondAttribute="centerY" id="GQz-pg-QVZ"/>
                             <constraint firstItem="Cau-mG-1MW" firstAttribute="centerY" secondItem="3aO-el-gep" secondAttribute="centerY" id="GsL-mG-7eY"/>
                             <constraint firstItem="dSy-Pe-a8e" firstAttribute="centerY" secondItem="Cau-mG-1MW" secondAttribute="centerY" id="ICd-wp-h3h"/>
@@ -571,11 +571,16 @@
                             <constraint firstItem="N11-PV-SZG" firstAttribute="leading" secondItem="lua-Rz-1YU" secondAttribute="leading" constant="20" id="YEg-4h-uOR"/>
                             <constraint firstItem="lRI-hU-AHP" firstAttribute="leading" secondItem="N11-PV-SZG" secondAttribute="trailing" constant="10" id="bfr-JM-CZU"/>
                             <constraint firstItem="lua-Rz-1YU" firstAttribute="bottom" secondItem="N11-PV-SZG" secondAttribute="bottom" constant="34" id="jv0-R1-bZY"/>
-                            <constraint firstItem="U6V-uw-IKe" firstAttribute="top" secondItem="lua-Rz-1YU" secondAttribute="top" constant="588" id="oXT-MU-i7f"/>
+                            <constraint firstItem="U6V-uw-IKe" firstAttribute="top" secondItem="lua-Rz-1YU" secondAttribute="top" constant="1" id="oXT-MU-i7f"/>
                             <constraint firstItem="3aO-el-gep" firstAttribute="top" secondItem="lua-Rz-1YU" secondAttribute="top" constant="20" id="okj-uQ-s92"/>
                             <constraint firstItem="Cau-mG-1MW" firstAttribute="centerX" secondItem="3aO-el-gep" secondAttribute="centerX" id="qC7-XD-to4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lua-Rz-1YU"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="U6V-uw-IKe"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="HomeIcon" id="Mor-KZ-TND"/>
                     <connections>
