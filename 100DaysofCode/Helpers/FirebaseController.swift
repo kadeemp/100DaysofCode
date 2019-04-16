@@ -37,7 +37,6 @@ class FirebaseController {
     }
 
     func updateStreak(streak:Int) {
-        // Auth.auth().sign
         REF_USERS.child(Auth.auth().currentUser!.uid).updateChildValues(["streak" : streak])
         REF_STREAKS.child(String(Auth.auth().currentUser!.uid)).updateChildValues(["streak" : streak])
     }
@@ -45,7 +44,7 @@ class FirebaseController {
 
     func returnUserInfo(category:String, completion: @escaping (Any) -> ())  {
 
-        var result:Any!
+
         if let thisUser = Auth.auth().currentUser {
             REF_USERS.child(thisUser.uid).observeSingleEvent(of: .value, with: { (keySnapshot) in
 
@@ -54,7 +53,6 @@ class FirebaseController {
                     if user.key == category {
                         guard let result = user.value  else {return}
                         completion(result)
-
                     }
                 }
             })
@@ -65,7 +63,7 @@ class FirebaseController {
     }
     func returnUserFirstName(category:String, completion: @escaping (String) -> ())  {
 
-        var result:String!
+
         if let thisUser = Auth.auth().currentUser {
             REF_USERS.child(thisUser.uid).observeSingleEvent(of: .value, with: { (userSnapshot) in
                 guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -73,7 +71,6 @@ class FirebaseController {
                     if user.key == category {
                         guard let result = user.value as? String  else {return}
                         completion(result)
-
                     }
                 }
             })
@@ -84,7 +81,7 @@ class FirebaseController {
     }
     func returnUsername( completion: @escaping (String) -> ())  {
 
-        var result:String!
+
         if let thisUser = Auth.auth().currentUser {
             REF_USERS.child(thisUser.uid).observeSingleEvent(of: .value, with: {(userSnapshot) in
                 guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -104,7 +101,7 @@ class FirebaseController {
     }
     func returnUserStreak( completion: @escaping (Int) -> ())  {
 
-        var result:Int!
+
         if let user = Auth.auth().currentUser {
             REF_USERS.child(user.uid).observeSingleEvent(of: .value, with: { (userSnapshot) in
                 guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else { return }

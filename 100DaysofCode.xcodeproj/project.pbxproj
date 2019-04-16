@@ -29,6 +29,7 @@
 		F4A70C2B21FB93B400AC3865 /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70C2A21FB93B400AC3865 /* AlarmTableViewCell.swift */; };
 		F4A70C2D21FB9B3B00AC3865 /* NewAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A70C2C21FB9B3B00AC3865 /* NewAlarmViewController.swift */; };
 		F4C6FB59225812CC00EF3676 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C6FB58225812CC00EF3676 /* APIConstants.swift */; };
+		F4CBCA5A2265508000C4053B /* CView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CBCA592265508000C4053B /* CView.swift */; };
 		F4D1D43821FE648700BC1DE0 /* 100DaysofCode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D43621FE648700BC1DE0 /* 100DaysofCode.xcdatamodeld */; };
 		F4D1D44421FFA18300BC1DE0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44321FFA18300BC1DE0 /* Constants.swift */; };
 		F4D1D44621FFACEE00BC1DE0 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D44521FFACEE00BC1DE0 /* CoreDataStack.swift */; };
@@ -62,6 +63,7 @@
 		F4A70C2A21FB93B400AC3865 /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 		F4A70C2C21FB9B3B00AC3865 /* NewAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAlarmViewController.swift; sourceTree = "<group>"; };
 		F4C6FB58225812CC00EF3676 /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		F4CBCA592265508000C4053B /* CView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CView.swift; sourceTree = "<group>"; };
 		F4D1D43721FE648700BC1DE0 /* 100DaysofCode.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 100DaysofCode.xcdatamodel; sourceTree = "<group>"; };
 		F4D1D44321FFA18300BC1DE0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F4D1D44521FFACEE00BC1DE0 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			children = (
 				F40ADA3C22201205007DB21D /* Navigation */,
 				F4024EF9223DB47B00524D17 /* CustomTextFieldInput.swift */,
+				F4CBCA592265508000C4053B /* CView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				F4A70C2921FB920100AC3865 /* AlarmController.swift in Sources */,
 				F4A70C2621FB919600AC3865 /* Alarm.swift in Sources */,
 				F4D1D44421FFA18300BC1DE0 /* Constants.swift in Sources */,
+				F4CBCA5A2265508000C4053B /* CView.swift in Sources */,
 				F479FE0B21F65153007A1E95 /* AppDelegate.swift in Sources */,
 				F4D1D44621FFACEE00BC1DE0 /* CoreDataStack.swift in Sources */,
 				F411C35D225D38AD001C23E6 /* CounterView.swift in Sources */,
