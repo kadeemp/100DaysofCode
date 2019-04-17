@@ -33,7 +33,7 @@ class CView: UIView {
     }()
 
     lazy var counterLabel:UILabel = {
-        let label = UILabel(frame: CGRect(x: self.mainView.bounds.midX, y: self.mainView.bounds.midY, width: 100, height: 60))
+        let label = UILabel(frame: CGRect(x: self.mainView.bounds.midX, y: self.mainView.bounds.midY, width: 200, height: 60))
 
         label.center = CGPoint(x: self.mainView.bounds.midX, y: self.mainView.bounds.midY)
         label.textColor = UIColor.white
@@ -83,13 +83,40 @@ class CView: UIView {
 
 
 
+    var animationStartDate:Date!
+    lazy var displayLink:CADisplayLink = {
+        var link = CADisplayLink(target: self, selector: #selector(handleUpdate))
+
+        return link
+    }()
+
+    @objc func handleUpdate() {
+        if animationStartDate == nil {
+            animationStartDate = Date()
+        }
+
+        let now = Date()
+        let elapsedTime = now.timeIntervalSince(animationStartDate)
+        let percentage = elapsedTime / 1
+        let value = Int(percentage * Double(streak))
+        self.counterLabel.text = "\(value)"
+        if elapsedTime > 1 {
+            self.counterLabel.text = "\(streak)"
+            animationStartDate = nil
+            displayLink.remove(from: .main, forMode: .default)
+
+        }
+    }
+
     //MARK:- View Setup
     func setup() {
+
         addSubview(mainView)
 
         mainView.layer.addSublayer(shadowLayer)
         mainView.layer.addSublayer(trackLayer)
         mainView.layer.addSublayer(streakLayer)
+
         mainView.addSubview(counterLabel)
     }
     //MARK:- data/view mode funcs
@@ -102,6 +129,9 @@ class CView: UIView {
     //MARK:- Animations
 
     func triggerStreakLoadAnim() {
+
+        displayLink.add(to: .main, forMode: .default)
+
         let animation = CABasicAnimation(keyPath: "strokeEnd")
 
         animation.fromValue = 0
@@ -110,7 +140,7 @@ class CView: UIView {
         animation.duration = 1
         animation.isRemovedOnCompletion = false
         animation.fillMode = .forwards
-        animation.timingFunction =  CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        animation.timingFunction =  CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
 
         if streak > 25 {
             shadowLayer.shadowPath = percentagePath()
@@ -121,7 +151,7 @@ class CView: UIView {
         UIView.animate(withDuration: 0.5) {
             self.counterLabel.layer.opacity = 1
             self.shadowLayer.opacity = 1
-            self.shadowLayer.shadowRadius = 17
+            self.shadowLayer.shadowRadius = 30
             self.trackLayer.lineWidth = 3
         }
         streakLayer.opacity = 1
